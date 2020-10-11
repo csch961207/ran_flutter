@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:junchengedmsflutterapp/utils/toast_util.dart';
+import 'package:ran_flutter_core/utils/toast_util.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class MapUtil {

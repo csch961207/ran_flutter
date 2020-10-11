@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:junchengedmsflutterapp/res/resources.dart';
+import 'package:ran_flutter_core/res/resources.dart';
+
 
 
 /// 间隔

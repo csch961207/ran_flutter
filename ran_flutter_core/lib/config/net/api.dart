@@ -1,11 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/adapter.dart';
 import 'package:dio/native_imp.dart';
 import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/widgets.dart';
-import 'package:junchengedmsflutterapp/utils/platform_utils.dart';
 
 export 'package:dio/dio.dart';
 

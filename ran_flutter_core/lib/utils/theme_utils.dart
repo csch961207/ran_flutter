@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:junchengedmsflutterapp/res/resources.dart';
+import 'package:ran_flutter_core/res/colors.dart';
+
 
 class ThemeUtils {
 

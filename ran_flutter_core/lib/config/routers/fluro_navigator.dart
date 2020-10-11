@@ -2,7 +2,6 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
 import 'application.dart';
-import 'routers.dart';
 
 /// fluro的路由跳转工具类
 class NavigatorUtils {
@@ -37,17 +36,5 @@ class NavigatorUtils {
   static void goBackWithParams(BuildContext context, result) {
     FocusScope.of(context).unfocus();
     Navigator.pop(context, result);
-  }
-  
-  /// 跳到WebView页
-  static goWebViewPage(BuildContext context, String title, String url){
-    //fluro 不支持传中文,需转换
-    push(context, '${Routes.webViewPage}?title=${Uri.encodeComponent(title)}&url=${Uri.encodeComponent(url)}');
-  }
-
-  /// 跳到小程序页
-  static goMiniProgramPage(BuildContext context, String url){
-    //fluro 不支持传中文,需转换
-    push(context, '${Routes.miniProgramPage}?url=${Uri.encodeComponent(url)}');
   }
 }

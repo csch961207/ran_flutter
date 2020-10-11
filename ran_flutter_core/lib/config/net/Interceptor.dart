@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
-import 'package:junchengedmsflutterapp/config/net/test.dart';
-import 'package:junchengedmsflutterapp/config/storage_manager.dart';
+import 'package:ran_flutter_core/config/net/http.dart';
+import 'package:ran_flutter_core/config/storage_manager.dart';
+
 
 /// api拦截器
 class ApiInterceptor extends InterceptorsWrapper {
