@@ -1,14 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:junchengedmsflutterapp/enterprises/page/enterprises_page.dart';
-import 'package:junchengedmsflutterapp/generated/l10n.dart';
-import 'package:junchengedmsflutterapp/home/home_page.dart';
-import 'package:junchengedmsflutterapp/my/page/my_page.dart';
-import 'package:junchengedmsflutterapp/ui/page/tab/user_page.dart';
-import 'package:junchengedmsflutterapp/utils/image_utils.dart';
-import 'package:junchengedmsflutterapp/work/page/work_page.dart';
+import 'package:flutter_app/tab/home_page.dart';
+import 'package:flutter_app/tab/my_page.dart';
 
-List<Widget> pages = <Widget>[EnterprisesPage(), WorkPage(), MyPage()];
+List<Widget> pages = <Widget>[HomePage(), MyPage()];
 
 class TabNavigator extends StatefulWidget {
   TabNavigator({Key key}) : super(key: key);
@@ -53,41 +48,18 @@ class _TabNavigatorState extends State<TabNavigator> {
         unselectedFontSize: 10,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Image(
-              image: ImageUtils.getAssetImage('home'),
-              width: 20.0,
-              height: 20.0,
+            icon: Icon(Icons.home),
+            activeIcon: Icon(
+              Icons.home,
+              color: Colors.blue,
             ),
-            activeIcon: Image(
-              image: ImageUtils.getAssetImage('home-filling'),
-              width: 20.0,
-              height: 20.0,
-            ),
-            title: Text('企业'),
+            title: Text('首页'),
           ),
           BottomNavigationBarItem(
-            icon: Image(
-              image: ImageUtils.getAssetImage('work'),
-              width: 20.0,
-              height: 20.0,
-            ),
-            activeIcon: Image(
-              image: ImageUtils.getAssetImage('work-filling'),
-              width: 20.0,
-              height: 20.0,
-            ),
-            title: Text('信访'),
-          ),
-          BottomNavigationBarItem(
-            icon: Image(
-              image: ImageUtils.getAssetImage('user'),
-              width: 20.0,
-              height: 20.0,
-            ),
-            activeIcon: Image(
-              image: ImageUtils.getAssetImage('user-filling'),
-              width: 20.0,
-              height: 20.0,
+            icon: Icon(Icons.person),
+            activeIcon: Icon(
+              Icons.person,
+              color: Colors.blue,
             ),
             title: Text('我的'),
           ),

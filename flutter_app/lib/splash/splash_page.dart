@@ -1,8 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:junchengedmsflutterapp/config/routers/fluro_navigator.dart';
-import 'package:junchengedmsflutterapp/config/routers/routers.dart';
-import 'package:junchengedmsflutterapp/login/login_router.dart';
+import 'package:flutter_app/routers/routers.dart';
+import 'package:ran_flutter_core/ran_flutter_core.dart';
 
 
 ///@author longshaohua

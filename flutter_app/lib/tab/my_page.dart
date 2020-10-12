@@ -34,7 +34,7 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
     super.build(context);
     return Scaffold(
       body: Center(
-        child: Text("首页"),
+        child: Text("我的"),
       ),
     );
   }

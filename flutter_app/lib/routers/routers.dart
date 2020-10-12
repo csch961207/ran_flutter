@@ -1,21 +1,13 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/routers/404.dart';
+import 'package:flutter_app/tab/tab_navigator.dart';
+import 'package:ran_flutter_core/ran_flutter_core.dart';
 
-import 'package:junchengedmsflutterapp/config/routers/404.dart';
-import 'package:junchengedmsflutterapp/config/routers/router_init.dart';
-import 'package:junchengedmsflutterapp/enterprises/enterprises_router.dart';
-import 'package:junchengedmsflutterapp/home/miniprogram_page.dart';
-import 'package:junchengedmsflutterapp/home/tab_navigator.dart';
-import 'package:junchengedmsflutterapp/home/webview_page.dart';
-import 'package:junchengedmsflutterapp/login/login_router.dart';
-import 'package:junchengedmsflutterapp/my/my_router.dart';
-import 'package:junchengedmsflutterapp/setting/setting_router.dart';
-import 'package:junchengedmsflutterapp/work/work_router.dart';
 
 class Routes {
   static String home = "/home";
   static String webViewPage = "/webview";
-  static String miniProgramPage = "/miniProgram";
 
   static List<IRouterProvider> _listRouter = [];
 
@@ -33,25 +25,21 @@ class Routes {
                 (BuildContext context, Map<String, List<String>> params) =>
                     TabNavigator()));
 
-    router.define(webViewPage, handler: Handler(handlerFunc: (_, params) {
-      String title = params['title']?.first;
-      String url = params['url']?.first;
-      return WebViewPage(title: title, url: url);
-    }));
-
-    router.define(miniProgramPage, handler: Handler(handlerFunc: (_, params) {
-      String url = params['url']?.first;
-      return MiniProgramPage(url: url);
-    }));
+//    router.define(webViewPage, handler: Handler(handlerFunc: (_, params) {
+//      String title = params['title']?.first;
+//      String url = params['url']?.first;
+//      return WebViewPage(title: title, url: url);
+//    }));
+//
+//    router.define(miniProgramPage, handler: Handler(handlerFunc: (_, params) {
+//      String url = params['url']?.first;
+//      return MiniProgramPage(url: url);
+//    }));
 
     _listRouter.clear();
 
     /// 各自路由由各自模块管理，统一在此添加初始化
-    _listRouter.add(LoginRouter());
-    _listRouter.add(EnterprisesRouter());
-    _listRouter.add(WorkRouter());
-    _listRouter.add(MyRouter());
-    _listRouter.add(SettingRouter());
+//    _listRouter.add(LoginRouter());
 
     /// 初始化路由
     _listRouter.forEach((routerProvider) {

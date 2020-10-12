@@ -1,4 +1,4 @@
-name: ran_flutter_core
+name: ran_flutter_widget
 description: A new Flutter package.
 version: 0.0.1
 author:
@@ -11,44 +11,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # 网络请求
-  dio: ^3.0.1
-  # State
-  provider: 4.0.3
-  # 数据存储
-  shared_preferences: ^0.5.3+5
-  # 本地json对象存储
-  localstorage: ^2.0.0
-  # 路由框架
-  fluro: ^1.6.3
-  # Dart常用工具类库
-  common_utils: ^1.2.1
-  #  cached_network_image: ^1.1.1
-  cached_network_image: ^2.0.0-rc.1
-  # third_app 启动第三方app
-  url_launcher: ^5.5.0
-  # 分享
-  share: 0.6.2+1
-  # 扫码
-  qrscan: ^0.2.17
-  # UI 全局提示
-  oktoast: ^2.3.1
-  # 处理键盘事件
-  keyboard_actions: ^2.1.2
-  # 包信息
-  package_info: ^0.4.0+6
-  # Html Encoder/Decoder
-  html_unescape: ^1.0.1+3
-  # 设备信息
-  device_info: ^0.4.0+1
-  # 全局提示
-  fluttertoast: ^3.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  # 全局提示
-  fluttertoast: ^3.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

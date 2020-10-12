@@ -2,10 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:junchengedmsflutterapp/config/storage_manager.dart';
-import 'package:junchengedmsflutterapp/generated/l10n.dart';
-import 'package:junchengedmsflutterapp/res/resources.dart';
-import 'package:junchengedmsflutterapp/ui/helper/theme_helper.dart';
+import 'package:flutter_app/generated/l10n.dart';
+import 'package:ran_flutter_core/ran_flutter_core.dart';
+
 
 //const Color(0xFF5394FF),
 

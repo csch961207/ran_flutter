@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:junchengedmsflutterapp/config/storage_manager.dart';
-import 'package:junchengedmsflutterapp/generated/l10n.dart';
+import 'package:flutter_app/generated/l10n.dart';
+import 'package:ran_flutter_core/ran_flutter_core.dart';
 
 
 class LocaleModel extends ChangeNotifier {
