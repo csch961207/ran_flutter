@@ -1,7 +1,5 @@
 library ran_flutter_widget;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export './widgets/button_progress_indicator.dart';
+export './widgets/my_button.dart';
+export './widgets/text_field_item.dart';

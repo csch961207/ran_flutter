@@ -2,6 +2,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/routers/404.dart';
 import 'package:flutter_app/tab/tab_navigator.dart';
+import 'package:ran_flutter_account/ran_flutter_account.dart';
 import 'package:ran_flutter_core/ran_flutter_core.dart';
 
 
@@ -39,7 +40,7 @@ class Routes {
     _listRouter.clear();
 
     /// 各自路由由各自模块管理，统一在此添加初始化
-//    _listRouter.add(LoginRouter());
+    _listRouter.add(AccountRouter());
 
     /// 初始化路由
     _listRouter.forEach((routerProvider) {

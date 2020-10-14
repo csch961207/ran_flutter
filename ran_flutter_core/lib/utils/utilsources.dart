@@ -11,3 +11,4 @@ export './toast.dart';
 export './toast_util.dart';
 export './utils.dart';
 export './version_utils.dart';
+export './error_utils.dart';

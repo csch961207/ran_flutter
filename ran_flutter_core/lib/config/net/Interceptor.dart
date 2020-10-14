@@ -18,11 +18,4 @@ class ApiInterceptor extends InterceptorsWrapper {
     }
     return options;
   }
-
-  @override
-  onResponse(Response response) {
-    debugPrint('---api-response--->resp----->${response.statusCode}');
-    debugPrint('---api-response--->resp----->${response.data}');
-    return http.resolve(response);
-  }
 }

@@ -153,11 +153,25 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.4.2"
+  flutter_easyloading:
+    dependency: transitive
+    description:
+      name: flutter_easyloading
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.0"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_spinkit:
+    dependency: transitive
+    description:
+      name: flutter_spinkit
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.1.2+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -350,10 +364,24 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.2.17"
+  ran_flutter_account:
+    dependency: "direct main"
+    description:
+      path: "../ran_flutter_account"
+      relative: true
+    source: path
+    version: "0.0.1"
   ran_flutter_core:
     dependency: "direct main"
     description:
       path: "../ran_flutter_core"
+      relative: true
+    source: path
+    version: "0.0.1"
+  ran_flutter_widget:
+    dependency: transitive
+    description:
+      path: "../ran_flutter_widget"
       relative: true
     source: path
     version: "0.0.1"

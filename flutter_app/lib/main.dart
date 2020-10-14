@@ -7,6 +7,7 @@ import 'package:flutter_app/routers/routers.dart';
 import 'package:flutter_app/splash/splash_page.dart';
 import 'package:flutter_app/view_model/locale_model.dart';
 import 'package:flutter_app/view_model/theme_model.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:oktoast/oktoast.dart';
@@ -19,9 +20,10 @@ main() async {
   Environment.setApis({
     "default": "http://juncheng.edms.ran.xyz",
     "AbpIdentity": "http://juncheng.edms.ran.xyz",
-    "RanSite": "http://juncheng.edms.ran.xyz"
+    "RanSite": "https://zouping.liudongdangyuan.ran.xyz"
   });
   Environment.setOAuthConfig({
+    "appName": '君成环保',
     "clientId": 'Edms_App',
     "dummyClientSecret": '1q2w3e*',
     "scope": 'Edms',
@@ -74,6 +76,10 @@ class App extends StatelessWidget {
                   supportedLocales: S.delegate.supportedLocales,
                   home: home ?? SplashPage(),
                   onGenerateRoute: Application.router.generator,
+                  builder: (BuildContext context, Widget child) {
+                    /// make sure that loading can be displayed in front of all other widgets
+                    return FlutterEasyLoading(child: child);
+                  },
 //                      initialRoute: RouteName.tab,
                 ),
               );

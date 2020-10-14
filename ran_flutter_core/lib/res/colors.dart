@@ -39,5 +39,15 @@ class Colours {
 
   static const Color bg_gray_ = Color(0xFFFAFAFA);
   static const Color dark_bg_gray_ = Color(0xFF242526);
+
+//  static const Color primary = Color(0xFFF007BFF);
+//  static const Color secondary = Color(0xFFF6c757d);
+//  static const Color success = Color(0xFFF28a745);
+//  static const Color danger = Color(0xFFFdc3545);
+//  static const Color warning = Color(0xFFFffc107);
+//  static const Color info = Color(0xFFF17a2b8);
+//  static const Color light = Color(0xFFFF8F9FA);
+//  static const Color dark = Color(0xFFF343A40);
+//  static const Color white = Color(0xFFFFFFFF);
 }
 
