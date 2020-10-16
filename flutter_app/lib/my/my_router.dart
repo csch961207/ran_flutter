@@ -5,7 +5,7 @@ class MyRouter implements IRouterProvider {
   static String myPage = "/my";
 
   @override
-  void initRouter(Router router) {
+  void initRouter(FluroRouter router) {
 //    router.define(myPage,
 //        handler: Handler(handlerFunc: (_, params) => MyPage()));
 //    router.define(myAnsweredPetitionsDetailsPage, handler: Handler(handlerFunc: (_, params) {

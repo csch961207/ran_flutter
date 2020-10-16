@@ -55,3 +55,6 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages
+  assets:
+    - packages/ran_flutter_account/assets/images/xz.png
+    - packages/ran_flutter_account/assets/images/xztm.png

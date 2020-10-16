@@ -45,8 +45,8 @@ void getErrorTips(e, stackTrace, {String message, BuildContext context}) {
                       const Text("登录信息已失效，请重新登录", textAlign: TextAlign.center),
                 ),
                 onPressed: () {
-                  NavigatorUtils.push(context, '/account/login',
-                      replace: true, clearStack: true);
+                  NavigatorUtils.goBack(context);
+                  NavigatorUtils.push(context, '/account/login');
                 },
               );
             });
@@ -119,7 +119,6 @@ void getErrorTips(e, stackTrace, {String message, BuildContext context}) {
             e.response.data['error'] == "invalid_client") {
           ToastUtil.show("用户名或密码无效");
         } else {
-          ToastUtil.show(e.response.data.toString());
           showElasticDialog(
               context: context,
               barrierDismissible: false,

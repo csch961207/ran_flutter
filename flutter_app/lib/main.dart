@@ -18,15 +18,22 @@ import 'package:ran_flutter_core/ran_flutter_core.dart';
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Environment.setApis({
-    "default": "http://juncheng.edms.ran.xyz",
-    "AbpIdentity": "http://juncheng.edms.ran.xyz",
-    "RanSite": "https://zouping.liudongdangyuan.ran.xyz"
+//    "default": "http://juncheng.edms.ran.xyz",
+//    "AbpIdentity": "http://juncheng.edms.ran.xyz",
+    "default": "http://ld.ynxf.gov.cn:8012",
+//    "default": "https://zouping.liudongdangyuan.ran.xyz"
   });
+//  Environment.setOAuthConfig({
+//    "appName": '君成环保',
+//    "clientId": 'Edms_App',
+//    "dummyClientSecret": '1q2w3e*',
+//    "scope": 'Edms',
+//  });
   Environment.setOAuthConfig({
-    "appName": '君成环保',
-    "clientId": 'Edms_App',
+    "appName": '流动党员e家',
+    "clientId": 'Zuzhibu_App',
     "dummyClientSecret": '1q2w3e*',
-    "scope": 'Edms',
+    "scope": 'Zuzhibu',
   });
   Provider.debugCheckInvalidValueType = null;
   await StorageManager.init();
@@ -34,13 +41,13 @@ main() async {
   // Android状态栏透明 splash为白色,所以调整状态栏文字为黑色
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      statusBarBrightness: Brightness.light));
+      statusBarBrightness: Brightness.dark));
 }
 
 class App extends StatelessWidget {
   final Widget home;
   App({this.home}) {
-    final Router router = Router();
+    final FluroRouter router = FluroRouter();
     Routes.configureRoutes(router);
     Application.router = router;
   }

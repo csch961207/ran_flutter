@@ -16,3 +16,4 @@ export './config/routers/router_init.dart';
 export './res/resources.dart';
 export './utils/utilsources.dart';
 export './widget/widgetsources.dart';
+export './page/webview_page.dart';

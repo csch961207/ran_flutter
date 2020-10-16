@@ -20,7 +20,7 @@ dependencies:
   # 本地json对象存储
   localstorage: ^2.0.0
   # 路由框架
-  fluro: ^1.6.3
+  fluro: ^1.7.0
   # Dart常用工具类库
   common_utils: ^1.2.1
   #  cached_network_image: ^1.1.1
@@ -43,8 +43,12 @@ dependencies:
   device_info: ^0.4.0+1
   # 全局提示
   fluttertoast: ^3.1.0
-  #全局loading
+  # 全局loading
   flutter_easyloading: ^2.0.0
+  # 网页
+  webview_flutter: ^1.0.3
+  # 网页
+  flutter_webview_plugin: ^0.3.11
 
 dev_dependencies:
   flutter_test:
@@ -88,3 +92,5 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages
+  assets:
+    - packages/ran_flutter_core/assets/images/close.png

@@ -4,40 +4,39 @@ import 'package:fluro/fluro.dart';
 
 import 'package:provider/provider.dart';
 import 'package:ran_flutter_account/account_repository.dart';
-import 'package:ran_flutter_account/account_router.dart';
 import 'package:ran_flutter_account/model/login_res_model.dart';
+import 'package:ran_flutter_account/model/register_res_model.dart';
 import 'package:ran_flutter_account/widgets/login_field_widget.dart';
 
 import 'package:ran_flutter_account/widgets/third_component.dart';
 import 'package:ran_flutter_core/ran_flutter_core.dart';
 import 'package:ran_flutter_widget/ran_flutter_widget.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   /// outside new  inside dispose may be crash. watch it
   /// 理论上应该在当前页面dispose,
   final _nameController = TextEditingController();
+  final _emailAddressController = TextEditingController();
   final _passwordController = TextEditingController();
   final _pwdFocus = FocusNode();
   bool isBusy = false;
+  bool isAgree = true;
 
   @override
   void initState() {
     super.initState();
-    var name = StorageManager.sharedPreferences.getString("userName");
-    if (name != null) {
-      _nameController.text = name;
-    }
   }
 
   @override
   void dispose() {
     _nameController.dispose();
     _passwordController.dispose();
+    _emailAddressController.dispose();
     _pwdFocus.unfocus();
     _pwdFocus.dispose();
     super.dispose();
@@ -49,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          '密码登录',
+          '账号注册',
           style: TextStyle(color: Colors.black87),
         ),
         backgroundColor: Color(0xFFF3F2F2),
@@ -122,6 +121,23 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.white,
                 ),
                 child: LoginTextField(
+                  label: '邮箱账号',
+                  icon: Icons.alternate_email,
+                  controller: _emailAddressController,
+                  textInputAction: TextInputAction.next,
+                  onFieldSubmitted: (text) {
+                    FocusScope.of(context).requestFocus(_pwdFocus);
+                  },
+                ),
+              ),
+              Container(
+                height: 50.0,
+                margin: EdgeInsets.only(left: 20, right: 20, top: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  color: Colors.white,
+                ),
+                child: LoginTextField(
                   controller: _passwordController,
                   label: '密码',
                   icon: Icons.lock_outline,
@@ -130,29 +146,72 @@ class _LoginPageState extends State<LoginPage> {
                   textInputAction: TextInputAction.done,
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: InkWell(
+              SizedBox(
+                height: 15,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 20, right: 20),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 5,
+                    ),
+                    GestureDetector(
                       onTap: () {
-                        ToastUtil.show('请联系管理员重置');
-                        print('跳转到找回页面');
+                        setState(() {
+                          isAgree = !isAgree;
+                        });
                       },
-                      child: Text(
-                        '忘记密码？',
-                        style: TextStyle(color: Colors.grey),
+                      child: Image.asset(
+                        isAgree
+                            ? 'packages/ran_flutter_account/' +
+                                ImageHelper.wrapAssets('xz.png')
+                            : 'packages/ran_flutter_account/' +
+                                ImageHelper.wrapAssets('xztm.png'),
+                        width: 15,
+                        height: 15,
+                        fit: BoxFit.fitWidth,
+                        colorBlendMode: BlendMode.srcIn,
                       ),
                     ),
-                  )
-                ],
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      '我已阅读并同意',
+                      style: TextStyle(color: Colors.grey, fontSize: 12),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        NavigatorUtils.goWebViewPage(context, '用户许可协议',
+                            'https://www.apple.com.cn/legal/internet-services/terms/site.html');
+                      },
+                      child: Text(
+                        '《用户许可协议》 ',
+                        style: TextStyle(color: Colors.blue, fontSize: 12),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        NavigatorUtils.goWebViewPage(context, '隐私政策',
+                            'https://privacy.microsoft.com/zh-cn/privacystatement');
+                      },
+                      child: Text(
+                        ' 《隐私政策》',
+                        style: TextStyle(color: Colors.blue, fontSize: 12),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
               ),
               LoginButtonWidget(
                 child: isBusy
                     ? ButtonProgressIndicator()
                     : Text(
-                        '登陆',
+                        '注册',
                         style: Theme.of(context)
                             .accentTextTheme
                             .title
@@ -163,26 +222,35 @@ class _LoginPageState extends State<LoginPage> {
                     : () async {
                         String name = _nameController.text;
                         String password = _passwordController.text;
+                        String emailAddress = _emailAddressController.text;
                         if (name.isEmpty) {
                           ToastUtil.show('请输入用户名');
+                          return;
+                        }
+                        if (emailAddress.isEmpty) {
+                          ToastUtil.show('请输入邮箱账号');
                           return;
                         }
                         if (password.isEmpty) {
                           ToastUtil.show('请输入密码');
                           return;
                         }
+                        if (!isAgree) {
+                          ToastUtil.show('请先同意用户协议');
+                          return;
+                        }
                         setState(() {
                           isBusy = true;
                         });
                         try {
-                          LoginRes loginRes = await AccountRepository.login(
-                              _nameController.text, _passwordController.text);
-                          StorageManager.sharedPreferences
-                              .setString("accessToken", loginRes.accessToken);
-                          StorageManager.sharedPreferences
-                              .setString("userName", _nameController.text);
-                          NavigatorUtils.goBack(context);
-//                        NavigatorUtils.push(context, '/home',
+                          RegisterRes registerRes =
+                              await AccountRepository.register(
+                                  _nameController.text,
+                                  _passwordController.text,
+                                  _emailAddressController.text);
+                          NavigatorUtils.goBackWithParams(
+                              context, registerRes.userName);
+//                        NavigatorUtils.push(context, 'home',
 //                            clearStack: true, transition: TransitionType.inFromBottom);
                           setState(() {
                             isBusy = false;
@@ -196,33 +264,6 @@ class _LoginPageState extends State<LoginPage> {
                         }
                       },
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '还没有账号，立即',
-                    style: TextStyle(color: Colors.black45),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      print('跳转到找回页面');
-                      NavigatorUtils.pushResult(context, AccountRouter.register,
-                          (name) => {this._nameController.text = name});
-                    },
-                    child: Text(
-                      '注册',
-                      style: TextStyle(color: color),
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 60,
-              ),
-              ThirdLogin()
             ]),
       ),
     );
@@ -242,7 +283,7 @@ class LoginButton extends StatelessWidget {
       child: isBusy
           ? ButtonProgressIndicator()
           : Text(
-              '登陆',
+              '注册',
               style: Theme.of(context)
                   .accentTextTheme
                   .title
@@ -281,45 +322,3 @@ class LoginButtonWidget extends StatelessWidget {
         ));
   }
 }
-
-//class SingUpWidget extends StatefulWidget {
-//  final nameController;
-//
-//  SingUpWidget(this.nameController);
-//
-//  @override
-//  _SingUpWidgetState createState() => _SingUpWidgetState();
-//}
-//
-//class _SingUpWidgetState extends State<SingUpWidget> {
-//  TapGestureRecognizer _recognizerRegister;
-//
-//  @override
-//  void initState() {
-//    _recognizerRegister = TapGestureRecognizer()
-//      ..onTap = () async {
-//        // 将注册成功的用户名,回填如登录框
-//        widget.nameController.text =
-//        await Navigator.of(context).pushNamed(RouteName.register);
-//      };
-//    super.initState();
-//  }
-//
-//  @override
-//  void dispose() {
-//    _recognizerRegister.dispose();
-//    super.dispose();
-//  }
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return Center(
-//      child: Text.rich(TextSpan(text: S.of(context).noAccount, children: [
-//        TextSpan(
-//            text: S.of(context).toSignUp,
-//            recognizer: _recognizerRegister,
-//            style: TextStyle(color: Theme.of(context).accentColor))
-//      ])),
-//    );
-//  }
-//}

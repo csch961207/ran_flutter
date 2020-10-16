@@ -56,7 +56,7 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
             ),
             InkWell(
               onTap: () {
-                NavigatorUtils.push(context, AccountRouter.updatePasswordPage,
+                NavigatorUtils.push(context, AccountRouter.updatePassword,
                     transition: TransitionType.cupertino);
               },
               child: Text("修改密码"),
