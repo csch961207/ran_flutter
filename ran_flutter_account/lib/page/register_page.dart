@@ -10,7 +10,6 @@ import 'package:ran_flutter_account/widgets/login_field_widget.dart';
 
 import 'package:ran_flutter_account/widgets/third_component.dart';
 import 'package:ran_flutter_core/ran_flutter_core.dart';
-import 'package:ran_flutter_widget/ran_flutter_widget.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -183,7 +182,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     InkWell(
                       onTap: () {
-                        NavigatorUtils.goWebViewPage(context, '用户许可协议',
+                        NavigatorUtils.goWebViewPage(context,
                             'https://www.apple.com.cn/legal/internet-services/terms/site.html');
                       },
                       child: Text(
@@ -193,7 +192,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     InkWell(
                       onTap: () {
-                        NavigatorUtils.goWebViewPage(context, '隐私政策',
+                        NavigatorUtils.goWebViewPage(context,
                             'https://privacy.microsoft.com/zh-cn/privacystatement');
                       },
                       child: Text(

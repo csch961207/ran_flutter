@@ -26,9 +26,8 @@ class Routes {
                     TabNavigator()));
 
     router.define(webView, handler: Handler(handlerFunc: (_, params) {
-      String title = params['title']?.first;
       String url = params['url']?.first;
-      return WebViewPage(title: title, url: url);
+      return WebViewPage(url: url);
     }));
 
     _listRouter.clear();

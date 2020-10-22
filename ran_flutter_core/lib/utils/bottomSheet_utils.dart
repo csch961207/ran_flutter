@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ran_flutter_core/config/routers/fluro_navigator.dart';
 
 class BottomSheetUtils {
   static showBottomSheet(BuildContext context, Widget widget, {int height}) {
@@ -21,21 +22,27 @@ class BottomSheetUtils {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               widget,
-              Container(
-                padding: EdgeInsets.all(13),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(50)),
-                  color: Color.fromRGBO(240, 240, 240, 1),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '取消',
-                      style: TextStyle(fontSize: 17,color: Color.fromRGBO(93, 92, 92, 1)),
-                    )
-                  ],
+              InkWell(
+                onTap: () {
+                  NavigatorUtils.goBack(context);
+                },
+                child: Container(
+                  padding: EdgeInsets.all(13),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                    color: Color.fromRGBO(240, 240, 240, 1),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '取消',
+                        style: TextStyle(
+                            fontSize: 17, color: Color.fromRGBO(93, 92, 92, 1)),
+                      )
+                    ],
+                  ),
                 ),
               )
             ],

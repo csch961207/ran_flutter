@@ -15,11 +15,9 @@ import 'package:webview_flutter/webview_flutter.dart';
 class WebViewPage extends StatefulWidget {
   WebViewPage({
     Key key,
-    @required this.title,
     @required this.url,
   }) : super(key: key);
 
-  final String title;
   final String url;
 
   @override
@@ -35,10 +33,17 @@ class _WebViewPageState extends State<WebViewPage> {
 
   Future canOpenAppFuture;
 
+  String title = '';
+  String url = '';
+  bool isLoading = true;
+
   @override
   void initState() {
-    canOpenAppFuture = ThirdAppUtils.canOpenApp(widget.url);
+//    canOpenAppFuture = ThirdAppUtils.canOpenApp(widget.url);
     super.initState();
+    setState(() {
+      url = widget.url;
+    });
   }
 
   @override
@@ -49,13 +54,13 @@ class _WebViewPageState extends State<WebViewPage> {
         iconTheme: IconThemeData(color: Colors.black87),
         title: Text(
           //移除html标签
-          StringUtils.removeHtmlLabel(widget.title),
+          StringUtils.removeHtmlLabel(title),
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
               fontSize: 16, color: Colors.black87, fontWeight: FontWeight.w600),
         ),
 //        WebViewTitle(
-//          title: widget.title,
+//          title: title,
 //          future: _finishedCompleter.future,
 //        ),
         centerTitle: true,
@@ -65,7 +70,7 @@ class _WebViewPageState extends State<WebViewPage> {
 //            tooltip: '在浏览器中打开',
 //            icon: Icon(Icons.language),
 //            onPressed: () {
-//              launch(widget.url, forceSafariVC: false);
+//              launch(url, forceSafariVC: false);
 //            },
 //          ),
           IconButton(
@@ -79,7 +84,7 @@ class _WebViewPageState extends State<WebViewPage> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          launch(widget.url, forceSafariVC: false);
+                          launch(url, forceSafariVC: false);
                           NavigatorUtils.goBack(context);
                         },
                         child: Container(
@@ -115,7 +120,7 @@ class _WebViewPageState extends State<WebViewPage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Share.share(widget.title + '  ' + widget.url);
+                          Share.share(title + '  ' + url);
                           NavigatorUtils.goBack(context);
                         },
                         child: Container(
@@ -152,7 +157,7 @@ class _WebViewPageState extends State<WebViewPage> {
                       GestureDetector(
                         onTap: () {
                           try {
-                            Clipboard.setData(ClipboardData(text: widget.url));
+                            Clipboard.setData(ClipboardData(text: url));
                             NavigatorUtils.goBack(context);
                             ToastUtil.show('复制成功');
                           } catch (e) {
@@ -192,6 +197,9 @@ class _WebViewPageState extends State<WebViewPage> {
                       ),
                       GestureDetector(
                         onTap: () {
+                          setState(() {
+                            isLoading = true;
+                          });
                           _webViewController.reload();
                           NavigatorUtils.goBack(context);
                         },
@@ -228,36 +236,39 @@ class _WebViewPageState extends State<WebViewPage> {
                       )
                     ],
                   ));
-//              launch(widget.url, forceSafariVC: false);
+//              launch(url, forceSafariVC: false);
             },
           ),
 //          WebViewPopupMenu(
 //            _webViewController,
-//            widget.title,
-//            widget.url
+//            title,
+//            url
 //          )
         ],
-//        bottom: PreferredSize(
-//          child: _progressBar(lineProgress,context),
-//          preferredSize: Size.fromHeight(3.0),
-//        ),
+        bottom: PreferredSize(
+          child: _progressBar(context),
+          preferredSize: Size.fromHeight(3.0),
+        ),
       ),
       body: SafeArea(
         bottom: false,
         child: WebView(
           // 初始化加载的url
-          initialUrl: widget.url,
+          initialUrl: url,
           // 加载js
           javascriptMode: JavascriptMode.unrestricted,
           navigationDelegate: (NavigationRequest request) {
             ///TODO isForMainFrame为false,页面不跳转.导致网页内很多链接点击没效果
             debugPrint('导航$request');
-            if (!request.url.startsWith('http')) {
-              ThirdAppUtils.openAppByUrl(request.url);
-              return NavigationDecision.prevent;
-            } else {
-              return NavigationDecision.navigate;
-            }
+            setState(() {
+              isLoading = true;
+            });
+//            if (!request.url.startsWith('http')) {
+//              ThirdAppUtils.openAppByUrl(request.url);
+//              return NavigationDecision.prevent;
+//            } else {
+            return NavigationDecision.navigate;
+//            }
           },
           onWebViewCreated: (WebViewController controller) {
             _webViewController = controller;
@@ -270,6 +281,11 @@ class _WebViewPageState extends State<WebViewPage> {
             if (!_finishedCompleter.isCompleted) {
               _finishedCompleter.complete(true);
             }
+            _getTitle();
+            setState(() {
+              isLoading = false;
+              url = value;
+            });
             refreshNavigator();
           },
         ),
@@ -287,6 +303,9 @@ class _WebViewPageState extends State<WebViewPage> {
                     onPressed: !value
                         ? null
                         : () {
+                            setState(() {
+                              isLoading = true;
+                            });
                             _webViewController.goBack();
                             refreshNavigator();
                           }),
@@ -298,6 +317,9 @@ class _WebViewPageState extends State<WebViewPage> {
                     onPressed: !value
                         ? null
                         : () {
+                            setState(() {
+                              isLoading = true;
+                            });
                             _webViewController.goForward();
                             refreshNavigator();
                           }),
@@ -307,6 +329,32 @@ class _WebViewPageState extends State<WebViewPage> {
         ),
       ),
     );
+  }
+
+  _progressBar(BuildContext context) {
+    return new SizedBox(
+      height: isLoading ? 2.0 : 0,
+      child: // 模糊进度条(会执行一个动画)
+          LinearProgressIndicator(
+        backgroundColor: Colors.grey[200],
+        valueColor: AlwaysStoppedAnimation(Colors.blue),
+      ),
+//        new LinearProgressIndicator(
+//          backgroundColor: Colors.white70.withOpacity(0),
+//          value: progress == 1.0 ? 0 : progress,
+//          valueColor:
+//              new AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
+//        )
+    );
+  }
+
+  /// 获取当前加载页面的 title
+  _getTitle() async {
+    String currentTitle = await _webViewController.getTitle();
+    print("currentTitle---$currentTitle");
+    setState(() {
+      title = currentTitle;
+    });
   }
 
   /// 刷新导航按钮

@@ -1,16 +1,12 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ran_flutter_core/config/routers/fluro_navigator.dart';
 import 'package:ran_flutter_core/config/storage_manager.dart';
 import 'package:ran_flutter_core/utils/toast_util.dart';
 import 'package:ran_flutter_core/utils/utils.dart';
 import 'package:ran_flutter_core/widget/base_dialog.dart';
-
-Widget getErrorWidget(BuildContext context, FlutterErrorDetails error) {
-  return Center(
-    child: Text("Error appeared."),
-  );
-}
+import 'package:ran_flutter_core/widget/load_image.dart';
 
 /// [e]分类Error和Exception两种
 void getErrorTips(e, stackTrace, {String message, BuildContext context}) {
@@ -149,6 +145,7 @@ void getErrorTips(e, stackTrace, {String message, BuildContext context}) {
     } else {
       // dio将原error重新套了一层
       print(e.toString());
+      print('错误');
     }
   }
 }

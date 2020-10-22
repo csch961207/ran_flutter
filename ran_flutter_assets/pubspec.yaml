@@ -1,4 +1,4 @@
-name: ran_flutter_widget
+name: ran_flutter_assets
 description: A new Flutter package.
 version: 0.0.1
 author:
@@ -11,8 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  ran_flutter_core:
-    path: '../ran_flutter_core'
 
 dev_dependencies:
   flutter_test:

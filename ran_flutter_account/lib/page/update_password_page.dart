@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ran_flutter_account/account_repository.dart';
 import 'package:ran_flutter_account/account_router.dart';
 import 'package:ran_flutter_core/ran_flutter_core.dart';
-import 'package:ran_flutter_widget/ran_flutter_widget.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluro/fluro.dart';
 

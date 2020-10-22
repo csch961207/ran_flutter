@@ -47,9 +47,9 @@ class NavigatorUtils {
   }
 
   /// 跳到WebView页
-  static goWebViewPage(BuildContext context, String title, String url) {
+  static goWebViewPage(BuildContext context, String url) {
     //fluro 不支持传中文,需转换
     push(context,
-        '/webview?title=${Uri.encodeComponent(title)}&url=${Uri.encodeComponent(url)}', transition: TransitionType.cupertinoFullScreenDialog);
+        '/webview?url=${Uri.encodeComponent(url)}', transition: TransitionType.cupertinoFullScreenDialog);
   }
 }

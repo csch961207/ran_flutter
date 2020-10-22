@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluro/fluro.dart';
 
-import 'package:provider/provider.dart';
 import 'package:ran_flutter_account/account_repository.dart';
 import 'package:ran_flutter_account/account_router.dart';
 import 'package:ran_flutter_account/model/login_res_model.dart';
@@ -10,7 +9,6 @@ import 'package:ran_flutter_account/widgets/login_field_widget.dart';
 
 import 'package:ran_flutter_account/widgets/third_component.dart';
 import 'package:ran_flutter_core/ran_flutter_core.dart';
-import 'package:ran_flutter_widget/ran_flutter_widget.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -181,9 +179,10 @@ class _LoginPageState extends State<LoginPage> {
                               .setString("accessToken", loginRes.accessToken);
                           StorageManager.sharedPreferences
                               .setString("userName", _nameController.text);
-                          NavigatorUtils.goBack(context);
-//                        NavigatorUtils.push(context, '/home',
-//                            clearStack: true, transition: TransitionType.inFromBottom);
+//                          NavigatorUtils.goBack(context);
+////                          if()
+                        NavigatorUtils.push(context, '/home',
+                            clearStack: true, transition: TransitionType.inFromBottom);
                           setState(() {
                             isBusy = false;
                           });

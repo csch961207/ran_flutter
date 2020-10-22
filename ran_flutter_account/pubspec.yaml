@@ -13,8 +13,6 @@ dependencies:
     sdk: flutter
   ran_flutter_core:
     path: '../ran_flutter_core'
-  ran_flutter_widget:
-    path: '../ran_flutter_widget'
 dev_dependencies:
   flutter_test:
     sdk: flutter

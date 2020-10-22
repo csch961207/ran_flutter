@@ -18,23 +18,23 @@ import 'package:ran_flutter_core/ran_flutter_core.dart';
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Environment.setApis({
-//    "default": "http://juncheng.edms.ran.xyz",
+    "default": "http://juncheng.edms.ran.xyz",
 //    "AbpIdentity": "http://juncheng.edms.ran.xyz",
-    "default": "http://ld.ynxf.gov.cn:8012",
+//    "default": "http://ld.ynxf.gov.cn:8012",
 //    "default": "https://zouping.liudongdangyuan.ran.xyz"
   });
-//  Environment.setOAuthConfig({
-//    "appName": '君成环保',
-//    "clientId": 'Edms_App',
-//    "dummyClientSecret": '1q2w3e*',
-//    "scope": 'Edms',
-//  });
   Environment.setOAuthConfig({
-    "appName": '流动党员e家',
-    "clientId": 'Zuzhibu_App',
+    "appName": '君成环保',
+    "clientId": 'Edms_App',
     "dummyClientSecret": '1q2w3e*',
-    "scope": 'Zuzhibu',
+    "scope": 'Edms',
   });
+//  Environment.setOAuthConfig({
+//    "appName": '流动党员e家',
+//    "clientId": 'Zuzhibu_App',
+//    "dummyClientSecret": '1q2w3e*',
+//    "scope": 'Zuzhibu',
+//  });
   Provider.debugCheckInvalidValueType = null;
   await StorageManager.init();
   runApp(App());
