@@ -30,7 +30,12 @@ dependencies:
     path: '../ran_flutter_core'
   ran_flutter_account:
     path: '../ran_flutter_account'
-
+  ran_flutter_fields:
+    path: '../ran_flutter_fields'
+  ran_flutter_site:
+    path: '../ran_flutter_site'
+  ran_flutter_message:
+    path: '../ran_flutter_message'
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -39,6 +44,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # SignalrClient
+  signalr_client: ^0.1.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

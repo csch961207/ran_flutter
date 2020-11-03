@@ -11,11 +11,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # 网络请求
+  # 网络请求 🦊
   dio: ^3.0.1
-  # State
+  # State 🦄
   provider: 4.0.3
-  # 数据存储
+  # 数据存储 🦌
   shared_preferences: ^0.5.3+5
   # 本地json对象存储
   localstorage: ^2.0.0
@@ -33,30 +33,37 @@ dependencies:
   qrscan: ^0.2.17
   # UI 全局提示
   oktoast: ^2.3.1
-  # 处理键盘事件
+  # 处理键盘事件 🏡
   keyboard_actions: ^2.1.2
-  # 包信息
+  # 包信息 🌋
   package_info: ^0.4.0+6
   # Html Encoder/Decoder
   html_unescape: ^1.0.1+3
-  # 设备信息
+  # 设备信息 📃
   device_info: ^0.4.0+1
-  # 全局提示
+  # 全局提示 🐨
   fluttertoast: ^3.1.0
-  # 全局loading
+  # 全局loading 🐮
   flutter_easyloading: ^2.0.0
-  # 网页
+  # 网页 🐺
   webview_flutter: ^1.0.3
-  # 网页
+  # 网页 🐳
   flutter_webview_plugin: ^0.3.11
-  # 图片预览
+  # 图片预览 🐼
   photo_view: ^0.10.2
-
+  # BotToast 🤖
+  bot_toast: ^3.0.4
+  # 本地数据库
+  sqflite: ^1.3.0
+  # 文件路径
+  path_provider: ^1.6.22
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  # 全局提示
+  # 全局提示🐲
   fluttertoast: ^3.1.0
+  # 下拉刷新，上拉加载
+  pull_to_refresh: ^1.5.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

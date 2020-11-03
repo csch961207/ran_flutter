@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_app/tab/assets.dart';
-import 'package:flutter_app/tab/field.dart';
+import 'package:ran_flutter_fields/model/field_model.dart';
+import 'package:ran_flutter_fields/widget/assets/assets.dart';
 
 class AssetsWidget extends StatefulWidget {
   final Field field;

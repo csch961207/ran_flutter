@@ -11,10 +11,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  ran_flutter_core:
+    path: '../ran_flutter_core'
+  # SignalrClient
+  signalr_client: ^0.1.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

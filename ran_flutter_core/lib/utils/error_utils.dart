@@ -6,7 +6,6 @@ import 'package:ran_flutter_core/config/storage_manager.dart';
 import 'package:ran_flutter_core/utils/toast_util.dart';
 import 'package:ran_flutter_core/utils/utils.dart';
 import 'package:ran_flutter_core/widget/base_dialog.dart';
-import 'package:ran_flutter_core/widget/load_image.dart';
 
 /// [e]分类Error和Exception两种
 void getErrorTips(e, stackTrace, {String message, BuildContext context}) {
@@ -23,7 +22,6 @@ void getErrorTips(e, stackTrace, {String message, BuildContext context}) {
       print(e.toString());
       print("错误");
       print(e.response.data);
-
       if (e.response.statusCode == 401) {
         StorageManager.sharedPreferences.setString("accessToken", '');
         StorageManager.sharedPreferences.setString("userName", '');

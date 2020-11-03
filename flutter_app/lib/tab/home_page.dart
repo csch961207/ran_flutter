@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart' hide Banner, showSearch;
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_app/tab/assets_widget.dart';
-import 'package:flutter_app/tab/field.dart';
-import 'package:flutter_app/tab/field_type_provider.dart';
-import 'package:flutter_app/tab/field_type_provider_model.dart';
-import 'package:flutter_app/tab/light_switch_widget.dart';
+import 'package:ran_flutter_core/ran_flutter_core.dart';
+import 'package:ran_flutter_fields/ran_flutter_fields.dart';
+import 'package:provider/provider.dart';
+import 'package:ran_flutter_message/ran_flutter_message.dart';
+import 'package:ran_flutter_site/ran_flutter_site.dart';
 
 const double kHomeRefreshHeight = 180.0;
 
@@ -37,18 +37,18 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-//    field = Field.fromJson({
-//      "fieldTypeName": "Assets",
-//      "configuration": {
-//        "assetsSources": ["f7b3c83d-ce93-b97a-d461-39f74767cfff"],
-//        "minimum": null,
-//        "maximum": 1,
-//        "required": false,
-//        "description": null,
-//        "assemblyNameAndTypeName":
-//            "Ran.Assets.Field.dll;Ran.Assets.AssetsField.AssetsFieldConfiguration"
-//      },
-//    });
+    field = Field.fromJson({
+      "fieldTypeName": "Assets",
+      "configuration": {
+        "assetsSources": ["f7b3c83d-ce93-b97a-d461-39f74767cfff"],
+        "minimum": null,
+        "maximum": 1,
+        "required": false,
+        "description": null,
+        "assemblyNameAndTypeName":
+            "Ran.Assets.Field.dll;Ran.Assets.AssetsField.AssetsFieldConfiguration"
+      },
+    });
     field = Field.fromJson({
       "fieldTypeName": "LightSwitch",
       "configuration": {
@@ -60,22 +60,72 @@ class _HomePageState extends State<HomePage>
       },
     });
     print(field.configuration['assetsSources']);
-    FieldTypeProviderModel assetsFieldTypeProvider = FieldTypeProviderModel(
-        fieldTypeName: 'Assets', fieldTypeWidget: getAssetsBuild);
-    FieldTypeProviderModel lightSwitchFieldTypeProvider =
-        FieldTypeProviderModel(
-            fieldTypeName: 'LightSwitch', fieldTypeWidget: getLightSwitchBuild);
-    FieldTypeProvider.addFieldTypeProviderModel([
-      assetsFieldTypeProvider,
-      lightSwitchFieldTypeProvider
-    ]);
+    insert();
+//    get();
+    queryNum();
+    query();
+  }
+
+  static queryNum() async {
+    PersonDbProvider provider = new PersonDbProvider();
+    int count = await provider.queryNum();
+    print('获取该表的数量');
+    print(count);
+  }
+
+  static query() async {
+    PersonDbProvider provider = new PersonDbProvider();
+    await provider.query(1, 0);
+  }
+
+  static get() async {
+    PersonDbProvider provider = new PersonDbProvider();
+    UserModel user = await provider.getPersonInfo("1143824942687547399");
+    print('数据库获取事件执行');
+    print(user.uuid);
+  }
+
+  static insert() async {
+    PersonDbProvider provider = new PersonDbProvider();
+    UserModel userModel = UserModel();
+    userModel.uuid = "1143824942687547399";
+    userModel.mobile = "15801071159";
+    userModel.headImage = "http://www.img";
+    provider.insert(userModel);
+  }
+
+  static update() async {
+    PersonDbProvider provider = new PersonDbProvider();
+    UserModel userModel = await provider.getPersonInfo("1143824942687547394");
+    userModel.mobile = "15801071157";
+    userModel.headImage = "http://www.img1";
+    provider.update(userModel);
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      body: Center(child: FieldTypeProvider.getFieldTypeProviderWidget(field)),
-    );
+        body: Column(
+      children: [
+        FieldTypeProvider.getFieldTypeProviderWidget(field),
+        Container(
+          child: Consumer2<SectionsViewModel, CoreViewModel>(
+              builder: (context, sectionsViewModel, coreViewModel, child) {
+            if (coreViewModel.applicationConfiguration.localization != null) {
+              print(coreViewModel.applicationConfiguration.localization
+                  .currentCulture.displayName);
+            }
+            return Container(
+              child: sectionsViewModel.sections.length > 0
+                  ? Text(sectionsViewModel.sections[0].displayName +
+                      coreViewModel
+                          .applicationConfiguration.currentUser.userName)
+                  : Text('无'),
+            );
+          }),
+        )
+      ],
+    ));
   }
 }

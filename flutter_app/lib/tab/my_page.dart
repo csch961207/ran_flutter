@@ -46,8 +46,7 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
             ),
             InkWell(
               onTap: () {
-                NavigatorUtils.push(context, AccountRouter.login,
-                    transition: TransitionType.cupertino);
+                NavigatorUtils.push(context, AccountRouter.login);
               },
               child: Text("我的"),
             ),

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ran_flutter_core/config/resource_mananger.dart';
 
+import 'view_state.dart';
+
 /// 加载中
 class ViewStateBusyWidget extends StatelessWidget {
   @override
@@ -72,87 +74,9 @@ class ViewStateWidget extends StatelessWidget {
   }
 }
 
-/// 默认错误页
-class ViewStateDefaultErrorWidget extends StatelessWidget {
-  final String title;
-  final String message;
-  final Widget image;
-  final Widget buttonText;
-  final String buttonTextData;
-  final VoidCallback onPressed;
-
-  const ViewStateDefaultErrorWidget({
-    Key key,
-    this.image,
-    this.title,
-    this.message,
-    this.buttonText,
-    this.buttonTextData,
-    @required this.onPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    var defaultImage;
-    var defaultTitle;
-    String defaultTextData = '重试';
-    defaultImage =
-        const Icon(IconFonts.pageError, size: 100, color: Colors.grey);
-    defaultTitle = '加载失败';
-    return ViewStateWidget(
-      onPressed: this.onPressed,
-      image: image ?? defaultImage,
-      title: title ?? defaultTitle,
-      message: message ?? '',
-      buttonTextData: buttonTextData ?? defaultTextData,
-      buttonText: buttonText,
-    );
-  }
-}
-
-/// 网络错误页
-class ViewStateNetworkErrorWidget extends StatelessWidget {
-  final String title;
-  final String message;
-  final Widget image;
-  final Widget buttonText;
-  final String buttonTextData;
-  final VoidCallback onPressed;
-
-  const ViewStateNetworkErrorWidget({
-    Key key,
-    this.image,
-    this.title,
-    this.message,
-    this.buttonText,
-    this.buttonTextData,
-    @required this.onPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    var defaultImage;
-    var defaultTitle;
-    String defaultTextData = '重试';
-    defaultImage = Transform.translate(
-      offset: Offset(-50, 0),
-      child:
-          const Icon(IconFonts.pageNetworkError, size: 100, color: Colors.grey),
-    );
-    defaultTitle = '加载失败，请检查网络';
-    return ViewStateWidget(
-      onPressed: this.onPressed,
-      image: image ?? defaultImage,
-      title: title ?? defaultTitle,
-      message: message ?? '',
-      buttonTextData: buttonTextData ?? defaultTextData,
-      buttonText: buttonText,
-    );
-  }
-}
-
 /// ErrorWidget
 class ViewStateErrorWidget extends StatelessWidget {
+  final ViewStateError error;
   final String title;
   final String message;
   final Widget image;
@@ -162,6 +86,7 @@ class ViewStateErrorWidget extends StatelessWidget {
 
   const ViewStateErrorWidget({
     Key key,
+    @required this.error,
     this.image,
     this.title,
     this.message,
@@ -174,12 +99,38 @@ class ViewStateErrorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var defaultImage;
     var defaultTitle;
+    var errorMessage = error.message;
     String defaultTextData = '重试';
+    switch (error.errorType) {
+      case ViewStateErrorType.networkTimeOutError:
+        defaultImage = Transform.translate(
+          offset: Offset(-50, 0),
+          child: const Icon(IconFonts.pageNetworkError,
+              size: 100, color: Colors.grey),
+        );
+        defaultTitle = '网络连接异常,请检查网络或稍后重试';
+        // errorMessage = ''; // 网络异常移除message提示
+        break;
+      case ViewStateErrorType.defaultError:
+        defaultImage =
+            const Icon(IconFonts.pageError, size: 100, color: Colors.grey);
+        defaultTitle = '加载失败';
+        break;
+
+      case ViewStateErrorType.unauthorizedError:
+        return ViewStateUnAuthWidget(
+          image: image,
+          message: message,
+          buttonText: buttonText,
+          onPressed: onPressed,
+        );
+    }
+
     return ViewStateWidget(
       onPressed: this.onPressed,
       image: image ?? defaultImage,
       title: title ?? defaultTitle,
-      message: message ?? '',
+      message: message ?? errorMessage,
       buttonTextData: buttonTextData ?? defaultTextData,
       buttonText: buttonText,
     );
@@ -209,7 +160,7 @@ class ViewStateEmptyWidget extends StatelessWidget {
           const Icon(IconFonts.pageEmpty, size: 100, color: Colors.grey),
       title: message ?? '暂无数据',
       buttonText: buttonText,
-      buttonTextData: '点击刷新',
+      buttonTextData: '刷新一下',
     );
   }
 }
@@ -234,9 +185,9 @@ class ViewStateUnAuthWidget extends StatelessWidget {
     return ViewStateWidget(
       onPressed: this.onPressed,
       image: image ?? ViewStateUnAuthImage(),
-      title: message ?? '页面未授权',
+      title: message ?? '未登录',
       buttonText: buttonText,
-      buttonTextData: '点击登录',
+      buttonTextData: '去登录',
     );
   }
 }

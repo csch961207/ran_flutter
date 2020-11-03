@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/tab/home_page.dart';
+import 'package:flutter_app/tab/message_page.dart';
 import 'package:flutter_app/tab/my_page.dart';
+import 'package:ran_flutter_site/ran_flutter_site.dart';
+import 'package:provider/provider.dart';
 
-List<Widget> pages = <Widget>[HomePage(), MyPage()];
+List<Widget> pages = <Widget>[HomePage(), SitePage(), MessagePage(), MyPage()];
 
 class TabNavigator extends StatefulWidget {
   TabNavigator({Key key}) : super(key: key);
@@ -39,6 +42,17 @@ class _TabNavigatorState extends State<TabNavigator> {
             setState(() {
               _selectedIndex = index;
             });
+            if (index == 1) {
+              Provider.of<SectionsViewModel>(context, listen: false)
+                  .setAppointSections([
+                'zuzhidongtai',
+                'rencaihuiyin',
+                'xiangzhen_jiedao_dangwei',
+                'zhuwai_liudong_dangwei',
+                'xianjituisong',
+                'xiangzhentuisong'
+              ]) ;
+            }
           },
         ),
       ),
@@ -54,6 +68,22 @@ class _TabNavigatorState extends State<TabNavigator> {
               color: Colors.blue,
             ),
             title: Text('首页'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.article),
+            activeIcon: Icon(
+              Icons.article,
+              color: Colors.blue,
+            ),
+            title: Text('Site'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message_outlined),
+            activeIcon: Icon(
+              Icons.message_outlined,
+              color: Colors.blue,
+            ),
+            title: Text('Message'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -74,7 +104,6 @@ class _TabNavigatorState extends State<TabNavigator> {
 
   @override
   void initState() {
-//    checkAppUpdate(context);
     super.initState();
   }
 }

@@ -193,7 +193,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     InkWell(
                       onTap: () {
                         NavigatorUtils.goWebViewPage(context,
-                            'https://privacy.microsoft.com/zh-cn/privacystatement');
+                            'http://lyjdxx.cn/admin/site/index.html');
                       },
                       child: Text(
                         ' 《隐私政策》',
