@@ -44,7 +44,7 @@ class MessageListGroupWidgetState extends State<MessageListGroupWidget> {
                     height: 45.0,
                     width: 45.0,
                     fit: BoxFit.fill,
-                    holderImg: 'dang_logo_icon')),
+                    holderImg: 'group')),
           ),
           Expanded(
             child: Column(
@@ -57,7 +57,7 @@ class MessageListGroupWidgetState extends State<MessageListGroupWidget> {
                       child: Text(
                         messagesGroup?.receiverName ?? '',
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 15, color: Colors.black),
+                        style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ),
                     Spacer(),

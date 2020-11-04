@@ -48,7 +48,7 @@ class MessageListAppWidgetState extends State<MessageListAppWidget> {
                     height: 45.0,
                     width: 45.0,
                     fit: BoxFit.fill,
-                    holderImg: 'tongzhi')),
+                    holderImg: 'message_app')),
           ),
           Expanded(
             child: Column(
@@ -60,7 +60,7 @@ class MessageListAppWidgetState extends State<MessageListAppWidget> {
                       messagesApp?.appName ??
                           '',
                       style: TextStyle(
-                          fontSize: 15, color: Colors.black),
+                          fontSize: 16, color: Colors.black),
                     ),
                     Spacer(),
                     Container(

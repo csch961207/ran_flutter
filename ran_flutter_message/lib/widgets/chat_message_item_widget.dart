@@ -55,7 +55,7 @@ class ChatMessageItemWidgetState extends State<ChatMessageItemWidget> {
         .currentUser;
     BubbleStyle styleSend = BubbleStyle(
       nip: BubbleNip.rightText,
-      color: Color(0xFF9fde61),
+      color: Color.fromRGBO(217, 234, 254, 1),
       nipOffset: 5,
       nipWidth: 10,
       nipHeight: 10,

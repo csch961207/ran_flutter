@@ -57,7 +57,7 @@ class _MessagePageState extends State<MessagePage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(title: Text('消息'),),
+        appBar: AppBar(title: Text('消息'),backgroundColor: Colors.white,),
         body: Container(
           color: Colors.white,
           child: MessageMsgPage(),

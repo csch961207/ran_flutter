@@ -45,12 +45,12 @@ class _TabNavigatorState extends State<TabNavigator> {
             if (index == 1) {
               Provider.of<SectionsViewModel>(context, listen: false)
                   .setAppointSections([
-                'zuzhidongtai',
-                'rencaihuiyin',
-                'xiangzhen_jiedao_dangwei',
-                'zhuwai_liudong_dangwei',
-                'xianjituisong',
-                'xiangzhentuisong'
+                'ziliaoku',
+                'xiantuisong',
+                'xiangzhenjiedaotuisong',
+                'qita',
+                'dongtai',
+                'version'
               ]) ;
             }
           },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:ran_flutter_core/ran_flutter_core.dart';
 import 'package:ran_flutter_message/message_provider.dart';
@@ -61,14 +62,30 @@ class _MessageMsgPageState extends State<MessageMsgPage> {
                                             .ltMsg[i - 1].messageList)
                                         .receiverId);
                           } else if (messagesUserItem.receiverType == 0) {
-
-                          } else {
-
-                          }
+                          } else {}
                           NavigatorUtils.push(context, MessageRouter.chat);
                         },
-                        child: MessageProvider.getMessageListsProviderWidget(
-                            messageModel.ltMsg[i - 1])));
+                        child: Slidable(
+                            actionPane: SlidableDrawerActionPane(), //滑出选项的面板 动画
+                            actionExtentRatio: 0.25,
+                            child:
+                                MessageProvider.getMessageListsProviderWidget(
+                                    messageModel.ltMsg[i - 1]),
+                          secondaryActions: <Widget>[
+                            //右侧按钮列表
+                            SlideAction(
+                              child: Text(
+                                '删除',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              color: Colors.red,
+                              closeOnTap: true,
+                              onTap: () {
+                                print('删除');
+                              },
+                            ),
+                          ],
+                        )));
               }
             }),
           );

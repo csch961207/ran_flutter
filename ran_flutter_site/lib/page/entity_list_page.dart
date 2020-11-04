@@ -108,7 +108,7 @@ class _ArticleListPageState extends State<EntityListPage>
                     alignment: Alignment.centerLeft,
                     child: EntityItem(
                       title: item.title,
-                      source: item.section.displayName,
+                      source: item?.section?.displayName ?? '',
                       publishTime: item.publishTime,
                     )),
               );
