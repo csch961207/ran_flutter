@@ -1,4 +1,3 @@
-
 export './animation_utils.dart';
 export './image_utils.dart';
 export './mapUtil.dart';
@@ -12,3 +11,4 @@ export './toast_util.dart';
 export './utils.dart';
 export './version_utils.dart';
 export './error_utils.dart';
+export './number_text_input_formatter.dart';

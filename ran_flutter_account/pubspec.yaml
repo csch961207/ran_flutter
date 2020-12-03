@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  qr_flutter: ^3.2.0
   ran_flutter_core:
     path: '../ran_flutter_core'
 dev_dependencies:
@@ -56,3 +57,4 @@ flutter:
   assets:
     - packages/ran_flutter_account/assets/images/xz.png
     - packages/ran_flutter_account/assets/images/xztm.png
+    - packages/ran_flutter_account/assets/images/check.png

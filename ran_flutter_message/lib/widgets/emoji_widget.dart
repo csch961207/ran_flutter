@@ -74,19 +74,22 @@ class _EmojiWidgetState extends State<EmojiWidget> {
       onTap: () {
         widget.onEmojiClockBack?.call(emoji  );
       },
-      child:key!=0?Container(
+      child:
+//      key!=0?
+      Container(
          alignment: Alignment.center,
          child:  Text( String.fromCharCode(emoji),style: TextStyle(fontSize: 20),),
-      ):
-      new Container(
-           alignment: Alignment.center,
-           child: Container(
-              height: 25.0,
-             width: 25.0,
-             child: Image.asset(
-               "icon_emoji_delete.png",
-             ),
-           )),
+      )
+//          :
+//      new Container(
+//           alignment: Alignment.center,
+//           child: Container(
+//              height: 25.0,
+//             width: 25.0,
+//             child: Image.asset(
+//               "icon_emoji_delete.png",
+//             ),
+//           )),
      );
     return item;
   }

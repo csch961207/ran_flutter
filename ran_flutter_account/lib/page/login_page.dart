@@ -9,6 +9,7 @@ import 'package:ran_flutter_account/widgets/login_field_widget.dart';
 
 import 'package:ran_flutter_account/widgets/third_component.dart';
 import 'package:ran_flutter_core/ran_flutter_core.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -181,8 +182,13 @@ class _LoginPageState extends State<LoginPage> {
                               .setString("userName", _nameController.text);
 //                          NavigatorUtils.goBack(context);
 ////                          if()
-                        NavigatorUtils.push(context, '/home',
-                            clearStack: true, transition: TransitionType.inFromBottom);
+                          await Provider.of<CoreViewModel>(context,
+                                  listen: false)
+                              .init();
+//                          NavigatorUtils.goBackWithParams(context, true);
+                          NavigatorUtils.push(context, '/home',
+                              clearStack: true,
+                              transition: TransitionType.inFromBottom);
                           setState(() {
                             isBusy = false;
                           });

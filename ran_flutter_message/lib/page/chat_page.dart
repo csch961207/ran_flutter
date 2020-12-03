@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:ran_flutter_core/ran_flutter_core.dart';
+import 'package:ran_flutter_message/model/chat_message.dart';
 import 'package:ran_flutter_message/view_model/message_model.dart';
 import 'package:ran_flutter_message/widgets/chat_bottom.dart';
 import 'package:ran_flutter_message/widgets/chat_message_item_widget.dart';
@@ -180,34 +182,9 @@ class _ChatPageState extends State<ChatPage> {
                       ChatBottomInputWidget(
                         shouldTriggerChange: changeNotifier.stream,
                         onSendMessageCallBack: (value) {
-//                        final ChatMessage chatMessgae = new ChatMessage();
-//                        chatMessgae.senderId = messageModel.currentMessageData.receiverType == 1
-//                            ? user.id
-//                            : messageModel.currentMessageData.receiverId;
-//                        chatMessgae.receiverId =
-//                            messageModel.currentMessageData.receiverType == 1
-//                                ? messageModel.currentMessageData.receiverId
-//                                : messageModel.currentMessageData.senderId;
-//                        chatMessgae.content = value.content;
-//                        chatMessgae.sendTime = value.sendTime;
-//                        chatMessgae.senderName =
-//                            messageModel.currentMessageData.receiverType == 1
-//                                ? user.name
-//                                : messageModel.currentMessageData.receiverName;
-//                        chatMessgae.receiverType = messageModel.currentMessageData.receiverType;
-//                        chatMessgae.receiverName =
-//                            messageModel.currentMessageData.receiverType == 1
-//                                ? messageModel.currentMessageData.receiverName
-//                                : messageModel.currentMessageData.senderName;
-//
-//                        if (messageModel.currentMessageData.receiverType == 1) {
-//                          messageModel.sendMessageToGroup(value, chatMessgae);
-//                        } else {
-//                          messageModel.sendMsg(value, chatMessgae);
-//                        }
-//                        listScrollController.animateTo(0.00,
-//                            duration: Duration(milliseconds: 1),
-//                            curve: Curves.easeOut);
+                          listScrollController.animateTo(0.00,
+                              duration: Duration(milliseconds: 1),
+                              curve: Curves.easeOut);
                         },
                       )
                     ],

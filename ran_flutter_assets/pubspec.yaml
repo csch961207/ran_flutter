@@ -11,8 +11,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  cupertino_icons: ^1.0.0
   ran_flutter_core:
     path: '../ran_flutter_core'
+  file_picker: ^1.3.8
 
 dev_dependencies:
   flutter_test:
@@ -54,3 +56,5 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages
+  assets:
+    - packages/ran_flutter_assets/assets/images/excel.png

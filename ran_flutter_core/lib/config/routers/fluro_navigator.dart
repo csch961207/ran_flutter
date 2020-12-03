@@ -25,9 +25,9 @@ class NavigatorUtils {
             replace: replace, clearStack: clearStack, transition: transition)
         .then((result) {
       // 页面返回result为null
-      if (result == null) {
-        return;
-      }
+//      if (result == null) {
+//        return;
+//      }
       function(result);
     }).catchError((error) {
       print("$error");

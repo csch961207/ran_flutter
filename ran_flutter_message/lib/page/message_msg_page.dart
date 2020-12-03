@@ -62,15 +62,20 @@ class _MessageMsgPageState extends State<MessageMsgPage> {
                                             .ltMsg[i - 1].messageList)
                                         .receiverId);
                           } else if (messagesUserItem.receiverType == 0) {
+                            Provider.of<MessageModel>(context, listen: false)
+                                .chatMessagesByUser(
+                                    0,
+                                    MessagesUserItem.fromJson(messageModel
+                                            .ltMsg[i - 1].messageList)
+                                        .senderId);
                           } else {}
                           NavigatorUtils.push(context, MessageRouter.chat);
                         },
                         child: Slidable(
-                            actionPane: SlidableDrawerActionPane(), //滑出选项的面板 动画
-                            actionExtentRatio: 0.25,
-                            child:
-                                MessageProvider.getMessageListsProviderWidget(
-                                    messageModel.ltMsg[i - 1]),
+                          actionPane: SlidableDrawerActionPane(), //滑出选项的面板 动画
+                          actionExtentRatio: 0.25,
+                          child: MessageProvider.getMessageListsProviderWidget(
+                              messageModel.ltMsg[i - 1]),
                           secondaryActions: <Widget>[
                             //右侧按钮列表
                             SlideAction(

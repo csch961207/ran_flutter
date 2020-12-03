@@ -6,7 +6,7 @@ import 'package:flutter_app/tab/my_page.dart';
 import 'package:ran_flutter_site/ran_flutter_site.dart';
 import 'package:provider/provider.dart';
 
-List<Widget> pages = <Widget>[HomePage(), SitePage(), MessagePage(), MyPage()];
+List<Widget> pages = <Widget>[HomePage(), MessagePage(), SitePage(), MyPage()];
 
 class TabNavigator extends StatefulWidget {
   TabNavigator({Key key}) : super(key: key);
@@ -51,7 +51,7 @@ class _TabNavigatorState extends State<TabNavigator> {
                 'qita',
                 'dongtai',
                 'version'
-              ]) ;
+              ]);
             }
           },
         ),
@@ -67,15 +67,7 @@ class _TabNavigatorState extends State<TabNavigator> {
               Icons.home,
               color: Colors.blue,
             ),
-            title: Text('首页'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.article),
-            activeIcon: Icon(
-              Icons.article,
-              color: Colors.blue,
-            ),
-            title: Text('Site'),
+            title: Text('税醒'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.message_outlined),
@@ -83,7 +75,15 @@ class _TabNavigatorState extends State<TabNavigator> {
               Icons.message_outlined,
               color: Colors.blue,
             ),
-            title: Text('Message'),
+            title: Text('助理'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.article),
+            activeIcon: Icon(
+              Icons.article,
+              color: Colors.blue,
+            ),
+            title: Text('知识库'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

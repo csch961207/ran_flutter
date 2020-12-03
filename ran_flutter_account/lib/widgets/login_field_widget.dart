@@ -54,7 +54,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.fromLTRB(4, 4, 18, 4),
       child: ValueListenableBuilder(
         valueListenable: obscureNotifier,
         builder: (context, value, child) => TextFormField(
@@ -69,7 +69,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
           onFieldSubmitted: widget.onFieldSubmitted,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.only(
-                top: -1.0, bottom: 6.0),
+                top: -1.0, bottom: 6.0,),
             border: OutlineInputBorder(
                 borderSide: BorderSide.none), //去除下边框
             prefixIcon: Icon(widget.icon, color: theme.accentColor, size: 22),
@@ -117,7 +117,7 @@ class LoginTextFieldSuffixIcon extends StatelessWidget {
               valueListenable: obscureNotifier,
               builder: (context, value, child) => Icon(
                 CupertinoIcons.eye,
-                size: 30,
+                size: 20,
                 color: value ? theme.hintColor : theme.accentColor,
               ),
             ),
@@ -173,7 +173,7 @@ class _LoginTextFieldClearIconState extends State<LoginTextFieldClearIcon> {
             });
           },
           child: Icon(CupertinoIcons.clear,
-              size: 30, color: Theme.of(context).hintColor)),
+              size: 20, color: Theme.of(context).hintColor)),
     );
   }
 }

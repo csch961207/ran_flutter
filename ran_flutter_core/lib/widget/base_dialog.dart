@@ -67,7 +67,7 @@ class BaseDialog extends StatelessWidget {
                                   "取消",
                                   style: TextStyle(fontSize: Dimens.font_sp18),
                                 ),
-                                textColor: Colors.grey,
+                                textColor: Colors.black,
                                 onPressed: () {
                                   NavigatorUtils.goBack(context);
                                 },

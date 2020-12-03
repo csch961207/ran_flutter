@@ -16,7 +16,7 @@ class TextFieldItem extends StatelessWidget {
     this.hintText: "",
     this.focusNode,
     this.config,
-    this.obscureText
+    this.obscureText: false
   }): super(key: key);
 
   final TextEditingController controller;

@@ -66,7 +66,8 @@ class _RenderExpandedViewport extends RenderViewport {
             anchor: anchor,
             children: children,
             center: center,
-            cacheExtent: cacheExtent);
+            cacheExtent: cacheExtent
+  );
 
   @override
   void performLayout() {

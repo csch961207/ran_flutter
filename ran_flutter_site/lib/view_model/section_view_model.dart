@@ -19,7 +19,6 @@ class SectionsViewModel with ChangeNotifier {
     try {
       Sections allSections = await SiteRepository.fetchSections();
       this.sections = allSections.items;
-      BotToast.showSimpleNotification(title: "板块获取成功");
       notifyListeners();
     } catch (e, s) {
       print(e.toString());

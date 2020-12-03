@@ -162,15 +162,13 @@ class _RegisterPageState extends State<RegisterPage> {
                         });
                       },
                       child: Image.asset(
-                        isAgree
-                            ? 'packages/ran_flutter_account/' +
-                                ImageHelper.wrapAssets('xz.png')
-                            : 'packages/ran_flutter_account/' +
-                                ImageHelper.wrapAssets('xztm.png'),
+                        'packages/ran_flutter_account/' +
+                                ImageHelper.wrapAssets('check.png'),
                         width: 15,
                         height: 15,
                         fit: BoxFit.fitWidth,
-                        colorBlendMode: BlendMode.srcIn,
+//                        colorBlendMode: BlendMode.srcIn,
+                        color: isAgree ? color : color.withOpacity(0.4),
                       ),
                     ),
                     SizedBox(
@@ -187,17 +185,17 @@ class _RegisterPageState extends State<RegisterPage> {
                       },
                       child: Text(
                         '《用户许可协议》 ',
-                        style: TextStyle(color: Colors.blue, fontSize: 12),
+                        style: TextStyle(color: color, fontSize: 12),
                       ),
                     ),
                     InkWell(
                       onTap: () {
-                        NavigatorUtils.goWebViewPage(context,
-                            'http://lyjdxx.cn/admin/site/index.html');
+                        NavigatorUtils.goWebViewPage(
+                            context, 'https://m.mafengwo.cn/privacy.php');
                       },
                       child: Text(
                         ' 《隐私政策》',
-                        style: TextStyle(color: Colors.blue, fontSize: 12),
+                        style: TextStyle(color: color, fontSize: 12),
                       ),
                     )
                   ],
@@ -247,8 +245,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                   _nameController.text,
                                   _passwordController.text,
                                   _emailAddressController.text);
-                          NavigatorUtils.goBackWithParams(
-                              context, registerRes.userName);
+                          if (registerRes.id != null) {
+                            ToastUtil.show('注册成功');
+                            NavigatorUtils.goBackWithParams(
+                                context, registerRes.userName);
+                          }
 //                        NavigatorUtils.push(context, 'home',
 //                            clearStack: true, transition: TransitionType.inFromBottom);
                           setState(() {

@@ -8,3 +8,4 @@ export './model/chat_message_edit.dart';
 export './model/user_model.dart';
 export './page/message_msg_page.dart';
 export './message_provider.dart';
+export './message_router.dart';

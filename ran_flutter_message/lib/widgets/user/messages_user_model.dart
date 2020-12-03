@@ -1,4 +1,3 @@
-import 'dart:convert' as convert;
 
 class MessagesUser {
   List<MessagesUserItem> items;

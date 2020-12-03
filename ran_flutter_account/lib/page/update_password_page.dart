@@ -25,15 +25,19 @@ class _UpdatePasswordPageState extends State<UpdatePasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("重置登录密码"),
-        backgroundColor: Theme.of(context).accentColor,
+        title: Text(
+          "重置登录密码",
+          style: TextStyle(color: Colors.black87),
+        ),
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black87),
       ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Gaps.vGap8,
             TextFieldItem(
               controller: _oldPwdController,
               title: "旧密码:",
@@ -59,7 +63,7 @@ class _UpdatePasswordPageState extends State<UpdatePasswordPage> {
             ),
             Gaps.vGap10,
             Gaps.vGap15,
-            MyButton(
+            RanButton(
               onPressed: () async {
                 if (_oldPwdController.text == null ||
                     _oldPwdController.text == '') {

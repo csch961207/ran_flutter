@@ -57,6 +57,12 @@ dependencies:
   sqflite: ^1.3.0
   # 文件路径
   path_provider: ^1.6.22
+  # picker选择器
+  flutter_picker: ^1.1.5
+  # 时间处理
+  date_format: ^1.0.9
+  # 闪烁效果
+  shimmer: ^1.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

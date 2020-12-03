@@ -7,8 +7,10 @@ import 'package:ran_flutter_message/model/chat_message_edit.dart';
 import 'package:ran_flutter_message/model/chat_message_model.dart';
 import 'package:ran_flutter_message/model/message.dart';
 import 'package:ran_flutter_message/model/message_app.dart';
+import 'package:ran_flutter_message/model/message_content_type_model.dart';
 import 'package:ran_flutter_message/model/message_lists_model.dart';
 import 'package:ran_flutter_message/model/un_read_message_app_message.dart';
+import 'package:ran_flutter_message/widgets/message_app/message_list_message_app_model.dart';
 import 'package:ran_flutter_message/widgets/user/messages_user_model.dart';
 import 'package:signalr_client/signalr_client.dart';
 import 'package:flutter/foundation.dart';
@@ -29,8 +31,10 @@ class MessageModel with ChangeNotifier {
   String _currentUserChatId = '';
   String get currentUserChatId => _currentUserChatId;
 
-  List<MessageApp> _messageApps = [];
-  List<MessageApp> get messageApps => _messageApps;
+  List<MessageContentType> _contentTypes = [];
+  List<MessageContentType> get contentTypes => _contentTypes;
+  List<MessagesAppItem> _messageApps = [];
+  List<MessagesAppItem> get messageApps => _messageApps;
 
   List<UnReadMessageAppMessage> _currentMessageApps = [];
   List<UnReadMessageAppMessage> get currentMessageApps => _currentMessageApps;
@@ -49,8 +53,8 @@ class MessageModel with ChangeNotifier {
   }
 
   // SignalR地址
-//  static final serverUrl = "http://192.168.1.138:44341/chathub";
-  static final serverUrl = "http://ld.ynxf.gov.cn:8012/chathub";
+  static final serverUrl =
+      ConfigService.getApiUrl(key: "RanMessage") + "/chathub";
 
   /// 获取token
   static Future<String> Function() accessToken = () {
@@ -71,6 +75,7 @@ class MessageModel with ChangeNotifier {
 //初始化连接
   _initSignalR() async {
     print("Begin Connection");
+    print(StorageManager.sharedPreferences.getString("accessToken"));
     try {
       await hubConnection.stop();
       hubConnection.onclose((error) =>
@@ -102,47 +107,51 @@ class MessageModel with ChangeNotifier {
   init() async {
     _loading = true;
     notifyListeners();
-//    try {
-//      _messageApps = await MessageRepository.fetchMessageApps();
-    await _initSignalR();
-    // 获取所有消息列表
-    List<Future> futures = [];
-    futures.add(MessageRepository.fetchUnReadChatMessagesByUser());
-    futures.add(MessageRepository.fetchUnReadChatMessagesByGroup());
-    futures.add(MessageRepository.fetchUnreadMessageAppMessages());
-    var result = await Future.wait(futures);
-    _ltMsg = [];
-    List<MessageLists> unReadChatMessagesByUser = result[0]
-        .items
-        .map<MessageLists>((messagesUser) => MessageLists.fromJson(
-            {'messagesTypeName': 'User', 'messageList': messagesUser.toJson()}))
-        .toList();
-    _ltMsg.addAll(unReadChatMessagesByUser);
-    List<MessageLists> unReadChatMessagesByGroup = result[1]
-        .items
-        .map<MessageLists>((messagesGroup) => MessageLists.fromJson({
-              'messagesTypeName': 'Group',
-              'messageList': messagesGroup.toJson()
-            }))
-        .toList();
-    _ltMsg.addAll(unReadChatMessagesByGroup);
-    List<MessageLists> unreadMessageAppMessages = result[2]
-        .items
-        .map<MessageLists>((messagesApp) => MessageLists.fromJson({
-              'messagesTypeName': 'MessageApp',
-              'messageList': messagesApp.toJson()
-            }))
-        .toList();
-    _ltMsg.addAll(unreadMessageAppMessages);
-    print('获取到消息');
-    print(_ltMsg.length);
-    _loading = false;
-    notifyListeners();
-//    } catch (e) {
-//      _loading = false;
-//      print(e);
-//      notifyListeners();
-//    }
+    try {
+      MessagesApp messagesApp = await MessageRepository.fetchMessageApps();
+      _messageApps = messagesApp.items;
+      _contentTypes = await MessageRepository.fetchMessageContentTypes();
+      await _initSignalR();
+      // 获取所有消息列表
+      List<Future> futures = [];
+      futures.add(MessageRepository.fetchUnReadChatMessagesByUser());
+      futures.add(MessageRepository.fetchUnReadChatMessagesByGroup());
+      futures.add(MessageRepository.fetchUnreadMessageAppMessages());
+      var result = await Future.wait(futures);
+      _ltMsg = [];
+      List<MessageLists> unReadChatMessagesByUser = result[0]
+          .items
+          .map<MessageLists>((messagesUser) => MessageLists.fromJson({
+                'messagesTypeName': 'User',
+                'messageList': messagesUser.toJson()
+              }))
+          .toList();
+      _ltMsg.addAll(unReadChatMessagesByUser);
+      List<MessageLists> unReadChatMessagesByGroup = result[1]
+          .items
+          .map<MessageLists>((messagesGroup) => MessageLists.fromJson({
+                'messagesTypeName': 'Group',
+                'messageList': messagesGroup.toJson()
+              }))
+          .toList();
+      _ltMsg.addAll(unReadChatMessagesByGroup);
+      List<MessageLists> unreadMessageAppMessages = result[2]
+          .items
+          .map<MessageLists>((messagesApp) => MessageLists.fromJson({
+                'messagesTypeName': 'MessageApp',
+                'messageList': messagesApp.toJson()
+              }))
+          .toList();
+      _ltMsg.addAll(unreadMessageAppMessages);
+      print('获取到消息');
+      print(_ltMsg.length);
+      _loading = false;
+      notifyListeners();
+    } catch (e) {
+      _loading = false;
+      print(e);
+      notifyListeners();
+    }
   }
 
   setCurrentMessageData(Map<String, Object> currentMessageData) {
@@ -152,9 +161,10 @@ class MessageModel with ChangeNotifier {
 
   /// 设置已读
   @override
-  Future<bool> saveLastReceiveTime(String sendId) async {
+  Future<bool> saveLastReceiveTime(String sendId, {String receiveId}) async {
     try {
-      var response = await MessageRepository.saveLastReceiveTime(sendId);
+      var response = await MessageRepository.saveLastReceiveTime(sendId,
+          receiveId: receiveId);
       print('返回');
       print(response);
       if (response == 204 || response == 0 || response == 200) {
@@ -200,8 +210,8 @@ class MessageModel with ChangeNotifier {
 
 //获取用户消息页列表
   Future chatMessagesByUser(int pageNum, String senderId) async {
-//    _currentMessages =
-//        ;
+    _loading = true;
+    notifyListeners();
     if (pageNum == 0) {
       _currentMessages = [];
     }
@@ -211,9 +221,12 @@ class MessageModel with ChangeNotifier {
       for (var i = chatMessages.items.length - 1; i > -1; i--) {
         _currentMessages.add(chatMessages.items[i]);
       }
+      _loading = false;
       notifyListeners();
     } catch (e) {
       ToastUtil.show(e.toString());
+      _loading = false;
+      notifyListeners();
       return true;
     }
   }
@@ -268,17 +281,21 @@ class MessageModel with ChangeNotifier {
     return true;
   }
 
-//  // 返回消息字段
-//  MessageContentType getMessageContentType(String contentTypeName) {
-//    print('数组：${_contentTypes}');
-//    print('传值：${contentTypeName}');
-//    var result = _contentTypes.firstWhere((item) =>
-//        item.contentTypeName.toLowerCase() == contentTypeName.toLowerCase());
-//    if (result == null) {
-//      ToastUtil.show('未查询到contentTypeName为【${contentTypeName}】ContentType');
-//    }
-//    return result;
-//  }
+  // 返回消息字段
+  MessageContentType getMessageContentType(String contentTypeName) {
+    print('数组：${_contentTypes}');
+    print('传值：${contentTypeName}');
+    MessageContentType result = _contentTypes.firstWhere(
+        (item) =>
+            item.contentTypeName.toLowerCase() == contentTypeName.toLowerCase(),
+        orElse: () {
+      return new MessageContentType();
+    });
+    if (result.contentTypeName == null) {
+      ToastUtil.show('未查询到contentTypeName为【${contentTypeName}】ContentType');
+    }
+    return result;
+  }
 
 //  设置当前聊天用户
   setCurrentUserChatId(String currentUserChatId) {
@@ -579,7 +596,7 @@ class MessageModel with ChangeNotifier {
   }
 
 // 发送消息
-  void sendMsg(ChatMessageEdit e, ChatMessage chatMessage) async {
+  void sendMsg(ChatMessageEdit e) async {
     print('内容${e.content}');
     try {
       final result =
@@ -594,7 +611,7 @@ class MessageModel with ChangeNotifier {
   }
 
 //发送群组消息
-  void sendMessageToGroup(ChatMessageEdit e, ChatMessage chatMessage) async {
+  void sendMessageToGroup(ChatMessageEdit e) async {
     print('内容${e.receiverId}');
     try {
       final result = await hubConnection

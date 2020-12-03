@@ -50,12 +50,13 @@ class ChatMessageItemWidgetState extends State<ChatMessageItemWidget> {
   }
 
   BubbleStyle getItemBundleStyle(ChatMessageItem chatMessageItem) {
+    var color = Theme.of(context).accentColor;
     CurrentUser currentUser = Provider.of<CoreViewModel>(context, listen: false)
         .applicationConfiguration
         .currentUser;
     BubbleStyle styleSend = BubbleStyle(
       nip: BubbleNip.rightText,
-      color: Color.fromRGBO(217, 234, 254, 1),
+      color: Color.fromRGBO(169, 233, 121, 1),
       nipOffset: 5,
       nipWidth: 10,
       nipHeight: 10,
@@ -146,7 +147,7 @@ class ChatMessageItemWidgetState extends State<ChatMessageItemWidget> {
                 padding: const EdgeInsets.only(right: 5.0, left: 10, top: 2),
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(5.0),
-                    child: LoadImage('profilePicture',
+                    child: LoadImage('received_picture',
                         holderImg: 'logo_icon',
                         height: 45.0,
                         width: 45.0,

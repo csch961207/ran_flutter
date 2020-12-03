@@ -25,8 +25,8 @@ class _ImageButtonState extends State<ImageButton> {
         alignment: Alignment.center,
         child: Image(
           image: widget.image,
-          width: 35,
-          height: 35,
+          width: 28,
+          height: 28,
         ),
       ),
     );

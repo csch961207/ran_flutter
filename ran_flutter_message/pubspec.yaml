@@ -13,10 +13,18 @@ dependencies:
     sdk: flutter
   ran_flutter_core:
     path: '../ran_flutter_core'
+  ran_flutter_account:
+    path: '../ran_flutter_account'
   # SignalrClient
   signalr_client: ^0.1.6
   flutter_slidable: ^0.5.7
   keyboard_visibility: ^0.5.6
+  permission_handler: ^5.0.1
+  #https://pub.flutter-io.cn/packages/audio_recorder
+  flutter_record_plugin:
+    git:
+      url: https://github.com/huangruiLearn/flutter_record_plugin.git
+      ref: ca5a0f3821616d38842dde4a6588a1ce9ad5673d
 
 dev_dependencies:
   flutter_test:
@@ -59,3 +67,24 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages
+  assets:
+    - packages/ran_flutter_message/assets/images/ic_audio.png
+    - packages/ran_flutter_message/assets/images/ic_add.png
+    - packages/ran_flutter_message/assets/images/ic_emoji.png
+    - packages/ran_flutter_message/assets/images/ic_keyboard.png
+    - packages/ran_flutter_message/assets/images/ic_ctype_camera.png
+    - packages/ran_flutter_message/assets/images/ic_ctype_file.png
+    - packages/ran_flutter_message/assets/images/ic_ctype_picture.png
+    - packages/ran_flutter_message/assets/images/ic_ctype_video.png
+    - packages/ran_flutter_message/assets/images/ic_volume_0.png
+    - packages/ran_flutter_message/assets/images/ic_volume_1.png
+    - packages/ran_flutter_message/assets/images/ic_volume_2.png
+    - packages/ran_flutter_message/assets/images/ic_volume_3.png
+    - packages/ran_flutter_message/assets/images/ic_volume_4.png
+    - packages/ran_flutter_message/assets/images/ic_volume_5.png
+    - packages/ran_flutter_message/assets/images/ic_volume_6.png
+    - packages/ran_flutter_message/assets/images/ic_volume_7.png
+    - packages/ran_flutter_message/assets/images/ic_volume_8.png
+    - packages/ran_flutter_message/assets/images/ic_volume_cancel.png
+    - packages/ran_flutter_message/assets/images/ic_volume_wraning.png
+    - packages/ran_flutter_message/assets/images/ic_ctype_video_camera.png

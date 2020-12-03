@@ -4,6 +4,8 @@ import 'package:ran_flutter_message/model/message_content_provider_model.dart';
 import 'package:ran_flutter_message/model/message_layout_provider_model.dart';
 import 'package:ran_flutter_message/model/message_lists_model.dart';
 import 'package:ran_flutter_message/model/message_lists_provider_model.dart';
+import 'package:ran_flutter_message/widgets/extra_item.dart';
+import 'package:ran_flutter_message/widgets/extra_items.dart';
 import 'package:ran_flutter_message/widgets/message_content/message_content_types.dart';
 import 'package:ran_flutter_message/widgets/message_list_types.dart';
 
@@ -13,6 +15,18 @@ class MessageProvider {
   static void init() {
     addMessageContentProviderModel(MessageContentTypes.allMessageContentTypes);
     addMessageListsProviderModel(MessageListTypes.allMessageListTypes);
+    addExtraItems(ExtraItems.allExtraItems);
+  }
+
+  //  扩展编辑消息类型
+  static List<ExtraItemContainer> extraItems = [];
+
+  static void addExtraItems(List<ExtraItemContainer> allExtraItems) {
+    extraItems.addAll(allExtraItems);
+  }
+
+  static void addExtraItem(ExtraItemContainer extraItem, {int index}) {
+    extraItems.insert(index, extraItem);
   }
 
   //  消息列表类型

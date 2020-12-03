@@ -13,6 +13,7 @@ class ApiInterceptor extends InterceptorsWrapper {
     debugPrint('---api-request--->data--->${options.data}');
     String accessToken =
     StorageManager.sharedPreferences.getString("accessToken");
+    print('Messages:${accessToken}');
     if (accessToken != null && accessToken != '') {
       options.headers["Authorization"] = "Bearer $accessToken";
     }
