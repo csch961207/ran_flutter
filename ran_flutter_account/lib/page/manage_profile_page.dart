@@ -84,6 +84,20 @@ class _ManageProfilePageState extends State<ManageProfilePage> {
                               },
                             ),
                             ClickItem(
+                              title: "昵称",
+                              content: _myProfile?.name ?? '',
+                              onTap: () {
+                                try {
+                                  Clipboard.setData(ClipboardData(
+                                      text: _myProfile?.name ?? ''));
+                                  ToastUtil.show('复制成功');
+                                } catch (e) {
+                                  print(e);
+                                  ToastUtil.show('复制失败');
+                                }
+                              },
+                            ),
+                            ClickItem(
                               title: "电子邮箱",
                               content: _myProfile?.email ?? '',
                               onTap: () {

@@ -10,6 +10,7 @@ class SectionsViewModel with ChangeNotifier {
   List<Section> sections = [];
   List<Section> appointSections = [];
   List<Field> fields = [];
+  List<Field> appointFields = [];
 
   SectionsViewModel() {
     init();
@@ -25,7 +26,7 @@ class SectionsViewModel with ChangeNotifier {
     }
   }
 
-//  根据板块name数组设置相应的板块
+//  根据板块name数组取相应的板块
   setAppointSections(List<String> sectionNames) {
     this.appointSections = this
         .sections
@@ -51,5 +52,13 @@ class SectionsViewModel with ChangeNotifier {
     } else {
       print('未找到板块');
     }
+  }
+
+  //根据字段name数组取相应字段数组
+  List<Field> setAppointFields(List<String> fieldNames) {
+    this.appointFields =
+        this.fields.where((item) => fieldNames.contains(item.name)).toList();
+    notifyListeners();
+    return this.appointFields;
   }
 }

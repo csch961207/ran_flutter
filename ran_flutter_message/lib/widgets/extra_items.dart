@@ -2,6 +2,8 @@ import 'package:ran_flutter_core/ran_flutter_core.dart';
 import 'package:ran_flutter_message/widgets/extra_item.dart';
 
 class ExtraItems {
+
+//发送类型、处理事件
   static ExtraItemContainer createPictureItem() => ExtraItemContainer(
         leadingIconPath: 'packages/ran_flutter_message/' +
             ImageHelper.wrapAssets('ic_ctype_picture.png'),
@@ -36,13 +38,13 @@ class ExtraItems {
       );
 
   static ExtraItemContainer createVideoCameraItem() => ExtraItemContainer(
-    leadingIconPath: 'packages/ran_flutter_message/' +
-        ImageHelper.wrapAssets('ic_ctype_video_camera.png'),
-    text: "摄像",
-    onTab: () {
-      print("添加");
-    },
-  );
+        leadingIconPath: 'packages/ran_flutter_message/' +
+            ImageHelper.wrapAssets('ic_ctype_video_camera.png'),
+        text: "摄像",
+        onTab: () {
+          print("添加");
+        },
+      );
 
   static ExtraItemContainer createFileItem() => ExtraItemContainer(
         leadingIconPath: 'packages/ran_flutter_message/' +
@@ -69,3 +71,5 @@ class ExtraItems {
     createFileItem()
   ];
 }
+
+

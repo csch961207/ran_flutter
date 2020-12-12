@@ -147,7 +147,7 @@ class _RanUploadSingleFileState extends State<RanUploadSingleFile> {
           EasyLoading.show();
           try {
             FileItem file = await AssetsRepository.upload(
-                fileRes, widget.providerKey, widget.folderToken);
+                fileRes.path, widget.providerKey, widget.folderToken);
             setState(() {
               fileItem = file;
             });

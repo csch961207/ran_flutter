@@ -7,22 +7,13 @@ import 'package:ran_flutter_message/model/message_content_model.dart';
 import 'package:provider/provider.dart';
 import 'package:ran_flutter_message/widgets/group/message_list_group_model.dart';
 
-class MessageListGroupWidget extends StatefulWidget {
-  final MessageLists messageLists;
-  MessageListGroupWidget({Key key, this.messageLists}) : super(key: key);
+class MessageListGroupWidget extends StatelessWidget {
+  const MessageListGroupWidget({
+    Key key,
+    @required this.messagesGroup,
+  }) : super(key: key);
 
-  @override
-  MessageListGroupWidgetState createState() => MessageListGroupWidgetState();
-}
-
-class MessageListGroupWidgetState extends State<MessageListGroupWidget> {
-  MessagesGroupItem messagesGroup = new MessagesGroupItem();
-
-  @override
-  void initState() {
-    super.initState();
-    messagesGroup = MessagesGroupItem.fromJson(widget.messageLists.messageList);
-  }
+  final MessagesGroupItem messagesGroup;
 
   @override
   Widget build(BuildContext context) {
@@ -78,9 +69,9 @@ class MessageListGroupWidgetState extends State<MessageListGroupWidget> {
                       width: MediaQuery.of(context).size.width * 0.8,
                       padding: EdgeInsets.only(right: 35),
                       child:
-                            MessageProvider.getMessageListContentProviderWidget(
-                                MessageContentModel.fromJson(
-                                    messagesGroup.content)),
+                          MessageProvider.getMessageListContentProviderWidget(
+                              MessageContentModel.fromJson(
+                                  messagesGroup.content)),
                     ),
                     Positioned(
                         top: 0,
@@ -134,6 +125,6 @@ class MessageListGroupWidgetState extends State<MessageListGroupWidget> {
 
 Widget getMessageListGroupWidgetBuild(MessageLists messageLists) {
   return MessageListGroupWidget(
-    messageLists: messageLists,
+    messagesGroup: MessagesGroupItem.fromJson(messageLists.messageList),
   );
 }

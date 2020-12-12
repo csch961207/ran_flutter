@@ -6,42 +6,20 @@ class ExtraItemContainer extends StatefulWidget {
       {Key key,
       this.text,
       this.leadingIconPath,
-      @required this.onTab})
+      @required this.onTab,
+        @required this.onHandle})
       : super(key: key);
 
   final Function onTab;
   final String text;
-
   final String leadingIconPath;
+  final Future<String> onHandle;
 
   _ExtraItemContainerState createState() => _ExtraItemContainerState();
 }
 
 class _ExtraItemContainerState extends State<ExtraItemContainer> {
   bool _highlight = false;
-
-  void _handleTapDown(TapDownDetails details) {
-    print("_handleTapDown");
-    setState(() {
-      _highlight = true;
-    });
-  }
-
-  void _handleTapUp(TapUpDetails details) {
-    print("_handleTapUp");
-
-    setState(() {
-      _highlight = false;
-    });
-  }
-
-  void _handleTapCancel() {
-    print("_handleTapCancel");
-
-    setState(() {
-      _highlight = false;
-    });
-  }
 
   void _handleTap() {
     print("_handleTap");
@@ -54,10 +32,7 @@ class _ExtraItemContainerState extends State<ExtraItemContainer> {
       child: Column(
         children: <Widget>[
           GestureDetector(
-            onTapDown: _handleTapDown,
-            onTapUp: _handleTapUp,
             onTap: _handleTap,
-            onTapCancel: _handleTapCancel,
             child: Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(

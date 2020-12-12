@@ -54,7 +54,7 @@ class BubbleStyle {
     this.color,
     this.elevation,
     this.shadowColor,
-    this.padding,
+      this.padding,
     this.margin,
     this.alignment,
   });

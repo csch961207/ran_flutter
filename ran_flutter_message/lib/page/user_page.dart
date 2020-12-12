@@ -103,7 +103,9 @@ class _UserPageState extends State<UserPage> {
                             receiveId: currentUser.id);
                     Provider.of<MessageModel>(context, listen: false)
                         .chatMessagesByUser(0, widget.currentUser.id);
-                    NavigatorUtils.push(context, MessageRouter.chat);
+                    NavigatorUtils.goBack(context);
+                    NavigatorUtils.pushResult(
+                        context, MessageRouter.chat, (result) {});
                   } else {
                     ToastUtil.show('这是我自己');
                   }

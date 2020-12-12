@@ -29,8 +29,11 @@ dependencies:
   url_launcher: ^5.5.0
   # 分享
   share: 0.6.2+1
+  # 生成二维码
+  qr_flutter: ^3.2.0
   # 扫码
-  qrscan: ^0.2.17
+#  flutter_dong_scan: ^1.0.8
+  scan: ^0.0.3
   # UI 全局提示
   oktoast: ^2.3.1
   # 处理键盘事件 🏡
@@ -109,3 +112,19 @@ flutter:
   # https://flutter.dev/custom-fonts/#from-packages
   assets:
     - packages/ran_flutter_core/assets/images/close.png
+    - packages/ran_flutter_core/assets/images/pageNotFound.png
+    - packages/ran_flutter_core/assets/images/data_is_empty.png
+    - packages/ran_flutter_core/assets/images/message_is_empty.png
+    - packages/ran_flutter_core/assets/images/message_list_is_empty.png
+    - packages/ran_flutter_core/assets/images/no_collection.png
+    - packages/ran_flutter_core/assets/images/no_comments.png
+    - packages/ran_flutter_core/assets/images/no_comments.png
+    - packages/ran_flutter_core/assets/images/no_coupon.png
+    - packages/ran_flutter_core/assets/images/no_history.png
+    - packages/ran_flutter_core/assets/images/no_network.png
+    - packages/ran_flutter_core/assets/images/no_news_list.png
+    - packages/ran_flutter_core/assets/images/no_permission.png
+    - packages/ran_flutter_core/assets/images/no_search_results.png
+    - packages/ran_flutter_core/assets/images/no_shipping_address.png
+    - packages/ran_flutter_core/assets/images/order_is_empty.png
+    - packages/ran_flutter_core/assets/images/shopping_cart_is_empty.png

@@ -1,7 +1,5 @@
 class EmojiUtil {
 
-
-
   static Map<int, int> emojiPage1 = {
     1: 128512,
    2: 128513,

@@ -187,6 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                               .init();
 //                          NavigatorUtils.goBackWithParams(context, true);
                           NavigatorUtils.push(context, '/home',
+                              replace: true,
                               clearStack: true,
                               transition: TransitionType.inFromBottom);
                           setState(() {

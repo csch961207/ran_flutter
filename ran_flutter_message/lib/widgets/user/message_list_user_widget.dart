@@ -7,28 +7,21 @@ import 'package:ran_flutter_message/widgets/user/messages_user_model.dart';
 import 'package:ran_flutter_message/model/message_content_model.dart';
 import 'package:provider/provider.dart';
 
-class MessageListUserWidget extends StatefulWidget {
-  final MessageLists messageLists;
-  MessageListUserWidget({Key key, this.messageLists}) : super(key: key);
+class MessageListUserWidget extends StatelessWidget {
 
-  @override
-  MessageListUserWidgetState createState() => MessageListUserWidgetState();
-}
+  const MessageListUserWidget({
+    Key key,
+    @required this.messagesUser,
+  }) : super(key: key);
 
-class MessageListUserWidgetState extends State<MessageListUserWidget> {
-  MessagesUserItem messagesUser = new MessagesUserItem();
-
-  @override
-  void initState() {
-    super.initState();
-    messagesUser = MessagesUserItem.fromJson(widget.messageLists.messageList);
-  }
+  final MessagesUserItem messagesUser;
 
   @override
   Widget build(BuildContext context) {
-    CurrentUser currentUser = Provider.of<CoreViewModel>(context, listen: false)
-        .applicationConfiguration
-        .currentUser;
+//    CurrentUser currentUser = Provider.of<CoreViewModel>(context, listen: false)
+//        .applicationConfiguration
+//        .currentUser;
+//  print(object);
     return new Container(
       height: 66,
       padding: EdgeInsets.only(top: 10),
@@ -41,7 +34,7 @@ class MessageListUserWidgetState extends State<MessageListUserWidget> {
             margin: EdgeInsets.only(left: 15, right: 15),
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
-                child: LoadImage('/profilePicture',
+                child: LoadImage('profilePicture',
                     holderImg: 'logo_icon',
                     height: 45.0,
                     width: 45.0,
@@ -82,30 +75,29 @@ class MessageListUserWidgetState extends State<MessageListUserWidget> {
                     Positioned(
                         top: 0,
                         right: 0,
-                        child: messagesUser.count == 0 ||
-                                currentUser.id == messagesUser.senderId
+                        child: messagesUser.count == 0
+//                            ||
+//                                currentUser.id == messagesUser.senderId
                             ? Container()
                             : Container(
-                                padding: EdgeInsets.all(1),
+                                padding: EdgeInsets.fromLTRB(5,2,5,2),
                                 margin: EdgeInsets.only(right: 15),
-                                width: 18,
+//                                width: 40,
                                 height: 18,
                                 decoration: new BoxDecoration(
                                   border: new Border.all(
                                       color: Colors.red, width: 0.5), // 边色与边宽度
                                   color: Colors.red, // 底色
                                   //        shape: BoxShape.circle, // 圆形，使用圆形时不可以使用borderRadius
-                                  shape: BoxShape.circle, // 默认值也是矩形
-                                  //    borderRadius: new BorderRadius.circular((20.0)), // 圆角度
+//                                  shape: BoxShape.circle, // 默认值也是矩形
+                                      borderRadius: new BorderRadius.circular((20.0)), // 圆角度
                                 ),
-                                child: Center(
-                                  child: Text(
-                                    messagesUser.count <= 99
-                                        ? messagesUser.count.toString()
-                                        : messagesUser.count.toString() + '+',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 12),
-                                  ),
+                                child: Text(
+                                  messagesUser.count > 99
+                                      ? '99+'
+                                      : messagesUser.count.toString(),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 12),
                                 ),
                               ))
                   ]),
@@ -130,6 +122,6 @@ class MessageListUserWidgetState extends State<MessageListUserWidget> {
 
 Widget getMessageListUserWidgetBuild(MessageLists messageLists) {
   return MessageListUserWidget(
-    messageLists: messageLists,
-  );
+//    messageLists: messageLists,
+      messagesUser: MessagesUserItem.fromJson(messageLists.messageList));
 }

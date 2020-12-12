@@ -8,7 +8,7 @@ import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:ran_flutter_core/utils/theme_utils.dart';
 import 'package:ran_flutter_core/utils/toast.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:qrscan/qrscan.dart' as scanner;
+//import 'package:qrscan/qrscan.dart' as scanner;
 
 class Utils {
   static final DateFormat _monthFormat = new DateFormat("MMMM yyyy");
@@ -40,16 +40,16 @@ class Utils {
 
   /// 调起二维码扫描页
   static Future<String> scan() async {
-    try {
-      return await scanner.scan();
-    } catch (e) {
-      if (e is PlatformException) {
-        if (e.code == scanner.CameraAccessDenied) {
-          Toast.show("没有相机权限！");
-        }
-      }
-    }
-    return null;
+//    try {
+//      return await scanner.scan();
+//    } catch (e) {
+//      if (e is PlatformException) {
+//        if (e.code == scanner.CameraAccessDenied) {
+//          Toast.show("没有相机权限！");
+//        }
+//      }
+//    }
+//    return null;
   }
 
   static KeyboardActionsConfig getKeyboardActionsConfig(

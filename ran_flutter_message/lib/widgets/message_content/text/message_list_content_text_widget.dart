@@ -3,27 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:ran_flutter_message/model/message_content_model.dart';
 import 'package:ran_flutter_message/widgets/message_content/text/message_content_text_model.dart';
 
+class MessageListContentTextWidget extends StatelessWidget {
+  const MessageListContentTextWidget({
+    Key key,
+    @required this.messageContentText,
+  }) : super(key: key);
 
-class MessageListContentTextWidget extends StatefulWidget {
-  final MessageContentModel messageContent;
-  MessageListContentTextWidget({Key key, this.messageContent})
-      : super(key: key);
-
-  @override
-  MessageListContentTextWidgetState createState() =>
-      MessageListContentTextWidgetState();
-}
-
-class MessageListContentTextWidgetState
-    extends State<MessageListContentTextWidget> {
-  MessageContentTextModel messageContentText = new MessageContentTextModel();
-
-  @override
-  void initState() {
-    super.initState();
-    messageContentText =
-        MessageContentTextModel.fromJson(widget.messageContent.content);
-  }
+  final MessageContentTextModel messageContentText;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +25,6 @@ class MessageListContentTextWidgetState
 Widget getMessageListContentTextWidgetBuild(
     MessageContentModel messageContent) {
   return MessageListContentTextWidget(
-    messageContent: messageContent,
+    messageContentText: MessageContentTextModel.fromJson(messageContent.content),
   );
 }

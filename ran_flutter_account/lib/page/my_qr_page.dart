@@ -1,14 +1,15 @@
 import 'dart:convert';
-
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:ran_flutter_account/account_repository.dart';
 import 'package:ran_flutter_account/model/my_profile_model.dart';
 import 'package:ran_flutter_account/model/user_model.dart';
 import 'package:ran_flutter_core/ran_flutter_core.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
+
+
 
 class MyQrPage extends StatefulWidget {
   @override

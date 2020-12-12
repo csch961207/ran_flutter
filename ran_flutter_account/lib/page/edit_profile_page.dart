@@ -20,6 +20,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   final _userNameController = TextEditingController();
   final FocusNode _userNameNodeText = FocusNode();
+  final _nameController = TextEditingController();
+  final FocusNode _nameNodeText = FocusNode();
   final _emailController = TextEditingController();
   final FocusNode _emailNoNodeText = FocusNode();
   final _phoneNumberController = TextEditingController();
@@ -34,6 +36,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       setState(() {
         _myProfile = myProfile;
         _userNameController.text = myProfile.userName;
+        _nameController.text = myProfile.name;
         _emailController.text = myProfile.email;
         _phoneNumberController.text = myProfile.phoneNumber;
       });
@@ -81,6 +84,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       title: "用户名",
                       hintText: ""),
                   TextFieldItem(
+                      controller: _nameController,
+                      focusNode: _nameNodeText,
+                      title: "昵称",
+                      hintText: ""),
+                  TextFieldItem(
                       controller: _emailController,
                       focusNode: _emailNoNodeText,
                       title: "电子邮箱",
@@ -106,6 +114,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   EasyLoading.show();
                   InputMyProfile inputMyProfile = new InputMyProfile(
                       userName: _userNameController.text,
+                      name: _nameController.text,
                       email: _emailController.text,
                       phoneNumber: _phoneNumberController.text);
                   var code =

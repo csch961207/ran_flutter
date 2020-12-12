@@ -49,35 +49,7 @@ class ChatMessageItemWidgetState extends State<ChatMessageItemWidget> {
     );
   }
 
-  BubbleStyle getItemBundleStyle(ChatMessageItem chatMessageItem) {
-    var color = Theme.of(context).accentColor;
-    CurrentUser currentUser = Provider.of<CoreViewModel>(context, listen: false)
-        .applicationConfiguration
-        .currentUser;
-    BubbleStyle styleSend = BubbleStyle(
-      nip: BubbleNip.rightText,
-      color: Color.fromRGBO(169, 233, 121, 1),
-      nipOffset: 5,
-      nipWidth: 10,
-      nipHeight: 10,
-      margin: BubbleEdges.only(left: 50.0),
-      padding: BubbleEdges.only(top: 8, bottom: 10, left: 15, right: 10),
-    );
-    BubbleStyle styleReceive = BubbleStyle(
-      nip: BubbleNip.leftText,
-      color: Colors.white,
-      nipOffset: 5,
-      nipWidth: 10,
-      nipHeight: 10,
-      margin: BubbleEdges.only(right: 50.0),
-      padding: BubbleEdges.only(top: 8, bottom: 10, left: 10, right: 15),
-    );
-
-    return widget.chatMessageItem.senderId == currentUser.id
-        ? styleSend
-        : styleReceive;
-  }
-
+//  无发送者消息布局
   Widget getMessageLayout() {
     return Container(
         alignment: Alignment.centerRight,
@@ -98,6 +70,7 @@ class ChatMessageItemWidgetState extends State<ChatMessageItemWidget> {
         ));
   }
 
+//  发送者布局
   Widget getSentMessageLayout() {
     return Container(
         alignment: Alignment.centerRight,
@@ -112,13 +85,11 @@ class ChatMessageItemWidgetState extends State<ChatMessageItemWidget> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
-                  Bubble(
-                    style: getItemBundleStyle(widget.chatMessageItem),
-                    child: MessageProvider.getMessageContentProviderWidget(
-                        MessageContentModel.fromJson(
-                            widget.chatMessageItem.content),
-                        0),
-                  )
+
+                  MessageProvider.getMessageContentProviderWidget(
+                      MessageContentModel.fromJson(
+                          widget.chatMessageItem.content),
+                      0)
                 ],
               ),
               margin: EdgeInsets.only(bottom: 5.0, top: 2),
@@ -136,6 +107,7 @@ class ChatMessageItemWidgetState extends State<ChatMessageItemWidget> {
         ));
   }
 
+//  接收者类型
   Widget getReceivedMessageLayout() {
     return Container(
         alignment: Alignment.centerLeft,
@@ -169,13 +141,14 @@ class ChatMessageItemWidgetState extends State<ChatMessageItemWidget> {
                         ),
                       ),
                     ),
-                    Bubble(
-                      style: getItemBundleStyle(widget.chatMessageItem),
-                      child: MessageProvider.getMessageContentProviderWidget(
-                          MessageContentModel.fromJson(
-                              widget.chatMessageItem.content),
-                          1),
-                    ),
+                    MessageProvider.getMessageContentProviderWidget(
+                        MessageContentModel.fromJson(
+                            widget.chatMessageItem.content),
+                        1),
+//                    Bubble(
+//                      style: getItemBundleStyle(widget.chatMessageItem),
+//                      child: ,
+//                    ),
                   ]),
               margin: EdgeInsets.only(
                 bottom: 5.0,

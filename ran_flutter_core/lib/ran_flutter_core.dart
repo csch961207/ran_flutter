@@ -18,6 +18,7 @@ export './res/resources.dart';
 export './utils/utilsources.dart';
 export './widget/widgetsources.dart';
 export './page/webview_page.dart';
+export './page/scan_page.dart';
 export './helper/refresh_helper.dart';
 export './provider/provider_widget.dart';
 export './provider/view_state.dart';

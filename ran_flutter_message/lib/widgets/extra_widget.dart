@@ -4,14 +4,12 @@ import 'package:ran_flutter_message/message_provider.dart';
 import 'package:ran_flutter_message/widgets/circle_page_indicator.dart';
 import 'package:ran_flutter_message/widgets/extra_item.dart';
 
-typedef void OnImageSelect(File mImg);
-
 class DefaultExtraWidget extends StatefulWidget {
-  final OnImageSelect onImageSelectBack;
+  final Function(Map<String, Object>) onPressed;
 
   const DefaultExtraWidget({
     Key key,
-    this.onImageSelectBack,
+    this.onPressed,
   }) : super(key: key);
 
   @override
@@ -33,9 +31,29 @@ class _DefaultExtraWidgetState extends State<DefaultExtraWidget> {
         break;
       }
       if (firstRow.length < 4) {
-        firstRow.add(MessageProvider.extraItems[i]);
+        firstRow.add(ExtraItemContainer(
+          leadingIconPath: MessageProvider.extraItems[i].leadingIconPath,
+          text: MessageProvider.extraItems[i].text,
+          onTab: () async {
+            Map<String, Object> result =
+               await MessageProvider.extraItems[i].onHandle();
+            if(result.isNotEmpty) {
+              widget.onPressed(result);
+            }
+          },
+        ));
       } else {
-        secondRow.add(MessageProvider.extraItems[i]);
+        secondRow.add(ExtraItemContainer(
+          leadingIconPath: MessageProvider.extraItems[i].leadingIconPath,
+          text: MessageProvider.extraItems[i].text,
+          onTab: () async {
+            Map<String, Object> result =
+            await MessageProvider.extraItems[i].onHandle();
+            if(result.isNotEmpty) {
+              widget.onPressed(result);
+            }
+          },
+        ));
       }
     }
     return Column(

@@ -23,6 +23,7 @@ class _MessageMsgPageState extends State<MessageMsgPage> {
     return Material(
         color: Color(0xffffffff),
         child: Consumer<MessageModel>(builder: (context, messageModel, child) {
+          print('重新渲染了');
           if (messageModel.ltMsg.length == 0) {
             return GestureDetector(
               onTap: () {
@@ -55,21 +56,23 @@ class _MessageMsgPageState extends State<MessageMsgPage> {
                           messageModel.setCurrentMessageData(
                               messageModel.ltMsg[i - 1].messageList);
                           if (messagesUserItem.receiverType == 1) {
-                            Provider.of<MessageModel>(context, listen: false)
-                                .chatMessagesByGroup(
-                                    0,
-                                    MessagesUserItem.fromJson(messageModel
-                                            .ltMsg[i - 1].messageList)
-                                        .receiverId);
+                            messageModel.chatMessagesByGroup(
+                                0,
+                                MessagesUserItem.fromJson(
+                                        messageModel.ltMsg[i - 1].messageList)
+                                    .receiverId);
                           } else if (messagesUserItem.receiverType == 0) {
-                            Provider.of<MessageModel>(context, listen: false)
-                                .chatMessagesByUser(
-                                    0,
-                                    MessagesUserItem.fromJson(messageModel
-                                            .ltMsg[i - 1].messageList)
-                                        .senderId);
+                            messageModel.chatMessagesByUser(
+                                0,
+                                MessagesUserItem.fromJson(
+                                        messageModel.ltMsg[i - 1].messageList)
+                                    .senderId);
                           } else {}
-                          NavigatorUtils.push(context, MessageRouter.chat);
+                          messageModel.setRead(i - 1);
+                          NavigatorUtils.pushResult(context, MessageRouter.chat,
+                              (result) {
+//                            messageModel.init();
+                          });
                         },
                         child: Slidable(
                           actionPane: SlidableDrawerActionPane(), //滑出选项的面板 动画
@@ -87,6 +90,11 @@ class _MessageMsgPageState extends State<MessageMsgPage> {
                               closeOnTap: true,
                               onTap: () {
                                 print('删除');
+                                messageModel.receivingStatus(
+                                    MessagesUserItem.fromJson(messageModel
+                                            .ltMsg[i - 1].messageList)
+                                        .senderId,
+                                    i - 1);
                               },
                             ),
                           ],

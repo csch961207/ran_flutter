@@ -12,5 +12,6 @@ export './widget/assets/assets_widget.dart';
 export './widget/light_switch/light_switch.dart';
 export './widget/light_switch/light_switch_widget.dart';
 export './widget/CkEditor/CkEditor.dart';
+export './widget/radio_button_list/radio-button-list.dart';
 export './widget/field_types.dart';
 export './response_interceptors.dart';

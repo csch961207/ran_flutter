@@ -5,10 +5,9 @@ import 'package:ran_flutter_core/ran_flutter_core.dart';
 class AssetsRepository {
   /// 根据folderToken和providerKey上传文件
   static Future<FileItem> upload(
-      File file, String providerKey, String folderToken) async {
-    String path = file.path;
-    var name = path.substring(path.lastIndexOf("/") + 1);
-    var fromFile = await MultipartFile.fromFile(path, filename: name);
+      String filePath, String providerKey, String folderToken) async {
+    var name = filePath.substring(filePath.lastIndexOf("/") + 1);
+    var fromFile = await MultipartFile.fromFile(filePath, filename: name);
     FormData formData = FormData.fromMap({
       "file": fromFile,
       "providerKey": providerKey,

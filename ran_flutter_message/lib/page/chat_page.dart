@@ -10,6 +10,7 @@ import 'package:ran_flutter_message/view_model/message_model.dart';
 import 'package:ran_flutter_message/widgets/chat_bottom.dart';
 import 'package:ran_flutter_message/widgets/chat_message_item_widget.dart';
 import 'package:ran_flutter_message/widgets/expanded_viewport.dart';
+import 'package:ran_flutter_message/widgets/user/messages_user_model.dart';
 
 class ChatPage extends StatefulWidget {
   @override
@@ -33,6 +34,7 @@ class _ChatPageState extends State<ChatPage> {
   void dispose() {
     super.dispose();
     listScrollController.dispose();
+    changeNotifier.close();
   }
 
   @override
@@ -75,13 +77,16 @@ class _ChatPageState extends State<ChatPage> {
               FocusScope.of(context).requestFocus(FocusNode());
               changeNotifier.sink.add(null);
               Navigator.pop(context);
-              if (messageModel.currentMessageData.receiverType == 0) {
-                messageModel.saveLastReceiveTime(
-                    messageModel.currentMessageData.senderId);
+              int index = messageModel.ltMsg.indexWhere((item) =>
+              MessagesUserItem.fromJson(item.messageList).senderId ==
+                  messageModel.currentChatId);
+              if (MessagesUserItem.fromJson(messageModel.ltMsg[index].messageList).receiverType == 0) {
+                messageModel.saveLastReceiveTime(messageModel.currentChatId);
+                messageModel.setRead(index);
               }
-              if (messageModel.currentMessageData.receiverType == 1) {
-                messageModel.saveLastReceiveTime(
-                    messageModel.currentMessageData.receiverId);
+              if (MessagesUserItem.fromJson(messageModel.ltMsg[index].messageList).receiverType == 1) {
+                messageModel.saveLastReceiveTime(messageModel.currentChatId);
+                messageModel.setRead(index);
               }
               return Future.value(false);
             },
@@ -93,13 +98,16 @@ class _ChatPageState extends State<ChatPage> {
                     iconSize: 30,
                     icon: Icon(Icons.chevron_left),
                     onPressed: () {
-                      if (messageModel.currentMessageData.receiverType == 0) {
-                        messageModel.saveLastReceiveTime(
-                            messageModel.currentMessageData.senderId);
+                      int index = messageModel.ltMsg.indexWhere((item) =>
+                      MessagesUserItem.fromJson(item.messageList).senderId ==
+                          messageModel.currentChatId);
+                      if (MessagesUserItem.fromJson(messageModel.ltMsg[index].messageList).receiverType == 0) {
+                        messageModel.saveLastReceiveTime(messageModel.currentChatId);
+                        messageModel.setRead(index);
                       }
-                      if (messageModel.currentMessageData.receiverType == 1) {
-                        messageModel.saveLastReceiveTime(
-                            messageModel.currentMessageData.receiverId);
+                      if (MessagesUserItem.fromJson(messageModel.ltMsg[index].messageList).receiverType == 1) {
+                        messageModel.saveLastReceiveTime(messageModel.currentChatId);
+                        messageModel.setRead(index);
                       }
                       Navigator.pop(context);
                     }),

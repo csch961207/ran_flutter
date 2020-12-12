@@ -88,6 +88,8 @@ class _ChatBottomInputWidgetState extends State<ChatBottomInputWidget>
     _keyboardVisibility.dispose();
     mEditController.dispose();
     focusNode.dispose();
+    inputContentStream.distinct();
+    inputContentStreamController.close();
   }
 
   @override
@@ -263,7 +265,42 @@ class _ChatBottomInputWidgetState extends State<ChatBottomInputWidget>
     if (this.mCurrentType == "extra") {
       return Container(
         height: 200,
-        child: Visibility(visible: mAddLayoutShow, child: DefaultExtraWidget()),
+        child: Visibility(
+            visible: mAddLayoutShow,
+            child: DefaultExtraWidget(
+              onPressed: (result) {
+//                print('-----------------');
+//                print(result);
+//                print('-----------------');
+//                return;
+                MessageContentType messageContentType =
+                    Provider.of<MessageModel>(context, listen: false)
+                        .getMessageContentType(result["contentTypeName"]);
+                result["assemblyNameAndTypeName"] =
+                    messageContentType.assemblyNameAndTypeName;
+                MessageModel messageModel =
+                    Provider.of<MessageModel>(context, listen: false);
+                ChatMessageEdit chatMessageEdit = ChatMessageEdit(
+                    messageId: Uuid().v1(),
+                    receiverId:
+                        messageModel.currentMessageData.receiverType == 1
+                            ? messageModel.currentMessageData.receiverId
+                            : messageModel.currentMessageData.senderId,
+                    receiverType: messageModel.currentMessageData.receiverType,
+                    sendTime: new DateTime.now().toString(),
+                    content: json.encode(result));
+                if (Provider.of<MessageModel>(context, listen: false)
+                        .currentMessageData
+                        .receiverType ==
+                    1) {
+                  Provider.of<MessageModel>(context, listen: false)
+                      .sendMessageToGroup(chatMessageEdit);
+                } else {
+                  Provider.of<MessageModel>(context, listen: false)
+                      .sendMsg(chatMessageEdit);
+                }
+              },
+            )),
       );
     } else if (mCurrentType == "emoji") {
       return Container(
@@ -354,17 +391,17 @@ class _ChatBottomInputWidgetState extends State<ChatBottomInputWidget>
             ToastUtil.show('消息不能为空');
             return;
           }
-          try{
+          try {
             MessageContentType messageContentType =
-            Provider.of<MessageModel>(context, listen: false)
-                .getMessageContentType('text');
+                Provider.of<MessageModel>(context, listen: false)
+                    .getMessageContentType('text');
             Map<String, Object> content = Map();
             content["contentTypeName"] = messageContentType.contentTypeName;
             content["assemblyNameAndTypeName"] =
                 messageContentType.assemblyNameAndTypeName;
             content["content"] = mEditController.text.trim();
             MessageModel messageModel =
-            Provider.of<MessageModel>(context, listen: false);
+                Provider.of<MessageModel>(context, listen: false);
             CurrentUser currentUser =
                 Provider.of<CoreViewModel>(context, listen: false)
                     .applicationConfiguration
@@ -378,17 +415,15 @@ class _ChatBottomInputWidgetState extends State<ChatBottomInputWidget>
                 sendTime: new DateTime.now().toString(),
                 content: json.encode(content));
             if (Provider.of<MessageModel>(context, listen: false)
-                .currentMessageData
-                .receiverType ==
+                    .currentMessageData
+                    .receiverType ==
                 1) {
-              Provider.of<MessageModel>(context, listen: false)
-                  .sendMessageToGroup(chatMessageEdit);
+              messageModel.sendMessageToGroup(chatMessageEdit);
             } else {
-              Provider.of<MessageModel>(context, listen: false)
-                  .sendMsg(chatMessageEdit);
+              messageModel.sendMsg(chatMessageEdit);
             }
             widget.onSendMessageCallBack?.call(chatMessageEdit);
-          } catch(e){
+          } catch (e) {
             print(e);
           }
           mEditController.clear();

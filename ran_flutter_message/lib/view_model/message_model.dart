@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ran_flutter_core/ran_flutter_core.dart';
+import 'package:ran_flutter_core/ran_flutter_core.dart';
 import 'package:ran_flutter_message/message_repository.dart';
 import 'package:ran_flutter_message/model/all_Message.dart';
 import 'package:ran_flutter_message/model/chat_message.dart';
@@ -21,15 +22,16 @@ class MessageModel with ChangeNotifier {
   bool get loading => _loading;
   int frequency = 0;
 
+  int _unreadCount = 0;
+  int get unreadCount => _unreadCount;
+
   List<MessageLists> _ltMsg = [];
   List<MessageLists> get ltMsg => _ltMsg;
 
   List<ChatMessageItem> _currentMessages = [];
   List<ChatMessageItem> get currentMessages => _currentMessages;
-  String _currentGroupChatId = '';
-  String get currentGroupChatId => _currentGroupChatId;
-  String _currentUserChatId = '';
-  String get currentUserChatId => _currentUserChatId;
+  String _currentChatId = '';
+  String get currentChatId => _currentChatId;
 
   List<MessageContentType> _contentTypes = [];
   List<MessageContentType> get contentTypes => _contentTypes;
@@ -77,30 +79,27 @@ class MessageModel with ChangeNotifier {
     print("Begin Connection");
     print(StorageManager.sharedPreferences.getString("accessToken"));
     try {
-      await hubConnection.stop();
-      hubConnection.onclose((error) =>
-          currentUserChatId != '' || _currentGroupChatId != ''
-              ? onDone()
-              : print('重连失败'));
+//      await hubConnection.stop();
+      hubConnection.onclose((error) => print('关闭了'));
       await hubConnection.start().then((value) {
         _conState = 1;
-        frequency = 0;
         print('连接成功');
       }).catchError((onError) {
-        _conState = 0;
+        print(onError);
+        onDone();
       });
       hubConnection.keepAliveIntervalInMilliseconds = 15000;
       hubConnection.serverTimeoutInMilliseconds = 30000;
       hubConnection.on("ReceiveMessage", (e) => receiveMessage(e.first));
       hubConnection.on("PushMessage", (e) => pushMessage(e.first));
     } catch (e) {
-      _conState = 0;
       print('连接失败');
       onError(e);
     }
   }
 
   MessageModel() {
+    _initSignalR();
     init();
   }
 
@@ -111,7 +110,6 @@ class MessageModel with ChangeNotifier {
       MessagesApp messagesApp = await MessageRepository.fetchMessageApps();
       _messageApps = messagesApp.items;
       _contentTypes = await MessageRepository.fetchMessageContentTypes();
-      await _initSignalR();
       // 获取所有消息列表
       List<Future> futures = [];
       futures.add(MessageRepository.fetchUnReadChatMessagesByUser());
@@ -143,8 +141,10 @@ class MessageModel with ChangeNotifier {
               }))
           .toList();
       _ltMsg.addAll(unreadMessageAppMessages);
-      print('获取到消息');
-      print(_ltMsg.length);
+      _unreadCount = 0;
+      _ltMsg.forEach((item) {
+        _unreadCount += item.messageList['count'];
+      });
       _loading = false;
       notifyListeners();
     } catch (e) {
@@ -154,13 +154,16 @@ class MessageModel with ChangeNotifier {
     }
   }
 
+  clearData(){
+    _ltMsg.clear();
+  }
+
   setCurrentMessageData(Map<String, Object> currentMessageData) {
     this.currentMessageData = MessagesUserItem.fromJson(currentMessageData);
     notifyListeners();
   }
 
-  /// 设置已读
-  @override
+  /// 设置最后阅读时间
   Future<bool> saveLastReceiveTime(String sendId, {String receiveId}) async {
     try {
       var response = await MessageRepository.saveLastReceiveTime(sendId,
@@ -178,17 +181,6 @@ class MessageModel with ChangeNotifier {
     }
   }
 
-  setRead(int index) {
-//    if (_ltMsg[index].messageTypeName == MessageTypeName.User ||
-//        _ltMsg[index].messageTypeName == MessageTypeName.Group) {
-//      (_ltMsg[index] as UnReadChatMessages).entry.count = 0;
-//    }
-//    if (_ltMsg[index].messageTypeName == MessageTypeName.MessageApp) {
-//      (_ltMsg[index] as UnReadMessageAppMessages).entry.count = 0;
-//    }
-    notifyListeners();
-  }
-
   /// 删除消息列表
   Future<bool> receivingStatus(String sendId, int index) async {
     try {
@@ -196,6 +188,7 @@ class MessageModel with ChangeNotifier {
       print('返回');
       print(response);
       if (response == 204 || response == 0 || response == 200) {
+        _unreadCount -= _ltMsg[index].messageList['count'];
         _ltMsg.removeAt(index);
         notifyListeners();
         return true;
@@ -221,6 +214,7 @@ class MessageModel with ChangeNotifier {
       for (var i = chatMessages.items.length - 1; i > -1; i--) {
         _currentMessages.add(chatMessages.items[i]);
       }
+      setCurrentChatId(senderId);
       _loading = false;
       notifyListeners();
     } catch (e) {
@@ -274,11 +268,6 @@ class MessageModel with ChangeNotifier {
       ToastUtil.show(e.toString());
       return true;
     }
-
-//    print('最后${arr.length.toString()}');
-//    print(_currentMessageApps[0].content);
-
-    return true;
   }
 
   // 返回消息字段
@@ -297,238 +286,89 @@ class MessageModel with ChangeNotifier {
     return result;
   }
 
-//  设置当前聊天用户
-  setCurrentUserChatId(String currentUserChatId) {
-    _currentUserChatId = currentUserChatId;
-    _currentGroupChatId = '';
-    print('设置当前聊天用户:${_currentUserChatId}');
+//  设置当前聊天id
+  setCurrentChatId(String chatId) {
+    _currentChatId = chatId;
+    print('设置当前聊天用户:${_currentChatId}');
     notifyListeners();
   }
 
-  //  设置当前聊天群组
-  setCurrentGroupChatId(String currentGroupChatId) {
-    _currentGroupChatId = currentGroupChatId;
-    _currentUserChatId = '';
+  setRead(int index) {
+    _unreadCount -= _ltMsg[index].messageList['count'];
+    _ltMsg[index].messageList['count'] = 0;
     notifyListeners();
   }
+
 
 // 接受消息
-  receiveMessage(e) {
+  receiveMessage(e) async {
     print('发送人：${e}');
-    ChatMessage chatmessage = ChatMessage.fromJson(e);
-    print('id：${chatmessage.id}');
-    print('发送人：${chatmessage.senderName}');
-    print('接受类型：${chatmessage.receiverType}');
-    print('接收者：${chatmessage.receiverName}');
-    print('接收者id：${chatmessage.receiverId}');
-    print('发送者id：${chatmessage.senderId}');
-    print('接收时间：${chatmessage.sendTime}');
-    print('内容：${chatmessage.content}');
-    print('内容：${chatmessage.content}');
-    try {
-//      User user;
-//      var userMap = StorageManager.localStorage.getItem('kUser');
-//      if (userMap != null) {
-//        user = User.fromJsonMap(userMap);
-//      }
-      if (chatmessage.receiverType == 0) {
-        print('当前聊天用户：${_currentUserChatId}');
-//      自己发的
-        if (chatmessage.senderId == 'user.id') {
-          if (_currentMessages.length > 0 &&
-              _currentMessages[0].id == chatmessage.id) {
-            notifyListeners();
-            return;
-          }
-        }
-        if (chatmessage.senderId == _currentUserChatId) {
-          print('当前聊天id：${_currentMessages[0].id}');
-          print('收到的：${_currentMessages[0].id}');
-          if (_currentMessages.length > 0 &&
-              _currentMessages[0].id == chatmessage.id) {
-            notifyListeners();
-            return;
-          }
-//          _currentMessages.insert(0, chatmessage);
-          notifyListeners();
-        }
+    ChatMessageItem chatMessageItem = ChatMessageItem.fromJson(e);
+    String userId = StorageManager.sharedPreferences.getString("userId");
+    if (chatMessageItem.senderId == userId) {
+      if (_currentMessages.length == 0 ||
+          _currentMessages[0].id != chatMessageItem.id) {
+        _currentMessages.insert(0, chatMessageItem);
       }
-
-      if (chatmessage.receiverType == 1) {
-        try {
-          if (chatmessage.receiverId == _currentGroupChatId) {
-            if (_currentMessages.length > 0 &&
-                _currentMessages[0].id == chatmessage.id) {
-              notifyListeners();
-              return;
-            }
-//            _currentMessages.insert(0, chatmessage);
-            notifyListeners();
-          }
-        } catch (e) {
-          ToastUtil.show(e.toString());
-        }
+    } else if (chatMessageItem.senderId == _currentChatId) {
+      if (_currentMessages.length == 0 ||
+          _currentMessages[0].id != chatMessageItem.id) {
+        _currentMessages.insert(0, chatMessageItem);
       }
-
-      if ('user' != null &&
-          'user.id' == chatmessage.senderId &&
-          chatmessage.receiverType == 0) {
-//        _currentMessages.insert(0, chatmessage);
-        notifyListeners();
-        for (var i = 0; i < _ltMsg.length; i++) {
-          if (_ltMsg[i].messagesTypeName != 'MessageApp' &&
-              (_ltMsg[i] as UnReadChatMessages).entry.senderId ==
-                  chatmessage.receiverId &&
-              (_ltMsg[i] as UnReadChatMessages).entry.receiverType == 0) {
-            if ((_ltMsg[i] as UnReadChatMessages).entry.id != chatmessage.id) {
-              (_ltMsg[i] as UnReadChatMessages).entry.id = chatmessage.id;
-              (_ltMsg[i] as UnReadChatMessages).entry.count =
-                  (_ltMsg[i] as UnReadChatMessages).entry.count;
-              (_ltMsg[i] as UnReadChatMessages).entry.content =
-                  chatmessage.content;
-              (_ltMsg[i] as UnReadChatMessages).entry.sendTime =
-                  chatmessage.sendTime;
-              (_ltMsg[i] as UnReadChatMessages).entry.senderId =
-                  chatmessage.receiverId;
-              (_ltMsg[i] as UnReadChatMessages).entry.receiverId =
-                  chatmessage.senderId;
-              (_ltMsg[i] as UnReadChatMessages).entry.receiverName =
-                  chatmessage.senderName;
-              (_ltMsg[i] as UnReadChatMessages).entry.senderName =
-                  chatmessage.receiverName;
-              (_ltMsg[i] as UnReadChatMessages).entry.receiverType =
-                  chatmessage.receiverType;
-              notifyListeners();
-            }
-            break;
-          }
-          notifyListeners();
-          print('走这里');
-        }
-        return;
+    } else if (chatMessageItem.receiverId == _currentChatId) {
+      if (_currentMessages.length == 0 ||
+          _currentMessages[0].id != chatMessageItem.id) {
+        _currentMessages.insert(0, chatMessageItem);
       }
-
-      if (chatmessage.receiverType == 0) {
-        for (var i = 0; i < _ltMsg.length; i++) {
-          if (_ltMsg[i].messagesTypeName != 'MessageApp' &&
-              (_ltMsg[i] as UnReadChatMessages).entry.senderId ==
-                  chatmessage.senderId &&
-              (_ltMsg[i] as UnReadChatMessages).entry.receiverType == 0) {
-            if ((_ltMsg[i] as UnReadChatMessages).entry.id != chatmessage.id) {
-              (_ltMsg[i] as UnReadChatMessages).entry.id = chatmessage.id;
-              (_ltMsg[i] as UnReadChatMessages).entry.count =
-                  (_ltMsg[i] as UnReadChatMessages).entry.count + 1;
-              (_ltMsg[i] as UnReadChatMessages).entry.content =
-                  chatmessage.content;
-              (_ltMsg[i] as UnReadChatMessages).entry.sendTime =
-                  chatmessage.sendTime;
-              (_ltMsg[i] as UnReadChatMessages).entry.senderName =
-                  chatmessage.senderName;
-              (_ltMsg[i] as UnReadChatMessages).entry.senderId =
-                  chatmessage.senderId;
-              (_ltMsg[i] as UnReadChatMessages).entry.receiverId =
-                  chatmessage.receiverId;
-              (_ltMsg[i] as UnReadChatMessages).entry.receiverName =
-                  chatmessage.receiverName;
-              (_ltMsg[i] as UnReadChatMessages).entry.receiverType =
-                  chatmessage.receiverType;
-              notifyListeners();
-            }
-            break;
-          } else if (i == _ltMsg.length - 1) {
-            UnReadChatMessages unReadChatMessages = UnReadChatMessages();
-            unReadChatMessages.messageTypeName = MessageTypeName.User;
-            unReadChatMessages.entry = Message(
-                id: chatmessage.id,
-                senderId: chatmessage.senderId,
-                senderName: chatmessage.senderName,
-                receiverId: chatmessage.receiverId,
-                receiverName: chatmessage.receiverName,
-                count: 1,
-                sendTime: chatmessage.sendTime,
-                content: chatmessage.content,
-                receiverType: chatmessage.receiverType);
-//            _ltMsg.add(unReadChatMessages);
-            notifyListeners();
-            print('走0');
-          }
-        }
-      }
-      if (chatmessage.receiverType == 1) {
-        for (var i = 0; i < _ltMsg.length; i++) {
-          if (_ltMsg[i].messagesTypeName != 'MessageApp' &&
-              (_ltMsg[i] as UnReadChatMessages).entry.receiverId ==
-                  chatmessage.receiverId &&
-              (_ltMsg[i] as UnReadChatMessages).entry.receiverType == 1) {
-            if ((_ltMsg[i] as UnReadChatMessages).entry.id != chatmessage.id) {
-              (_ltMsg[i] as UnReadChatMessages).entry.id = chatmessage.id;
-              (_ltMsg[i] as UnReadChatMessages).entry.count =
-                  (_ltMsg[i] as UnReadChatMessages).entry.count + 1;
-              (_ltMsg[i] as UnReadChatMessages).entry.content =
-                  chatmessage.content;
-              (_ltMsg[i] as UnReadChatMessages).entry.sendTime =
-                  chatmessage.sendTime;
-              (_ltMsg[i] as UnReadChatMessages).entry.senderName =
-                  chatmessage.senderName;
-              (_ltMsg[i] as UnReadChatMessages).entry.senderId =
-                  chatmessage.senderId;
-              (_ltMsg[i] as UnReadChatMessages).entry.receiverId =
-                  chatmessage.receiverId;
-              (_ltMsg[i] as UnReadChatMessages).entry.receiverName =
-                  chatmessage.receiverName;
-              (_ltMsg[i] as UnReadChatMessages).entry.receiverType =
-                  chatmessage.receiverType;
-              notifyListeners();
-            }
-            break;
-          } else if (i == _ltMsg.length - 1) {
-            UnReadChatMessages unReadChatMessages = UnReadChatMessages();
-            unReadChatMessages.messageTypeName = MessageTypeName.Group;
-            unReadChatMessages.entry = Message(
-                id: chatmessage.id,
-                senderId: chatmessage.senderId,
-                senderName: chatmessage.senderName,
-                receiverId: chatmessage.receiverId,
-                receiverName: chatmessage.receiverName,
-                count: 1,
-                sendTime: chatmessage.sendTime,
-                content: chatmessage.content,
-                receiverType: chatmessage.receiverType);
-//            _ltMsg.add(unReadChatMessages);
-            notifyListeners();
-          }
-        }
-        print('走1');
-        print(_ltMsg);
-      }
-
-      if (_ltMsg.length == 0) {
-        UnReadChatMessages unReadChatMessages = UnReadChatMessages();
-        if (chatmessage.receiverType == 0) {
-          print('走0');
-          unReadChatMessages.messageTypeName = MessageTypeName.User;
-        }
-        if (chatmessage.receiverType == 1) {
-          print('走1');
-          unReadChatMessages.messageTypeName = MessageTypeName.Group;
-        }
-        unReadChatMessages.entry = Message(
-            id: chatmessage.id,
-            senderId: chatmessage.senderId,
-            senderName: chatmessage.senderName,
-            receiverId: chatmessage.receiverId,
-            receiverName: chatmessage.receiverName,
-            count: 1,
-            sendTime: chatmessage.sendTime,
-            content: chatmessage.content,
-            receiverType: chatmessage.receiverType);
-//        _ltMsg.add(unReadChatMessages);
-        notifyListeners();
-      }
-    } catch (e) {
-      ToastUtil.show(e.toString());
     }
-    debugPrint('接受：${Message.fromJson(e)}');
+    ChatMessageItem messageItem = ChatMessageItem.fromJson(e);
+    if (messageItem.receiverType == 0) {
+      bool isOneself = false;
+      if (messageItem.senderId == userId) {
+        isOneself = true;
+        var exchange = messageItem.senderId;
+        messageItem.senderId = messageItem.receiverId;
+        messageItem.receiverId = exchange;
+        exchange = messageItem.senderName;
+        messageItem.senderName = messageItem.receiverName;
+        messageItem.receiverName = exchange;
+      }
+      int findIndex = _ltMsg.indexWhere(
+          (item) => item.messageList["senderId"] == messageItem.senderId);
+      if (findIndex == -1) {
+        _ltMsg.insert(
+            0,
+            MessageLists.fromJson({
+              'messagesTypeName': 'User',
+              'messageList': messageItem.toJson()
+            }));
+        _ltMsg[0].messageList['count'] = 1;
+        if (!isOneself) {
+          _unreadCount++;
+        } else {
+          setRead(0);
+        }
+      } else {
+        print(_ltMsg[findIndex].messageList["id"] != messageItem.id);
+        if (_ltMsg[findIndex].messageList["id"] != messageItem.id) {
+          int count = _ltMsg[findIndex].messageList['count'];
+          _ltMsg.removeAt(findIndex);
+          _ltMsg.insert(
+              0,
+              MessageLists.fromJson({
+                'messagesTypeName': 'User',
+                'messageList': messageItem.toJson()
+              }));
+          _ltMsg[0].messageList['count'] = count + 1;
+          if (!isOneself) {
+            _unreadCount++;
+          } else {
+            setRead(0);
+          }
+        }
+      }
+    }
+    notifyListeners();
   }
 
   /// 接收应用通知
@@ -620,35 +460,23 @@ class MessageModel with ChangeNotifier {
       notifyListeners();
       debugPrint('发送返回：${result}');
     } catch (e) {
-      debugPrint('发送错误');
+      onError(e);
       ToastUtil.show('发送失败');
     }
   }
 
   onError(error) {
     print('error------------>${error}');
+    onDone();
   }
 
   void onDone() async {
-//    var userMap = StorageManager.localStorage.getItem('kUser');
-//    if (userMap != null) {
-//      print('重连：${_conState}');
-//      await hubConnection.stop();
-//      print('断开了');
-//      _initSignalR();
-//      print('重连');
-//    } else {
-//      print(userMap);
-//    }
-    frequency++;
-    if (frequency > 5) {
-      return;
-    }
-    print('重连：${_conState}');
-    await hubConnection.stop();
-    print('断开了');
-    _initSignalR();
-    print('重连');
+    // 延时1s执行返回
+    Future.delayed(Duration(seconds: 5), () async {
+      print('重连：${_conState}');
+      await hubConnection.stop();
+      _initSignalR();
+    });
   }
 
   close() {
