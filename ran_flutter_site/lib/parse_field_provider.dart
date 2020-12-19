@@ -16,7 +16,7 @@ class ParseFieldProvider {
     parseFields.insertAll(0, parseFieldProviders);
   }
 
-  static getParseFieldValue(Field field, FieldValues fieldValue) {
+  static getParseFieldValue(Field field, FieldValue fieldValue) {
     ParseFieldProviderModel findParseField = parseFields.firstWhere(
         (item) => item.fieldTypeName == field.fieldTypeName,
         orElse: () => new ParseFieldProviderModel());

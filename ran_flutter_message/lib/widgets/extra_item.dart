@@ -7,7 +7,7 @@ class ExtraItemContainer extends StatefulWidget {
       this.text,
       this.leadingIconPath,
       @required this.onTab,
-        @required this.onHandle})
+      @required this.onHandle})
       : super(key: key);
 
   final Function onTab;
@@ -28,7 +28,10 @@ class _ExtraItemContainerState extends State<ExtraItemContainer> {
   }
 
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     return Container(
+      width: width / 4,
+      alignment: Alignment.center,
       child: Column(
         children: <Widget>[
           GestureDetector(

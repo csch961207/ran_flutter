@@ -9,8 +9,9 @@ class MessageListContentPictureWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return new Text(
-      '【图片】',
+      '[图片]',
       style: TextStyle(fontSize: 15, color: Colors.grey),
       maxLines: 1,
       overflow: TextOverflow.ellipsis,

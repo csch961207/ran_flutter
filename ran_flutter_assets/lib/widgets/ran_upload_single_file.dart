@@ -5,7 +5,8 @@ import 'package:ran_flutter_assets/assets_repository.dart';
 import 'package:ran_flutter_assets/model/file_model.dart';
 import 'package:ran_flutter_core/ran_flutter_core.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:bot_toast/bot_toast.dart';
+import 'package:ran_flutter_core/utils/utilsources.dart';
+import 'package:file/file.dart';
 
 /// 上传单个文件封装
 class RanUploadSingleFile extends StatefulWidget {

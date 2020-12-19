@@ -95,7 +95,7 @@ class EntityPageState extends State<EntityPage>
                               field: field,
                               fieldValue: entity.fieldValues.firstWhere(
                                   (item) => item.fieldId == field.id,
-                                  orElse: () => new FieldValues()),
+                                  orElse: () => new FieldValue()),
                             ),
                             Container(
                               height: 45,

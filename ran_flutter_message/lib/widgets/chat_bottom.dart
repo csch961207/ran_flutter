@@ -145,7 +145,7 @@ class _ChatBottomInputWidgetState extends State<ChatBottomInputWidget>
   Widget build(BuildContext context) {
 //    requestPermission();
     return Container(
-      padding: const EdgeInsets.only(left: 8, right: 8),
+//      padding: const EdgeInsets.only(left: 8, right: 8),
       decoration: BoxDecoration(
         color: Color.fromRGBO(246, 246, 246, 1),
         border: Border(
@@ -323,25 +323,38 @@ class _ChatBottomInputWidgetState extends State<ChatBottomInputWidget>
   Widget mVoiceButton(BuildContext context) {
     return Container(
       width: double.infinity,
-      child: RecordButton(onAudioCallBack: (value, duration) {
-        print(value.path);
-//        widget.onAudioCallBack?.call(value, duration);
-//        final HrlVoiceMessage mMessgae = new HrlVoiceMessage();
-//        mMessgae.uuid = Uuid().v4() + "";
-//        mMessgae.msgType = HrlMessageType.voice;
-//        mMessgae.isSend = true;
-//        mMessgae.path = value.path;
-//        mMessgae.duration = duration;
-//        mMessgae.state = HrlMessageState.sending;
-//        mlistMessage.insert(0, mMessgae);
-//        listScrollController.animateTo(0.00,
-//            duration: Duration(milliseconds: 1),
-//            curve: Curves.easeOut);
-//        setState(() {});
-//        Future.delayed(new Duration(seconds: 1), () {
-//          mMessgae.state = HrlMessageState.send_succeed;
-//          setState(() {});
-//        })
+      child: RecordButton(onAudioCallBack: (result, duration) {
+        print(result);
+        try {
+          MessageContentType messageContentType =
+          Provider.of<MessageModel>(context, listen: false)
+              .getMessageContentType(result["contentTypeName"]);
+          result["assemblyNameAndTypeName"] =
+              messageContentType.assemblyNameAndTypeName;
+          MessageModel messageModel =
+          Provider.of<MessageModel>(context, listen: false);
+          ChatMessageEdit chatMessageEdit = ChatMessageEdit(
+              messageId: Uuid().v1(),
+              receiverId:
+              messageModel.currentMessageData.receiverType == 1
+                  ? messageModel.currentMessageData.receiverId
+                  : messageModel.currentMessageData.senderId,
+              receiverType: messageModel.currentMessageData.receiverType,
+              sendTime: new DateTime.now().toString(),
+              content: json.encode(result));
+          if (Provider.of<MessageModel>(context, listen: false)
+              .currentMessageData
+              .receiverType ==
+              1) {
+            Provider.of<MessageModel>(context, listen: false)
+                .sendMessageToGroup(chatMessageEdit);
+          } else {
+            Provider.of<MessageModel>(context, listen: false)
+                .sendMsg(chatMessageEdit);
+          }
+        } catch (e) {
+          print(e);
+        }
       }),
     );
   }

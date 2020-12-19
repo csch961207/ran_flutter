@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:ran_flutter_core/ran_flutter_core.dart';
 import 'package:ran_flutter_message/model/message_content_model.dart';
 import 'package:ran_flutter_message/widgets/bubble.dart';
 import 'package:ran_flutter_message/widgets/message_content/text/message_content_text_model.dart';
@@ -40,6 +42,7 @@ class MessageContentTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
+    print(RegexUtils.isImage('app.PNG'));
     if (senderType == 2) {
       return Text(
         messageContentText?.content ?? '',
@@ -48,14 +51,21 @@ class MessageContentTextWidget extends StatelessWidget {
     }
     return Container(
       constraints: BoxConstraints(maxWidth: width / 1.5),
-//      padding: EdgeInsets.only(top: 8, bottom: 10, left: 10, right: 15),
       child: Bubble(
-        style: getItemBundleStyle(),
-        child: Text(
-          messageContentText?.content ?? '',
-          style: TextStyle(fontSize: 15, color: Colors.black),
-        ),
-      ),
+          style: getItemBundleStyle(),
+          child: Linkify(
+            onOpen: (link) async {
+              NavigatorUtils.goWebViewPage(context, link.url);
+            },
+            text: messageContentText?.content ?? '',
+            style: TextStyle(color: Colors.black),
+            linkStyle: TextStyle(color: Colors.blue),
+          )
+//        Text(
+//          messageContentText?.content ?? '',
+//          style: TextStyle(fontSize: 15, color: Colors.black),
+//        ),
+          ),
     );
   }
 }

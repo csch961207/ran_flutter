@@ -31,7 +31,7 @@ class Category {
   String code;
   String displayName;
   Group group;
-  List<FieldValues> fieldValues;
+  List<FieldValue> fieldValues;
   String id;
 
   Category(
@@ -52,9 +52,9 @@ class Category {
     displayName = json['displayName'];
     group = json['group'] != null ? new Group.fromJson(json['group']) : null;
     if (json['fieldValues'] != null) {
-      fieldValues = new List<FieldValues>();
+      fieldValues = new List<FieldValue>();
       json['fieldValues'].forEach((v) {
-        fieldValues.add(new FieldValues.fromJson(v));
+        fieldValues.add(new FieldValue.fromJson(v));
       });
     }
     id = json['id'];

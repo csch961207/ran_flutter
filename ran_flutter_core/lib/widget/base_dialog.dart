@@ -8,6 +8,8 @@ class BaseDialog extends StatelessWidget {
   const BaseDialog(
       {Key key,
       this.title,
+      this.confirmText,
+      this.cancelText,
       this.onPressed,
       this.hiddenTitle: false,
       this.showCancel: true,
@@ -15,6 +17,8 @@ class BaseDialog extends StatelessWidget {
       : super(key: key);
 
   final String title;
+  final String confirmText;
+  final String cancelText;
   final Function onPressed;
   final Widget child;
   final bool hiddenTitle;
@@ -46,7 +50,7 @@ class BaseDialog extends StatelessWidget {
                 Offstage(
                   offstage: hiddenTitle,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
+                    padding: const EdgeInsets.only(bottom: 4.0),
                     child: Text(
                       hiddenTitle ? "" : title ?? "提示",
                       style: TextStyles.textBold18,
@@ -54,7 +58,7 @@ class BaseDialog extends StatelessWidget {
                   ),
                 ),
                 Flexible(child: child),
-                Gaps.vGap8,
+                Gaps.vGap10,
                 Gaps.line,
                 Row(
                   children: <Widget>[
@@ -63,8 +67,8 @@ class BaseDialog extends StatelessWidget {
                             child: SizedBox(
                               height: 48.0,
                               child: FlatButton(
-                                child: const Text(
-                                  "取消",
+                                child: Text(
+                                  cancelText ?? "取消",
                                   style: TextStyle(fontSize: Dimens.font_sp18),
                                 ),
                                 textColor: Colors.black,
@@ -86,8 +90,8 @@ class BaseDialog extends StatelessWidget {
                       child: SizedBox(
                         height: 48.0,
                         child: FlatButton(
-                          child: const Text(
-                            "确定",
+                          child: Text(
+                            confirmText ?? "确定",
                             style: TextStyle(fontSize: Dimens.font_sp18),
                           ),
                           textColor: Theme.of(context).accentColor,

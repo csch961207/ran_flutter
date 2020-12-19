@@ -59,16 +59,16 @@ class _DefaultExtraWidgetState extends State<DefaultExtraWidget> {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+          padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: firstRow,
           ),
         ),
         Padding(
-          padding: EdgeInsets.fromLTRB(20, 5, 20, 0),
+          padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//            mainAxisAlignment: MainAxisAlignment.start,
             children: secondRow,
           ),
         )

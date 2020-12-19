@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ran_flutter_core/config/routers/fluro_navigator.dart';
 import 'package:scan/scan.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ScanPage extends StatefulWidget {
   @override
@@ -29,37 +30,25 @@ class _ScanPageState extends State<ScanPage> {
 //        )),
 //      ),
       body: Stack(children: [
-        Positioned(
-          top: 0,
-          child: Container(
-            width: width,
-            color: Colors.white,
-            padding: EdgeInsets.all(10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Icon(Icons.arrow_back), Text('扫码'), Text('相册')],
-            ),
-          ),
-        ),
         ScanView(
           controller: controller,
-          scanAreaScale: .7,
+          scanAreaScale: .6,
           scanLineColor: color,
           onCapture: (data) {
             getResult(data);
           },
         ),
         Positioned(
-          left: 10,
-          bottom: 90,
+          left: width/2-40,
+          bottom: 50,
           child: StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               stateSetter = setState;
               return MaterialButton(
                   child: Icon(
                     lightIcon,
-                    size: 40,
-                    color: color,
+                    size: 30,
+                    color: Colors.white,
                   ),
                   onPressed: () {
                     controller.toggleTorchMode();
@@ -74,21 +63,50 @@ class _ScanPageState extends State<ScanPage> {
           ),
         ),
         Positioned(
-          right: 10,
-          bottom: 90,
-          child: MaterialButton(
-              child: Icon(
-                Icons.image,
-                size: 40,
-                color: color,
-              ),
-              onPressed: () async {
-//                    List<Media> res = await ImagesPicker.pick();
-//                    if (res != null) {
-//                      String result = await Scan.parse(res[0].path);
-//                      getResult(result);
-//                    }
-              }),
+          top: 0,
+          child: Container(
+            width: width,
+            color: Colors.transparent,
+            padding: EdgeInsets.fromLTRB(10, 35, 10, 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: () {
+                    NavigatorUtils.goBack(context);
+                  },
+                  child: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  '扫一扫',
+                  style: TextStyle(
+                      fontSize: 18,
+//                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+                InkWell(
+                  onTap: () async {
+                    PickedFile pickedFile = await ImagePicker()
+                        .getImage(source: ImageSource.gallery);
+                    if (pickedFile != null) {
+                      String result = await Scan.parse(pickedFile.path);
+                      getResult(result);
+                    }
+                  },
+                  child: Text(
+                    '相册',
+                    style: TextStyle(
+                        fontSize: 17,
+//                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                )
+              ],
+            ),
+          ),
         ),
       ]),
     );

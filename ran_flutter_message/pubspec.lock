@@ -8,6 +8,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.5.0-nullsafety.1"
+  audioplayers:
+    dependency: "direct main"
+    description:
+      name: audioplayers
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.17.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -167,6 +174,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_audio_recorder:
+    dependency: "direct main"
+    description:
+      name: flutter_audio_recorder
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.5.5"
   flutter_blurhash:
     dependency: transitive
     description:
@@ -188,6 +202,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.0"
+  flutter_linkify:
+    dependency: "direct main"
+    description:
+      name: flutter_linkify
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.0.2"
   flutter_picker:
     dependency: transitive
     description:
@@ -305,6 +326,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.5.6"
+  linkify:
+    dependency: transitive
+    description:
+      name: linkify
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.0"
   localstorage:
     dependency: transitive
     description:

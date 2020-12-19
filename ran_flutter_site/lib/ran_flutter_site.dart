@@ -11,4 +11,6 @@ export './view_model/section_view_model.dart';
 
 export './page/site_page.dart';
 
+export './utils/find_fieldValue_widget.dart';
+
 // 字段值解析

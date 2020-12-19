@@ -37,7 +37,7 @@ class Entity {
   int auditStatus;
   bool isActive;
   String publishTime;
-  List<FieldValues> fieldValues;
+  List<FieldValue> fieldValues;
   Editor editor;
   String url;
   String creationTime;
@@ -77,9 +77,9 @@ class Entity {
     isActive = json['isActive'];
     publishTime = json['publishTime'];
     if (json['fieldValues'] != null) {
-      fieldValues = new List<FieldValues>();
+      fieldValues = new List<FieldValue>();
       json['fieldValues'].forEach((v) {
-        fieldValues.add(new FieldValues.fromJson(v));
+        fieldValues.add(new FieldValue.fromJson(v));
       });
     }
     editor =
@@ -120,7 +120,7 @@ class Entity {
   }
 }
 
-class FieldValues {
+class FieldValue {
   String fieldId;
   String indexTextValue;
   int numberValue;
@@ -129,7 +129,7 @@ class FieldValues {
   String guidValue;
   String maxTextValue;
 
-  FieldValues(
+  FieldValue(
       {this.fieldId,
         this.indexTextValue,
         this.numberValue,
@@ -138,7 +138,7 @@ class FieldValues {
         this.guidValue,
         this.maxTextValue});
 
-  FieldValues.fromJson(Map<String, dynamic> json) {
+  FieldValue.fromJson(Map<String, dynamic> json) {
     fieldId = json['fieldId'];
     indexTextValue = json['indexTextValue'];
     numberValue = json['numberValue'];

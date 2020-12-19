@@ -20,9 +20,14 @@ class MessageRouter implements IRouterProvider {
     router.define(user,
         handler: Handler(handlerFunc: (_, params){
           String userStr = params['user']?.first;
-          var json = jsonDecode(userStr);
-          var model = CurrentUser.fromJson(json);
-          return UserPage(currentUser: model);
+          try{
+            var json = jsonDecode(userStr);
+            var model = CurrentUser.fromJson(json);
+            return UserPage(currentUser: model);
+          }catch(e){
+            print(e);
+            return UserPage();
+          }
         } ));
   }
 }

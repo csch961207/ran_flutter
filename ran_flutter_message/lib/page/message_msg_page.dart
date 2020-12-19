@@ -24,17 +24,16 @@ class _MessageMsgPageState extends State<MessageMsgPage> {
         color: Color(0xffffffff),
         child: Consumer<MessageModel>(builder: (context, messageModel, child) {
           print('重新渲染了');
+          if (messageModel.loading) {
+            return ViewStateBusyWidget();
+          }
           if (messageModel.ltMsg.length == 0) {
-            return GestureDetector(
-              onTap: () {
+            return ViewStateEmptyWidget(
+              image: Images.messageIsEmpty,
+              message: '',
+              onPressed: () {
                 messageModel.init();
               },
-              child: Center(
-                child: Text(
-                  '没有数据,点击刷新',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ),
             );
           }
           return CustomScrollView(

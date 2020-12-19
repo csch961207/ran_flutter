@@ -6,3 +6,5 @@ export './assets_api.dart';
 export './assets_repository.dart';
 export './assets_router.dart';
 export './widgets/ran_upload_single_file.dart';
+export './utils/assets_fileItem_widget.dart';
+

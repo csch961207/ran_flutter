@@ -12,4 +12,6 @@ export './utils.dart';
 export './version_utils.dart';
 export './error_utils.dart';
 export './number_text_input_formatter.dart';
+export './regex_utils.dart';
 export './asperct_raio_image.dart';
+export './update_utils.dart';

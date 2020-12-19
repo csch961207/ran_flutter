@@ -43,7 +43,7 @@ class ViewStateWidget extends StatelessWidget {
       children: <Widget>[
         image ?? Icon(IconFonts.pageError, size: 80, color: Colors.grey[500]),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -52,21 +52,18 @@ class ViewStateWidget extends StatelessWidget {
                 title ?? '加载失败',
                 style: titleStyle,
               ),
+              SingleChildScrollView(
+                child: Text(message ?? '', style: messageStyle),
+              ),
               SizedBox(height: 20),
-              ConstrainedBox(
-                constraints: BoxConstraints(maxHeight: 200, minHeight: 150),
-                child: SingleChildScrollView(
-                  child: Text(message ?? '', style: messageStyle),
+              Center(
+                child: ViewStateButton(
+                  child: buttonText,
+                  textData: buttonTextData,
+                  onPressed: onPressed,
                 ),
               ),
             ],
-          ),
-        ),
-        Center(
-          child: ViewStateButton(
-            child: buttonText,
-            textData: buttonTextData,
-            onPressed: onPressed,
           ),
         ),
       ],

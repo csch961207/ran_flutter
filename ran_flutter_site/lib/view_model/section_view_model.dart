@@ -11,6 +11,7 @@ class SectionsViewModel with ChangeNotifier {
   List<Section> appointSections = [];
   List<Field> fields = [];
   List<Field> appointFields = [];
+  Field appointField;
 
   SectionsViewModel() {
     init();
@@ -26,7 +27,7 @@ class SectionsViewModel with ChangeNotifier {
     }
   }
 
-//  根据板块name数组取相应的板块
+//  根据板块name数组设置相应的板块
   setAppointSections(List<String> sectionNames) {
     this.appointSections = this
         .sections
@@ -35,11 +36,21 @@ class SectionsViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  //  根据板块id取相应的板块
+  getSection(String id) {
+    Section section = this.sections.firstWhere((item) => item.id == id);
+    return section;
+  }
+  //  根据板块name取相应的板块
+  getSectionByName(String name) {
+    Section section = this.sections.firstWhere((item) => item.name == name);
+    return section;
+  }
+
   //  根据板块id取出所有字段放到一个数组中
   setFieldsCurrentSection(String sectionId) {
     Section section = this.sections.firstWhere((item) => item.id == sectionId,
         orElse: () => new Section());
-    print(this.sections.length);
     if (section.id != null) {
       section.entityTypes.forEach((entityType) {
         entityType.fieldTabs.forEach((fieldTab) {
@@ -54,11 +65,36 @@ class SectionsViewModel with ChangeNotifier {
     }
   }
 
-  //根据字段name数组取相应字段数组
-  List<Field> setAppointFields(List<String> fieldNames) {
+  //根据字段name数组设置相应字段数组
+  setAppointFields(List<String> fieldNames, {String sectionId}) {
+    if (sectionId != null) {
+      setFieldsCurrentSection(sectionId);
+    }
     this.appointFields =
         this.fields.where((item) => fieldNames.contains(item.name)).toList();
     notifyListeners();
     return this.appointFields;
+  }
+
+  //根据字段name取相应字段数组
+  Field getAppointField(String fieldName, {String sectionId}) {
+    if (sectionId != null) {
+      Section section = this.sections.firstWhere((item) => item.id == sectionId,
+          orElse: () => new Section());
+      if (section.id != null) {
+        section.entityTypes.forEach((entityType) {
+          entityType.fieldTabs.forEach((fieldTab) {
+            fieldTab.fields.forEach((field) {
+              this.fields.add(field);
+            });
+          });
+        });
+      }
+    }
+    this.appointField =
+        this.fields.firstWhere((item) => fieldName == item.name, orElse: () {
+      return new Field();
+    });
+    return this.appointField;
   }
 }

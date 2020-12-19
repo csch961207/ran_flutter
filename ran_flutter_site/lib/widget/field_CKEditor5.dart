@@ -7,7 +7,7 @@ import 'package:ran_flutter_site/model/entities_model.dart';
 /// CkEditor字段渲染
 class FieldCkEditor extends StatefulWidget {
   final Field field;
-  final FieldValues fieldValue;
+  final FieldValue fieldValue;
   FieldCkEditor({Key key, @required this.field, @required this.fieldValue})
       : super(key: key);
 

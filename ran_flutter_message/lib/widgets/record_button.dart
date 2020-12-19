@@ -4,10 +4,13 @@ import 'dart:io' as io;
 import 'package:file/file.dart';
 import 'package:file/local.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_record_plugin/flutter_record_plugin.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:ran_flutter_assets/ran_flutter_assets.dart';
 import 'package:ran_flutter_core/ran_flutter_core.dart';
 import 'package:ran_flutter_message/widgets/ImagesAnimation.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:ran_flutter_message/widgets/message_send_content_types.dart';
+import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
 
 OverlayEntry mOverlayEntry;
 
@@ -33,7 +36,7 @@ List<String> _assetList = new List();
 
 bool showAnim = true;
 
-typedef void OnAudioCallBack(File mAudioFile, int duration);
+typedef void OnAudioCallBack(Map<String, Object> mAudioFile, int duration);
 
 class RecordButton extends StatefulWidget {
   final OnAudioCallBack onAudioCallBack;
@@ -113,19 +116,33 @@ class _RecordButtonState extends State<RecordButton> {
 
   startRecord() async {
     print("开始说话");
-    io.Directory appDocDirectory = await getApplicationDocumentsDirectory();
-    String path = appDocDirectory.path +
-        '/' +
-        new DateTime.now().millisecondsSinceEpoch.toString();
-    print("开始说话路径: $path");
-    await FlutterRecordPlugin.start(
-        path: path, audioOutputFormat: AudioOutputFormat.AAC);
-    bool isRecording = await FlutterRecordPlugin.isRecording;
+//    String customPath = '/sq_';
+//    io.Directory appDocDirectory;
+////        io.Directory appDocDirectory = await getApplicationDocumentsDirectory();
+//    if (io.Platform.isIOS) {
+//      appDocDirectory = await getApplicationDocumentsDirectory();
+//    } else {
+//      appDocDirectory = await getExternalStorageDirectory();
+//    }
+//    // can add extension like ".mp4" ".wav" ".m4a" ".aac"
+//    customPath = appDocDirectory.path +
+//        customPath +
+//        DateTime.now().millisecondsSinceEpoch.toString();
+////    io.Directory appDocDirectory = await getApplicationDocumentsDirectory();
+////    String path = appDocDirectory.path +
+////        '/' +
+////        new DateTime.now().millisecondsSinceEpoch.toString();
+//    print("开始说话");
+//    await FlutterRecordPlugin.start(
+//        path: customPath, audioOutputFormat: AudioOutputFormat.AAC);
+//    bool isRecording = await FlutterRecordPlugin.isRecording;
+    await _start();
   }
 
   cancelRecord() async {
-    var recording = await FlutterRecordPlugin.stop();
-    File file = mLocalFileSystem.file(recording.path);
+//    var recording = await FlutterRecordPlugin.stop();
+    await _stop();
+    File file = mLocalFileSystem.file(_current.path);
     file.delete();
     print("取消说话删除文件成功!");
     if (mOverlayEntry != null) {
@@ -150,9 +167,8 @@ class _RecordButtonState extends State<RecordButton> {
       showAnim = false;
       mButtonText = "按住 说话";
       mOverlayEntry.markNeedsBuild();
-      var recording = await FlutterRecordPlugin.stop();
-      bool isRecording = await FlutterRecordPlugin.isRecording;
-      File file = mLocalFileSystem.file(recording.path);
+      await _stop();
+      File file = mLocalFileSystem.file(_current.path);
       file.delete();
       print("说话时间太短:删除文件成功!");
       if (mOverlayEntry != null) {
@@ -163,17 +179,34 @@ class _RecordButtonState extends State<RecordButton> {
       }
     } else {
       print("说话完成");
-
-      var recording = await FlutterRecordPlugin.stop();
-      print("Stop recording: ${recording.path}");
-      File file = mLocalFileSystem.file(recording.path);
-      print("  File length: ${recording.duration.inSeconds}");
+      await _stop();
+      print("Stop recording: ${_current.path}");
+      File file = mLocalFileSystem.file(_current.path);
+      print("  File length: ${_current.duration.inSeconds}");
 
       if (mOverlayEntry != null) {
         mOverlayEntry.remove();
         mOverlayEntry = null;
       }
-      widget.onAudioCallBack?.call(file, recording.duration.inSeconds);
+      EasyLoading.show();
+      try {
+        String userId =
+        StorageManager.sharedPreferences.getString("userId");
+        FileItem fileRes = await AssetsRepository.upload(
+            file.path, userId, MessageSendContentTypes.folderToken);
+        EasyLoading.dismiss();
+        Map<String, Object> result = {
+          "contentTypeName": "File",
+          "fileId": fileRes.id,
+          "fileName": fileRes.name,
+          "fileSize": fileRes.size,
+        };
+        widget.onAudioCallBack?.call(result, _current.duration.inSeconds);
+      } catch (e, s) {
+        print(e.toString());
+        EasyLoading.dismiss();
+      }
+
     }
   }
 
@@ -199,11 +232,108 @@ class _RecordButtonState extends State<RecordButton> {
         ImageHelper.wrapAssets('ic_volume_7.png'));
     _assetList.add('packages/ran_flutter_message/' +
         ImageHelper.wrapAssets('ic_volume_8.png'));
+    print(_assetList);
+    _init();
   }
 
   double startY = 0.0;
   double endY = 0.0;
   double offsetY = 0.0;
+
+  FlutterAudioRecorder _recorder;
+  Recording _current;
+  RecordingStatus _currentStatus = RecordingStatus.Unset;
+  final LocalFileSystem mLocalFileSystem = new LocalFileSystem();
+
+  _init() async {
+    try {
+      if (await FlutterAudioRecorder.hasPermissions) {
+        String customPath = '/sq_';
+        io.Directory appDocDirectory;
+//        io.Directory appDocDirectory = await getApplicationDocumentsDirectory();
+        if (io.Platform.isIOS) {
+          appDocDirectory = await getApplicationDocumentsDirectory();
+        } else {
+          appDocDirectory = await getExternalStorageDirectory();
+        }
+
+        // can add extension like ".mp4" ".wav" ".m4a" ".aac"
+        customPath = appDocDirectory.path +
+            customPath +
+            DateTime.now().millisecondsSinceEpoch.toString();
+
+        // .wav <---> AudioFormat.WAV
+        // .mp4 .m4a .aac <---> AudioFormat.AAC
+        // AudioFormat is optional, if given value, will overwrite path extension when there is conflicts.
+        _recorder =
+            FlutterAudioRecorder(customPath, audioFormat: AudioFormat.AAC);
+
+        await _recorder.initialized;
+        // after initialization
+        var current = await _recorder.current(channel: 0);
+        print(current);
+        // should be "Initialized", if all working fine
+        setState(() {
+          _current = current;
+          _currentStatus = current.status;
+          print(_currentStatus);
+        });
+      } else {
+        Scaffold.of(context).showSnackBar(
+            new SnackBar(content: new Text("You must accept permissions")));
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  _start() async {
+    try {
+      await _recorder.start();
+      var recording = await _recorder.current(channel: 0);
+      setState(() {
+        _current = recording;
+      });
+
+      const tick = const Duration(milliseconds: 50);
+      new Timer.periodic(tick, (Timer t) async {
+        if (_currentStatus == RecordingStatus.Stopped) {
+          t.cancel();
+        }
+
+        var current = await _recorder.current(channel: 0);
+        // print(current.status);
+        setState(() {
+          _current = current;
+          _currentStatus = _current.status;
+        });
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  _resume() async {
+    await _recorder.resume();
+    setState(() {});
+  }
+
+  _pause() async {
+    await _recorder.pause();
+    setState(() {});
+  }
+
+  _stop() async {
+    var result = await _recorder.stop();
+    print("Stop recording: ${result.path}");
+    print("Stop recording: ${result.duration}");
+    File file = mLocalFileSystem.file(result.path);
+//    print("File length: ${await file.length()}");
+    setState(() {
+      _current = result;
+      _currentStatus = _current.status;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

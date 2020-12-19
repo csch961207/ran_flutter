@@ -23,6 +23,9 @@ class _UserPageState extends State<UserPage> {
   @override
   void initState() {
     super.initState();
+    if (widget.currentUser == null) {
+      ToastUtil.show('请扫描个人二维码');
+    }
   }
 
   @override
@@ -86,9 +89,12 @@ class _UserPageState extends State<UserPage> {
             Container(
               margin: EdgeInsets.fromLTRB(45, 5, 45, 45),
               child: RanButton(
-                text: '发消息',
+                text: widget.currentUser == null ? '返回' : '发消息',
                 isShape: true,
                 onPressed: () async {
+                  if (widget.currentUser == null) {
+                    NavigatorUtils.goBack(context);
+                  }
                   if (currentUser.id != widget.currentUser.id) {
                     Provider.of<MessageModel>(context, listen: false)
                         .setCurrentMessageData({

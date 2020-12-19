@@ -17,7 +17,7 @@ class SiteRepository {
   }
 
   /// 根据name获取单个板块
-  static Future fetchSectionByName(String name) async {
+  static Future<Section> fetchSectionByName(String name) async {
     var response = await siteHttp.get('/api/site/sections/${name}');
     return Section.fromJson(response.data);
   }
@@ -28,12 +28,12 @@ class SiteRepository {
       {String entityTypeId,
       String queryConditionsMd5,
       String creatorId,
-      int maxResultCount,
-      int skipCount}) async {
+      int maxResultCount = 20,
+      int skipCount = 0}) async {
     var response = await siteHttp.get('/api/site/entities', queryParameters: {
       "SectionId": sectionId,
       "EntityTypeId": entityTypeId,
-      "QueryConditionsMd5": queryConditionsMd5,
+      "QueryConditionsName": queryConditionsMd5,
       "CreatorId": creatorId,
       "MaxResultCount": maxResultCount,
       "SkipCount": skipCount
