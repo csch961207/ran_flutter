@@ -62,8 +62,8 @@ class MessageContentFileWidget extends StatelessWidget {
                   height: 5,
                 ),
                 Text(
-                  messageContentFile.fileSize.toString() + ' B',
-                  style: TextStyle(color: Colors.grey, fontSize: 11),
+                  Utils.renderSize(messageContentFile.fileSize.toDouble()),
+                  style: TextStyle(color: Colors.grey, fontSize: 12),
                 ),
               ],
             )),

@@ -3,7 +3,8 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
-import 'package:file/file.dart';
+
+
 
 typedef AsyncImageWidgetBuilder<T> = Widget Function(
     BuildContext context, AsyncSnapshot<T> snapshot, String url);

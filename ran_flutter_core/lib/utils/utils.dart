@@ -52,6 +52,20 @@ class Utils {
 //    return null;
   }
 
+  static String renderSize(double value) {
+    if (null == value) {
+      return '0';
+    }
+    List<String> unitArr = List()..add('B')..add('KB')..add('MB')..add('GB');
+    int index = 0;
+    while (value > 1024) {
+      index++;
+      value = value / 1024;
+    }
+    String size = value.toStringAsFixed(2);
+    return size + unitArr[index];
+  }
+
   static KeyboardActionsConfig getKeyboardActionsConfig(
       BuildContext context, List<FocusNode> list) {
     return KeyboardActionsConfig(

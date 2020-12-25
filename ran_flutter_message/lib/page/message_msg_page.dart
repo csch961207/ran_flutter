@@ -80,22 +80,22 @@ class _MessageMsgPageState extends State<MessageMsgPage> {
                               messageModel.ltMsg[i - 1]),
                           secondaryActions: <Widget>[
                             //右侧按钮列表
-                            SlideAction(
-                              child: Text(
-                                '删除',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              color: Colors.red,
-                              closeOnTap: true,
-                              onTap: () {
-                                print('删除');
-                                messageModel.receivingStatus(
-                                    MessagesUserItem.fromJson(messageModel
-                                            .ltMsg[i - 1].messageList)
-                                        .senderId,
-                                    i - 1);
-                              },
-                            ),
+//                            SlideAction(
+//                              child: Text(
+//                                '删除',
+//                                style: TextStyle(color: Colors.white),
+//                              ),
+//                              color: Colors.red,
+//                              closeOnTap: true,
+//                              onTap: () {
+//                                print('删除');
+//                                messageModel.receivingStatus(
+//                                    MessagesUserItem.fromJson(messageModel
+//                                            .ltMsg[i - 1].messageList)
+//                                        .senderId,
+//                                    i - 1);
+//                              },
+//                            ),
                           ],
                         )));
               }

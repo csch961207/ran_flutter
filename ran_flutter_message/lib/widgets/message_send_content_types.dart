@@ -4,7 +4,6 @@ import 'package:ran_flutter_message/model/message_send_content_provider_model.da
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:file/file.dart';
 
 class MessageSendContentTypes {
   static String folderToken = '0492ac81ef21450299e6f68c8485bfce';

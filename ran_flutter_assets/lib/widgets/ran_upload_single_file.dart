@@ -6,7 +6,8 @@ import 'package:ran_flutter_assets/model/file_model.dart';
 import 'package:ran_flutter_core/ran_flutter_core.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:ran_flutter_core/utils/utilsources.dart';
-import 'package:file/file.dart';
+import 'dart:io';
+
 
 /// 上传单个文件封装
 class RanUploadSingleFile extends StatefulWidget {
@@ -141,7 +142,7 @@ class _RanUploadSingleFileState extends State<RanUploadSingleFile> {
         if (fileItem?.id != null) {
           return;
         }
-        File fileRes = await FilePicker.getFile(
+        var fileRes = await FilePicker.getFile(
             type: FileType.custom,
             allowedExtensions: ['xls', 'xlsx', 'csv', 'pdf']);
         if (fileRes != null) {
