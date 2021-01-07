@@ -44,6 +44,9 @@ class MessageModel with ChangeNotifier {
 //  MessagesUserItem.fromJson(widget.messageLists.messageList);
   MessagesUserItem currentMessageData;
 
+  List<MessageLists> _defaultLtMsg = [];
+  List<MessageLists> get defaultLtMsg => _defaultLtMsg;
+
   void setBusy() {
     _loading = true;
     notifyListeners();
@@ -145,6 +148,9 @@ class MessageModel with ChangeNotifier {
       _ltMsg.forEach((item) {
         _unreadCount += item.messageList['count'];
       });
+      if (_ltMsg.isEmpty) {
+        _ltMsg.addAll(_defaultLtMsg);
+      }
       _loading = false;
       notifyListeners();
     } catch (e) {
@@ -154,7 +160,18 @@ class MessageModel with ChangeNotifier {
     }
   }
 
-  clearData(){
+  addMessagesUserList(messageLists) {
+    List<MessageLists> unReadChatMessagesByUser = messageLists
+        .map<MessageLists>((messagesUser) => MessageLists.fromJson(
+            {'messagesTypeName': 'User', 'messageList': messagesUser}))
+        .toList();
+    _defaultLtMsg.addAll(unReadChatMessagesByUser);
+    if (_ltMsg.isEmpty) {
+      _ltMsg.addAll(_defaultLtMsg);
+    }
+  }
+
+  clearData() {
     _ltMsg.clear();
   }
 
@@ -298,7 +315,6 @@ class MessageModel with ChangeNotifier {
     _ltMsg[index].messageList['count'] = 0;
     notifyListeners();
   }
-
 
 // 接受消息
   receiveMessage(e) async {
@@ -447,6 +463,10 @@ class MessageModel with ChangeNotifier {
     } catch (e) {
       onError(e);
       ToastUtil.show('发送失败');
+      Future.delayed(Duration(seconds: 5), () async {
+        print('重新发送');
+        sendMsg(e);
+      });
     }
   }
 
