@@ -8,7 +8,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:ran_flutter_core/utils/utilsources.dart';
 import 'dart:io';
 
-
 /// 上传单个文件封装
 class RanUploadSingleFile extends StatefulWidget {
   const RanUploadSingleFile({
@@ -71,14 +70,20 @@ class _RanUploadSingleFileState extends State<RanUploadSingleFile> {
         ),
         child: Row(
           children: [
-            Image.asset(
-              'packages/ran_flutter_assets/' +
-                  ImageHelper.wrapAssets('excel.png'),
-              width: 30,
-              height: 30,
-              fit: BoxFit.fitWidth,
-              colorBlendMode: BlendMode.srcIn,
-            ),
+            fileItem?.id != null
+                ? Icon(
+                    CupertinoIcons.check_mark_circled_solid,
+                    color: Colors.green,
+                    size: 28,
+                  )
+                : Image.asset(
+                    'packages/ran_flutter_assets/' +
+                        ImageHelper.wrapAssets('excel.png'),
+                    width: 30,
+                    height: 30,
+                    fit: BoxFit.fitWidth,
+                    colorBlendMode: BlendMode.srcIn,
+                  ),
             SizedBox(
               width: 10,
             ),
@@ -87,7 +92,11 @@ class _RanUploadSingleFileState extends State<RanUploadSingleFile> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(fileItem?.name ?? widget.defaultText),
+                Text(
+                  fileItem?.name ?? widget.defaultText,
+                  style: TextStyle(
+                      color: fileItem?.id != null ? Colors.black : Colors.grey),
+                ),
               ],
             )),
             SizedBox(
@@ -133,7 +142,10 @@ class _RanUploadSingleFileState extends State<RanUploadSingleFile> {
                             );
                           });
                     },
-                    child: Icon(CupertinoIcons.delete))
+                    child: Icon(
+                      CupertinoIcons.delete,
+                      color: Colors.red,
+                    ))
                 : Icon(CupertinoIcons.upload_circle),
           ],
         ),

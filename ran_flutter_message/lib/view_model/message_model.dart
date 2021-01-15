@@ -101,7 +101,8 @@ class MessageModel with ChangeNotifier {
     }
   }
 
-  MessageModel() {
+  MessageModel(Map<String, dynamic> messageLists) {
+    addMessagesUserList(messageLists);
     _initSignalR();
     init();
   }
@@ -151,24 +152,30 @@ class MessageModel with ChangeNotifier {
       if (_ltMsg.isEmpty) {
         _ltMsg.addAll(_defaultLtMsg);
       }
+      for (var i = 0; i < _defaultLtMsg.length; i++) {
+        int findIndex = _ltMsg.indexWhere((item) =>
+            item.messageList['senderId'] ==
+            _defaultLtMsg[i].messageList['senderId']);
+        if (findIndex == -1) {
+          _ltMsg.add(_defaultLtMsg[i]);
+        }
+      }
       _loading = false;
       notifyListeners();
     } catch (e) {
       _loading = false;
+      print('获取数据出错');
       print(e);
       notifyListeners();
     }
   }
 
-  addMessagesUserList(messageLists) {
-    List<MessageLists> unReadChatMessagesByUser = messageLists
+  addMessagesUserList(Map<String, dynamic> messageLists) {
+    List<MessageLists> unReadChatMessagesByUser = messageLists['items']
         .map<MessageLists>((messagesUser) => MessageLists.fromJson(
             {'messagesTypeName': 'User', 'messageList': messagesUser}))
         .toList();
     _defaultLtMsg.addAll(unReadChatMessagesByUser);
-    if (_ltMsg.isEmpty) {
-      _ltMsg.addAll(_defaultLtMsg);
-    }
   }
 
   clearData() {

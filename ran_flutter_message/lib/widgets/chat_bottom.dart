@@ -188,9 +188,9 @@ class _ChatBottomInputWidgetState extends State<ChatBottomInputWidget>
               });
             });
           } else {
-            showSoftKey();
+            hideSoftKey();
             mBottomLayoutShow = true;
-            mAddLayoutShow = false;
+            mAddLayoutShow = true;
             setState(() {});
           }
         });

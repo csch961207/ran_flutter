@@ -20,6 +20,9 @@ class _MessageMsgPageState extends State<MessageMsgPage> {
 
   @override
   Widget build(BuildContext context) {
+    CurrentUser currentUser = Provider.of<CoreViewModel>(context, listen: false)
+        .applicationConfiguration
+        .currentUser;
     return Material(
         color: Color(0xffffffff),
         child: Consumer<MessageModel>(builder: (context, messageModel, child) {
@@ -61,6 +64,12 @@ class _MessageMsgPageState extends State<MessageMsgPage> {
                                         messageModel.ltMsg[i - 1].messageList)
                                     .receiverId);
                           } else if (messagesUserItem.receiverType == 0) {
+                            Provider.of<MessageModel>(context, listen: false)
+                                .saveLastReceiveTime(currentUser.id,
+                                    receiveId: MessagesUserItem.fromJson(
+                                            messageModel
+                                                .ltMsg[i - 1].messageList)
+                                        .senderId);
                             messageModel.chatMessagesByUser(
                                 0,
                                 MessagesUserItem.fromJson(

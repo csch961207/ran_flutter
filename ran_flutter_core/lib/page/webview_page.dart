@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:ran_flutter_core/ran_flutter_core.dart';
 import 'package:ran_flutter_core/utils/bottomSheet_utils.dart';
 import 'package:ran_flutter_core/utils/string_utils.dart';
-import 'package:ran_flutter_core/utils/third_app_utils.dart';
 import 'package:ran_flutter_core/widget/app_bar.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -66,13 +65,7 @@ class _WebViewPageState extends State<WebViewPage> {
         centerTitle: true,
         actions: <Widget>[
           /// 刷新、在浏览器中打开、复制链接、分享
-//          IconButton(
-//            tooltip: '在浏览器中打开',
-//            icon: Icon(Icons.language),
-//            onPressed: () {
-//              launch(url, forceSafariVC: false);
-//            },
-//          ),
+
           IconButton(
             tooltip: '更多',
             icon: Icon(Icons.more_horiz),
@@ -239,11 +232,6 @@ class _WebViewPageState extends State<WebViewPage> {
 //              launch(url, forceSafariVC: false);
             },
           ),
-//          WebViewPopupMenu(
-//            _webViewController,
-//            title,
-//            url
-//          )
         ],
         bottom: PreferredSize(
           child: _progressBar(context),
@@ -263,12 +251,7 @@ class _WebViewPageState extends State<WebViewPage> {
             setState(() {
               isLoading = true;
             });
-//            if (!request.url.startsWith('http')) {
-//              ThirdAppUtils.openAppByUrl(request.url);
-//              return NavigationDecision.prevent;
-//            } else {
             return NavigationDecision.navigate;
-//            }
           },
           onWebViewCreated: (WebViewController controller) {
             _webViewController = controller;
@@ -339,12 +322,6 @@ class _WebViewPageState extends State<WebViewPage> {
         backgroundColor: Colors.grey[200],
         valueColor: AlwaysStoppedAnimation(Colors.blue),
       ),
-//        new LinearProgressIndicator(
-//          backgroundColor: Colors.white70.withOpacity(0),
-//          value: progress == 1.0 ? 0 : progress,
-//          valueColor:
-//              new AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
-//        )
     );
   }
 
@@ -409,171 +386,3 @@ class WebViewTitle extends StatelessWidget {
     );
   }
 }
-
-//import 'dart:async';
-//
-//import 'package:flutter/material.dart';
-//import 'package:flutter/cupertino.dart';
-//import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-//import 'package:provider/provider.dart';
-//import 'package:ran_flutter_core/config/resource_mananger.dart';
-//import 'package:ran_flutter_core/config/routers/fluro_navigator.dart';
-//import 'package:ran_flutter_core/utils/bottomSheet_utils.dart';
-//import 'package:ran_flutter_core/utils/string_utils.dart';
-//import 'package:share/share.dart';
-//import 'package:url_launcher/url_launcher.dart';
-//
-//class WebViewPage extends StatefulWidget {
-//  WebViewPage({
-//    Key key,
-//    @required this.title,
-//    @required this.url,
-//  }) : super(key: key);
-//
-//  final String title;
-//  final String url;
-//
-//  @override
-//  _WebViewPageState createState() => _WebViewPageState();
-//}
-//
-//class _WebViewPageState extends State<WebViewPage> {
-//  final flutterWebViewPlugin = FlutterWebviewPlugin();
-//  Completer<bool> _finishedCompleter = Completer();
-//  double lineProgress = 0.0;
-//
-//  @override
-//  void initState() {
-//    super.initState();
-//    flutterWebViewPlugin.onStateChanged.listen((WebViewStateChanged state) {
-//      debugPrint('onStateChanged: ${state.type} ${state.url}');
-//      if (!_finishedCompleter.isCompleted &&
-//          state.type == WebViewState.finishLoad) {
-//        _finishedCompleter.complete(true);
-//      }
-//    });
-//    flutterWebViewPlugin.onProgressChanged.listen((progress) {
-//      print(progress);
-//      setState(() {
-//        lineProgress = progress;
-//      });
-//    });
-//  }
-//
-//  @override
-//  void dispose() {
-//    flutterWebViewPlugin.dispose();
-//    super.dispose();
-//  }
-//
-//  _progressBar(double progress, BuildContext context) {
-//    return new SizedBox(
-//        height: 2.0,
-//        child: new LinearProgressIndicator(
-//          backgroundColor: Colors.white70.withOpacity(0),
-//          value: progress == 1.0 ? 0 : progress,
-//          valueColor:
-//              new AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
-//        ));
-//  }
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return WebviewScaffold(
-//      url: widget.url,
-//      withJavascript: true,
-//      displayZoomControls: false,
-//      withZoom: true,
-//      appBar: AppBar(
-////        leading: InkWell(
-////          onTap: (){
-////            NavigatorUtils.goBack(context);
-////          },
-////          child: Image.asset(
-////            'packages/ran_flutter_core/' + ImageHelper.wrapAssets('close.png'),
-////            width: 5,
-////            height: 5,
-////            fit: BoxFit.fitWidth,
-////            colorBlendMode: BlendMode.srcIn,
-////          ),
-////        ),
-//        backgroundColor: Color(0xFFFFFFFF),
-//        iconTheme: IconThemeData(color: Colors.black87),
-//        title: Text(
-//          //移除html标签
-//          StringUtils.removeHtmlLabel(widget.title),
-//          overflow: TextOverflow.ellipsis,
-//          style: TextStyle(
-//              fontSize: 16, color: Colors.black87, fontWeight: FontWeight.w600),
-//        ),
-////        WebViewTitle(
-////          title: widget.title,
-////          future: _finishedCompleter.future,
-////        ),
-//        centerTitle: true,
-//        actions: <Widget>[
-//          /// 刷新、在浏览器中打开、复制链接、系统分享
-////          IconButton(
-////            tooltip: '在浏览器中打开',
-////            icon: Icon(Icons.language),
-////            onPressed: () {
-////              launch(widget.url, forceSafariVC: false);
-////            },
-////          ),
-//          IconButton(
-//            tooltip: '更多',
-//            icon: Icon(Icons.more_horiz),
-//            onPressed: () {
-//              BottomSheetUtils.showBottomSheet(context,Text('内容'));
-////              launch(widget.url, forceSafariVC: false);
-//            },
-//          ),
-////          WebViewPopupMenu(
-////            _webViewController,
-////            widget.title,
-////            widget.url
-////          )
-//        ],
-//        bottom: PreferredSize(
-//          child: _progressBar(lineProgress, context),
-//          preferredSize: Size.fromHeight(1.0),
-//        ),
-//      ),
-//      bottomNavigationBar: IconTheme(
-//        data: Theme.of(context).iconTheme.copyWith(opacity: 0.5),
-//        child: BottomAppBar(
-//          child:
-////          Container(
-////            decoration: BoxDecoration(
-////              borderRadius: BorderRadius.only(
-////                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-////              color: Colors.white,
-////            ),
-////            child: Column(
-////              children: [
-////                Text('hhah')
-////              ],
-////            ),
-////          )
-//          Row(
-//            mainAxisAlignment: MainAxisAlignment.spaceAround,
-//            children: <Widget>[
-//              IconButton(
-//                icon: const Icon(Icons.arrow_back_ios),
-//                onPressed: flutterWebViewPlugin.goBack,
-//              ),
-//              IconButton(
-//                icon: const Icon(Icons.arrow_forward_ios),
-//                onPressed: flutterWebViewPlugin.goForward,
-//              ),
-//              IconButton(
-//                icon: const Icon(Icons.autorenew),
-//                onPressed: flutterWebViewPlugin.reload,
-//              ),
-//            ],
-//          ),
-//        ),
-//      ),
-//    );
-//  }
-//}

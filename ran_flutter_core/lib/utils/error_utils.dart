@@ -25,8 +25,6 @@ void getErrorTips(e, stackTrace, {String message, BuildContext context}) {
       if (e.response.statusCode == 401) {
         StorageManager.sharedPreferences.setString("accessToken", '');
         StorageManager.sharedPreferences.setString("userName", '');
-//        NavigatorUtils.push(context, LoginRouter.loginPage,
-//                      replace: true, clearStack: true);
         showElasticDialog(
             context: context,
             barrierDismissible: false,

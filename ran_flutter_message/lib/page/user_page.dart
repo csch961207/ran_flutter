@@ -105,8 +105,8 @@ class _UserPageState extends State<UserPage> {
                       "senderName": widget.currentUser.userName
                     });
                     Provider.of<MessageModel>(context, listen: false)
-                        .saveLastReceiveTime(widget.currentUser.id,
-                            receiveId: currentUser.id);
+                        .saveLastReceiveTime(currentUser.id,
+                            receiveId: widget.currentUser.id);
                     Provider.of<MessageModel>(context, listen: false)
                         .chatMessagesByUser(0, widget.currentUser.id);
                     NavigatorUtils.goBack(context);
