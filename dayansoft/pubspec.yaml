@@ -41,6 +41,7 @@ dependencies:
   cached_network_image: ^2.0.0-rc.1
   # third_app 启动第三方app
   url_launcher: ^5.5.0
+  launch_review: ^2.0.0
   # 分享
   share: 0.6.2+1
   # 全局提示 🐨
@@ -117,3 +118,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  assets:
+    - assets/images/

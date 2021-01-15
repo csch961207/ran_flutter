@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage>
     refresh();
   }
 
-  refresh() async {
+  getData() async {
     setState(() {
       isLoading = true;
     });
@@ -73,6 +73,21 @@ class _HomePageState extends State<HomePage>
       setState(() {
         isLoading = false;
       });
+    }
+  }
+
+  refresh() async {
+    try {
+      AllEvents allEvents = await AppRepository.findAllEvents(
+          user.userId, user.dealerShipId, 1, 10, date);
+      _refreshController.refreshCompleted();
+      setState(() {
+        dataList = allEvents.dATALIST;
+//        isLoading = false;
+      });
+    } catch (e) {
+      print(e.toString());
+      refreshController.refreshFailed();
     }
   }
 
@@ -114,7 +129,7 @@ class _HomePageState extends State<HomePage>
             '-' +
             (month < 10 ? '0' + month.toString() : month.toString());
       });
-      refresh();
+      getData();
     });
   }
 
@@ -164,30 +179,39 @@ class _HomePageState extends State<HomePage>
                 ? Center(
                     child: ViewStateBusyWidget(),
                   )
-                : SmartRefresher(
-                    controller: _refreshController,
-                    header: WaterDropHeader(),
-                    footer: RefresherFooter(),
-                    onRefresh: refresh,
-                    onLoading: loadMore,
-                    enablePullUp: true,
-                    child: SingleChildScrollView(
-                      child: AnimationLimiter(
-                        child: Column(
-                          children: AnimationConfiguration.toStaggeredList(
-                            duration: const Duration(milliseconds: 375),
-                            childAnimationBuilder: (widget) => SlideAnimation(
-                              horizontalOffset: 50.0,
-                              child: FadeInAnimation(
-                                child: widget,
+                : dataList.length != 0
+                    ? SmartRefresher(
+                        controller: _refreshController,
+                        header: WaterDropHeader(),
+                        footer: RefresherFooter(),
+                        onRefresh: refresh,
+                        onLoading: loadMore,
+                        enablePullUp: true,
+                        child: SingleChildScrollView(
+                          child: AnimationLimiter(
+                            child: Column(
+                              children: AnimationConfiguration.toStaggeredList(
+                                duration: const Duration(milliseconds: 375),
+                                childAnimationBuilder: (widget) =>
+                                    SlideAnimation(
+                                  horizontalOffset: 50.0,
+                                  child: FadeInAnimation(
+                                    child: widget,
+                                  ),
+                                ),
+                                children: childrenList(),
                               ),
                             ),
-                            children: childrenList(),
                           ),
                         ),
-                      ),
-                    ),
-                  )));
+                      )
+                    : ViewStateEmptyWidget(
+                        image: Images.dataIsEmpty,
+                        message: '',
+                        onPressed: () {
+                          getData();
+                        },
+                      )));
   }
 
   List<Widget> childrenList() {

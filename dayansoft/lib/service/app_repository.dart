@@ -63,6 +63,7 @@ class AppRepository {
       "Resolution": 1
     });
     var response = await http.post(HttpApi.uploader, data: formData);
+    print(response);
 //    return .fromJson(response.data);
   }
 }
