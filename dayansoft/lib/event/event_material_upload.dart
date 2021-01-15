@@ -68,7 +68,7 @@ class _EventMaterialUploadPageState extends State<EventMaterialUploadPage> {
 //              MaterialPageRoute(builder: (context) => new ShootPage(cameras)));
 //          NavigatorUtils.push(context, EventRouter.cameraApp);
           final AssetEntity entity = await CameraPicker.pickFromCamera(context,
-              isAllowRecording: true, isOnlyAllowRecording: true);
+              isAllowRecording: true);
 //          final pickedFile = await picker.getVideo(source: ImageSource.camera);
 //          print(entity);
         },
