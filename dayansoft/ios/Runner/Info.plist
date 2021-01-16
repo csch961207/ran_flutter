@@ -33,6 +33,10 @@
     </dict>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>你的相册权限描述</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>需要定位权限获取您的办理位置</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>需要定位权限获取您的办理位置</string>
     <key>NSCameraUsageDescription</key>
     <string>Can I use the camera please?</string>
     <key>NSMicrophoneUsageDescription</key>

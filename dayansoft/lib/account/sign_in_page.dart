@@ -58,21 +58,21 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     var color = Theme.of(context).accentColor;
     return Scaffold(
-      appBar: AppBar(
-//        title: Text(
-//          '密码登录',
-//          style: TextStyle(color: Colors.black87),
-//        ),
-        backgroundColor: Color(0xFFF3F2F2),
-        iconTheme: IconThemeData(color: Colors.black87),
-      ),
+//      appBar: AppBar(
+////        title: Text(
+////          '密码登录',
+////          style: TextStyle(color: Colors.black87),
+////        ),
+//        backgroundColor: Color(0xFFF3F2F2),
+//        iconTheme: IconThemeData(color: Colors.black87),
+//      ),
       backgroundColor: Color(0xFFF3F2F2),
       body: SingleChildScrollView(
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               SizedBox(
-                height: 50,
+                height: 120,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

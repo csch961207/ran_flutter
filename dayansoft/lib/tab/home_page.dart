@@ -14,6 +14,7 @@ import 'package:flutter/material.dart' hide Banner, showSearch;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 const double kHomeRefreshHeight = 180.0;
@@ -52,7 +53,15 @@ class _HomePageState extends State<HomePage>
         (newData.month < 10
             ? '0' + newData.month.toString()
             : newData.month.toString());
-    refresh();
+    requestPermission();
+    getData();
+  }
+
+  Future<void> requestPermission() async {
+    final status = await Permission.locationAlways.request();
+    setState(() {
+      print(status);
+    });
   }
 
   getData() async {

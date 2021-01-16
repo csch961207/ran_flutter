@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,6 +13,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'account/sign_in_page.dart';
 import 'config/routers/application.dart';
 import 'config/storage_manager.dart';
+import 'db/sql_manager.dart';
 import 'generated/l10n.dart';
 import 'routers/routers.dart';
 import 'tab/tab_navigator.dart';
@@ -21,10 +23,12 @@ import 'view_model/theme_model.dart';
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await StorageManager.init();
+  await AmapLocation.instance.init(iosKey: '5542294979c2fe370d4802c9c1906b88');
 
   Provider.debugCheckInvalidValueType = null;
 
   EasyLoading.instance..maskType = EasyLoadingMaskType.clear;
+  await SqlManager.init();
   runApp(App());
   // Android状态栏透明 splash为白色,所以调整状态栏文字为黑色
   if (Platform.isAndroid) {

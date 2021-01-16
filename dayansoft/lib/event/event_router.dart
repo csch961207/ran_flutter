@@ -8,6 +8,7 @@ import '../config/routers/router_init.dart';
 class EventRouter implements IRouterProvider {
   static String eventMaterialUploadPage = "/event/eventMaterialUploadPage";
   static String cameraApp = "/event/cameraApp";
+  static String cropImage = "/event/cropImage";
 
   @override
   void initRouter(FluroRouter router) {
@@ -15,10 +16,12 @@ class EventRouter implements IRouterProvider {
         handler: Handler(handlerFunc: (_, params) {
       String id = params['id']?.first;
       return EventMaterialUploadPage(
-        id: id,
+        id: int.parse(id),
       );
     }));
     router.define(cameraApp,
+        handler: Handler(handlerFunc: (_, params) => CameraApp()));
+    router.define(cropImage,
         handler: Handler(handlerFunc: (_, params) => CameraApp()));
   }
 }
