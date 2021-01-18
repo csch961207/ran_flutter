@@ -148,59 +148,59 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(
                 height: 15,
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 5,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          isAgree = !isAgree;
-                        });
-                      },
-                      child: Image.asset(
-                        'packages/ran_flutter_account/' +
-                                ImageHelper.wrapAssets('check.png'),
-                        width: 15,
-                        height: 15,
-                        fit: BoxFit.fitWidth,
-//                        colorBlendMode: BlendMode.srcIn,
-                        color: isAgree ? color : color.withOpacity(0.4),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      '我已阅读并同意',
-                      style: TextStyle(color: Colors.grey, fontSize: 12),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        NavigatorUtils.goWebViewPage(context,
-                            'https://www.apple.com.cn/legal/internet-services/terms/site.html');
-                      },
-                      child: Text(
-                        '《用户许可协议》 ',
-                        style: TextStyle(color: color, fontSize: 12),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        NavigatorUtils.goWebViewPage(
-                            context, 'https://m.mafengwo.cn/privacy.php');
-                      },
-                      child: Text(
-                        ' 《隐私政策》',
-                        style: TextStyle(color: color, fontSize: 12),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+//              Padding(
+//                padding: EdgeInsets.only(left: 20, right: 20),
+//                child: Row(
+//                  children: [
+//                    SizedBox(
+//                      width: 5,
+//                    ),
+//                    GestureDetector(
+//                      onTap: () {
+//                        setState(() {
+//                          isAgree = !isAgree;
+//                        });
+//                      },
+//                      child: Image.asset(
+//                        'packages/ran_flutter_account/' +
+//                                ImageHelper.wrapAssets('check.png'),
+//                        width: 15,
+//                        height: 15,
+//                        fit: BoxFit.fitWidth,
+////                        colorBlendMode: BlendMode.srcIn,
+//                        color: isAgree ? color : color.withOpacity(0.4),
+//                      ),
+//                    ),
+//                    SizedBox(
+//                      width: 5,
+//                    ),
+//                    Text(
+//                      '我已阅读并同意',
+//                      style: TextStyle(color: Colors.grey, fontSize: 12),
+//                    ),
+//                    InkWell(
+//                      onTap: () {
+//                        NavigatorUtils.goWebViewPage(context,
+//                            'https://www.apple.com.cn/legal/internet-services/terms/site.html');
+//                      },
+//                      child: Text(
+//                        '《用户许可协议》 ',
+//                        style: TextStyle(color: color, fontSize: 12),
+//                      ),
+//                    ),
+//                    InkWell(
+//                      onTap: () {
+//                        NavigatorUtils.goWebViewPage(
+//                            context, 'https://m.mafengwo.cn/privacy.php');
+//                      },
+//                      child: Text(
+//                        ' 《隐私政策》',
+//                        style: TextStyle(color: color, fontSize: 12),
+//                      ),
+//                    )
+//                  ],
+//                ),
+//              ),
               SizedBox(
                 height: 10,
               ),

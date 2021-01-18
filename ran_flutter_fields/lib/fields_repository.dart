@@ -34,9 +34,9 @@ class FieldsRepository {
 
   /// 生成字段查询用例
   static Future fetchQueryCondition(
-      List<QueryEntityByFieldCondition> queryEntityByFieldConditions) async {
+      List<Map<String, dynamic>> queryEntityByFieldConditions) async {
     var response = await fieldsHttp.post('/api/fields/QueryCondition',
-        data: {"queryEntityByFieldConditions": queryEntityByFieldConditions});
+        data: {"queryByFields": queryEntityByFieldConditions});
     return QueryConditionResponse.fromJson(response.data);
   }
 
