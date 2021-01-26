@@ -56,13 +56,13 @@ class ViewStateWidget extends StatelessWidget {
                 child: Text(message ?? '', style: messageStyle),
               ),
               SizedBox(height: 20),
-              Center(
+              onPressed != null ? Center(
                 child: ViewStateButton(
                   child: buttonText,
                   textData: buttonTextData,
                   onPressed: onPressed,
                 ),
-              ),
+              ) : Center(),
             ],
           ),
         ),

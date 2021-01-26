@@ -46,6 +46,8 @@ class Images {
   static Widget noSearchResults = Image.asset(
     'packages/ran_flutter_core/' +
         ImageHelper.wrapAssets('no_search_results.png'),
+    width: 200,
+    height: 200,
   );
   static Widget noShippingAddress = Image.asset(
     'packages/ran_flutter_core/' +

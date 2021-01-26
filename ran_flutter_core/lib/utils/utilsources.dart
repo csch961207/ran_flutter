@@ -15,3 +15,4 @@ export './number_text_input_formatter.dart';
 export './regex_utils.dart';
 export './asperct_raio_image.dart';
 export './update_utils.dart';
+export './enums_utils.dart';
