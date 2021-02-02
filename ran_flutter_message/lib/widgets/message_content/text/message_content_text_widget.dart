@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:ran_flutter_core/ran_flutter_core.dart';
 import 'package:ran_flutter_message/model/message_content_model.dart';
@@ -49,23 +50,38 @@ class MessageContentTextWidget extends StatelessWidget {
         style: TextStyle(fontSize: 15, color: Colors.grey),
       );
     }
-    return Container(
-      constraints: BoxConstraints(maxWidth: width / 1.5),
-      child: Bubble(
-          style: getItemBundleStyle(),
-          child: Linkify(
-            onOpen: (link) async {
-              NavigatorUtils.goWebViewPage(context, link.url);
-            },
-            text: messageContentText?.content ?? '',
-            style: TextStyle(color: Colors.black),
-            linkStyle: TextStyle(color: Colors.blue),
-          )
+    return WPopupMenu(
+      menuWidth: 50,
+      onValueChanged: (int value) {
+        /// showSnackBar
+        print(value);
+        try {
+          Clipboard.setData(ClipboardData(text: messageContentText?.content));
+          ToastUtil.show('复制成功');
+        } catch (e) {
+          print(e);
+          ToastUtil.show('复制失败');
+        }
+      },
+      actions: ['复制'],
+      child: Container(
+        constraints: BoxConstraints(maxWidth: width / 1.5),
+        child: Bubble(
+            style: getItemBundleStyle(),
+            child: Linkify(
+              onOpen: (link) async {
+                NavigatorUtils.goWebViewPage(context, link.url);
+              },
+              text: messageContentText?.content ?? '',
+              style: TextStyle(color: Colors.black),
+              linkStyle: TextStyle(color: Colors.blue),
+            )
 //        Text(
 //          messageContentText?.content ?? '',
 //          style: TextStyle(fontSize: 15, color: Colors.black),
 //        ),
-          ),
+            ),
+      ),
     );
   }
 }

@@ -7,9 +7,10 @@ import 'package:ran_flutter_account/account_router.dart';
 import 'package:ran_flutter_account/model/login_res_model.dart';
 import 'package:ran_flutter_account/widgets/login_field_widget.dart';
 
-import 'package:ran_flutter_account/widgets/third_component.dart';
 import 'package:ran_flutter_core/ran_flutter_core.dart';
 import 'package:provider/provider.dart';
+
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -55,181 +56,220 @@ class _LoginPageState extends State<LoginPage> {
         iconTheme: IconThemeData(color: Colors.black87),
       ),
       backgroundColor: Color(0xFFF3F2F2),
-      body: SingleChildScrollView(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
-                      color: Colors.white,
-                    ),
-                    child: Image.asset(
-                      ImageHelper.wrapAssets('account-logo.png'),
-                      width: 60,
-                      height: 60,
-                      fit: BoxFit.fitWidth,
-                      colorBlendMode: BlendMode.srcIn,
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '${Environment.oAuthConfig['appName']}',
-                    style: TextStyle(fontSize: 18),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Container(
-                height: 50.0,
-                margin: EdgeInsets.only(left: 20, right: 20, top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Colors.white,
-                ),
-                child: LoginTextField(
-                  label: '用户名',
-                  icon: Icons.perm_identity,
-                  controller: _nameController,
-                  textInputAction: TextInputAction.next,
-                  onFieldSubmitted: (text) {
-                    FocusScope.of(context).requestFocus(_pwdFocus);
-                  },
-                ),
-              ),
-              Container(
-                height: 50.0,
-                margin: EdgeInsets.only(left: 20, right: 20, top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Colors.white,
-                ),
-                child: LoginTextField(
-                  controller: _passwordController,
-                  label: '密码',
-                  icon: Icons.lock_outline,
-                  obscureText: true,
-                  focusNode: _pwdFocus,
-                  textInputAction: TextInputAction.done,
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: InkWell(
-                      onTap: () {
-                        ToastUtil.show('请联系管理员重置');
-                        print('跳转到找回页面');
-                      },
-                      child: Text(
-                        '忘记密码？',
-                        style: TextStyle(color: Colors.grey),
+      body: Column(
+        children: [
+          Expanded(
+              flex: 1,
+              child: SingleChildScrollView(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 30,
                       ),
-                    ),
-                  )
-                ],
-              ),
-              LoginButtonWidget(
-                child: isBusy
-                    ? ButtonProgressIndicator()
-                    : Text(
-                        '登陆',
-                        style: Theme.of(context)
-                            .accentTextTheme
-                            .title
-                            .copyWith(wordSpacing: 6),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
+                              color: Colors.white,
+                            ),
+                            child: Image.asset(
+                              ImageHelper.wrapAssets('account-logo.png'),
+                              width: 60,
+                              height: 60,
+                              fit: BoxFit.fitWidth,
+                              colorBlendMode: BlendMode.srcIn,
+                            ),
+                          )
+                        ],
                       ),
-                onPressed: isBusy
-                    ? null
-                    : () async {
-                        String name = _nameController.text;
-                        String password = _passwordController.text;
-                        if (name.isEmpty) {
-                          ToastUtil.show('请输入用户名');
-                          return;
-                        }
-                        if (password.isEmpty) {
-                          ToastUtil.show('请输入密码');
-                          return;
-                        }
-                        setState(() {
-                          isBusy = true;
-                        });
-                        try {
-                          LoginRes loginRes = await AccountRepository.login(
-                              _nameController.text, _passwordController.text);
-                          StorageManager.sharedPreferences
-                              .setString("accessToken", loginRes.accessToken);
-                          StorageManager.sharedPreferences
-                              .setString("userName", _nameController.text);
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '${Environment.oAuthConfig['appName']}',
+                            style: TextStyle(fontSize: 18),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        height: 50.0,
+                        margin: EdgeInsets.only(left: 20, right: 20, top: 15),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          color: Colors.white,
+                        ),
+                        child: LoginTextField(
+                          label: '用户名',
+                          icon: Icons.perm_identity,
+                          controller: _nameController,
+                          textInputAction: TextInputAction.next,
+                          onFieldSubmitted: (text) {
+                            FocusScope.of(context).requestFocus(_pwdFocus);
+                          },
+                        ),
+                      ),
+                      Container(
+                        height: 50.0,
+                        margin: EdgeInsets.only(left: 20, right: 20, top: 15),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          color: Colors.white,
+                        ),
+                        child: LoginTextField(
+                          controller: _passwordController,
+                          label: '密码',
+                          icon: Icons.lock_outline,
+                          obscureText: true,
+                          focusNode: _pwdFocus,
+                          textInputAction: TextInputAction.done,
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(10),
+                            child: InkWell(
+                              onTap: () {
+                                ToastUtil.show('请联系管理员重置');
+                                print('跳转到找回页面');
+                              },
+                              child: Text(
+                                '忘记密码？',
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      LoginButtonWidget(
+                        child: isBusy
+                            ? ButtonProgressIndicator()
+                            : Text(
+                                '登陆',
+                                style: Theme.of(context)
+                                    .accentTextTheme
+                                    .title
+                                    .copyWith(wordSpacing: 6),
+                              ),
+                        onPressed: isBusy
+                            ? null
+                            : () async {
+                                String name = _nameController.text;
+                                String password = _passwordController.text;
+                                if (name.isEmpty) {
+                                  ToastUtil.show('请输入用户名');
+                                  return;
+                                }
+                                if (password.isEmpty) {
+                                  ToastUtil.show('请输入密码');
+                                  return;
+                                }
+                                setState(() {
+                                  isBusy = true;
+                                });
+                                try {
+                                  LoginRes loginRes =
+                                      await AccountRepository.login(
+                                          _nameController.text,
+                                          _passwordController.text);
+                                  StorageManager.sharedPreferences.setString(
+                                      "accessToken", loginRes.accessToken);
+                                  StorageManager.sharedPreferences.setString(
+                                      "userName", _nameController.text);
 //                          NavigatorUtils.goBack(context);
 ////                          if()
-                          await Provider.of<CoreViewModel>(context,
-                                  listen: false)
-                              .init();
+                                  await Provider.of<CoreViewModel>(context,
+                                          listen: false)
+                                      .init();
 //                          NavigatorUtils.goBackWithParams(context, true);
-                          NavigatorUtils.push(context, '/home',
-                              replace: true,
-                              clearStack: true,
-                              transition: TransitionType.inFromBottom);
-                          setState(() {
-                            isBusy = false;
-                          });
-                        } catch (e, s) {
-                          print(e.toString());
-                          getErrorTips(e, s, context: context);
-                          setState(() {
-                            isBusy = false;
-                          });
-                        }
-                      },
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '还没有账号，立即',
-                    style: TextStyle(color: Colors.black45),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      print('跳转到找回页面');
-                      NavigatorUtils.pushResult(context, AccountRouter.register,
-                          (name) => {this._nameController.text = name});
-                    },
-                    child: Text(
-                      '注册',
-                      style: TextStyle(color: color),
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 60,
-              ),
+                                  NavigatorUtils.push(context, '/home',
+                                      replace: true,
+                                      clearStack: true,
+                                      transition: TransitionType.inFromBottom);
+                                  setState(() {
+                                    isBusy = false;
+                                  });
+                                } catch (e, s) {
+                                  print(e.toString());
+                                  getErrorTips(e, s, context: context);
+                                  setState(() {
+                                    isBusy = false;
+                                  });
+                                }
+                              },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '还没有账号，立即',
+                            style: TextStyle(color: Colors.black45),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              print('跳转到找回页面');
+                              NavigatorUtils.pushResult(
+                                  context,
+                                  AccountRouter.register,
+                                  (name) => {this._nameController.text = name});
+                            },
+                            child: Text(
+                              '注册',
+                              style: TextStyle(color: color),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 60,
+                      ),
 //              ThirdLogin()
-            ]),
+                    ]),
+              )),
+          InkWell(
+            onTap: () async {
+              EasyLoading.show();
+              try {
+                LoginRes loginRes =
+                    await AccountRepository.login('shuixingcha', '123456');
+                StorageManager.sharedPreferences
+                    .setString("accessToken", loginRes.accessToken);
+                await Provider.of<CoreViewModel>(context, listen: false).init();
+                NavigatorUtils.push(context, '/home',
+                    replace: true,
+                    clearStack: true,
+                    transition: TransitionType.inFromBottom);
+                EasyLoading.dismiss();
+              } catch (e, s) {
+                print(e.toString());
+                EasyLoading.dismiss();
+                getErrorTips(e, s, context: context);
+              }
+            },
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Text(
+                '使用体验账号登录',
+                style: TextStyle(color: Colors.black45, fontSize: 13),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

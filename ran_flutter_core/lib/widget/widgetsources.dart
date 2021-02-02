@@ -9,4 +9,4 @@ export './photo_view_simple_screen.dart';
 export './ran_card.dart';
 export './skeleton.dart';
 export './click_item.dart';
-
+export './widget_w_popup_menu.dart';

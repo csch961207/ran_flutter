@@ -18,6 +18,12 @@ class MessageSendContentTypes {
             try {
               PickedFile pickedFile =
                   await ImagePicker().getImage(source: ImageSource.gallery);
+              var files = File(pickedFile.path);
+              int fileLength = await files.length();
+              if(fileLength > 10485760){
+                ToastUtil.show('文件大小不能超过10M');
+                return {};
+              }
               String userId =
                   StorageManager.sharedPreferences.getString("userId");
               EasyLoading.show();
@@ -46,6 +52,12 @@ class MessageSendContentTypes {
             try {
               PickedFile pickedFile =
                   await ImagePicker().getImage(source: ImageSource.camera);
+              var files = File(pickedFile.path);
+              int fileLength = await files.length();
+              if(fileLength > 10485760){
+                ToastUtil.show('文件大小不能超过10M');
+                return {};
+              }
               String userId =
                   StorageManager.sharedPreferences.getString("userId");
               EasyLoading.show();
@@ -75,6 +87,12 @@ class MessageSendContentTypes {
               File fileRes = await FilePicker.getFile(type: FileType.any);
               String userId =
                   StorageManager.sharedPreferences.getString("userId");
+              var files = File(fileRes.path);
+              int fileLength = await files.length();
+              if(fileLength > 10485760){
+                ToastUtil.show('文件大小不能超过10M');
+                return {};
+              }
               EasyLoading.show();
               FileItem file = await AssetsRepository.upload(
                   fileRes.path, userId, folderToken);
