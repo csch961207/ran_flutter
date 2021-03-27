@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.limeauto" android:versionName="1.0.0" android:versionCode="1">
+  <uses-sdk android:targetSdkVersion="29" android:minSdkVersion="16"/>
+  <uses-permission android:name="android.permission.INTERNET" xmlns:android="http://schemas.android.com/apk/res/android"/>
+  <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" xmlns:android="http://schemas.android.com/apk/res/android"/>
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" xmlns:android="http://schemas.android.com/apk/res/android"/>
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" xmlns:android="http://schemas.android.com/apk/res/android"/>
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+  <application android:debuggable="true" android:label="青橙汽车" android:name="io.flutter.app.FlutterApplication" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:icon="@mipmap/ic_launcher" android:usesCleartextTraffic="true" xmlns:android="http://schemas.android.com/apk/res/android">
+    <activity android:hardwareAccelerated="true" android:launchMode="singleTop" android:name="com.example.limeauto.MainActivity" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:theme="@style/LaunchTheme" android:windowSoftInputMode="adjustResize">
+      <meta-data android:name="io.flutter.app.android.SplashScreenUntilFirstFrame" android:value="true"/>
+      <meta-data android:name="Mob-AppKey" android:value="2e3bf1675264e"/>
+      <meta-data android:name="Mob-AppSecret" android:value="99597dc6bcd4d939bf0d965b86eded60" xmlns:android="http://schemas.android.com/apk/res/android"/>
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+    <meta-data android:name="flutterEmbedding" android:value="2"/>
+    <provider android:name="androidx.core.content.FileProvider" android:grantUriPermissions="true" android:exported="false" android:authorities="com.example.limeauto.fileProvider">
+      <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/filepaths"/>
+    </provider>
+    <activity android:name="io.flutter.plugins.urllauncher.WebViewActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:exported="false"/>
+    <activity android:name="com.mob.guard.MobTranPullUpActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+      <intent-filter>
+        <action android:name="com.mob.open.app_20000"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+      </intent-filter>
+    </activity>
+    <activity android:name="com.mob.guard.MobTranPullLockActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+      <intent-filter>
+        <action android:name="com.mob.open.app_lk"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+      </intent-filter>
+    </activity>
+    <service android:name="com.mob.guard.MobGuardPullUpService" android:exported="true">
+      <intent-filter>
+        <action android:name="com.mob.intent.MOB_GUARD_SERVICE"/>
+      </intent-filter>
+    </service>
+    <meta-data android:name="mob_guard_version" android:value="20000"/>
+    <service android:enabled="true" android:name="com.mob.MobACService" android:exported="true">
+      <intent-filter>
+        <action android:name="com.mob.service.action.MOB_AC_SERVICE"/>
+      </intent-filter>
+    </service>
+    <provider android:name="com.mob.MobProvider" android:exported="false" android:authorities="com.example.limeauto.com.mob.MobProvider" android:multiprocess="true"/>
+    <meta-data xmlns:tools="http://schemas.android.com/tools" android:name="Mob-AppKey" android:value="2e3bf1675264e" tools:node="merge"/>
+    <meta-data xmlns:tools="http://schemas.android.com/tools" android:name="Mob-AppSecret" android:value="f495f2542701ea2b8fa1748b7b7cd722" tools:node="merge"/>
+    <activity xmlns:tools="http://schemas.android.com/tools" android:windowSoftInputMode="stateHidden|adjustResize" android:name="com.mob.tools.MobUIShell" android:configChanges="keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar" tools:node="merge"/>
+    <provider android:name="cn.sharesdk.framework.utils.ShareSDKFileProvider" android:grantUriPermissions="true" android:exported="false" android:authorities="com.example.limeauto.cn.sharesdk.ShareSDKFileProvider"/>
+    <activity xmlns:tools="http://schemas.android.com/tools" android:name="cn.sharesdk.wechat.utils.WechatHandlerActivity" android:configChanges="keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:exported="false" tools:node="merge"/>
+    <activity-alias xmlns:tools="http://schemas.android.com/tools" android:name="com.example.limeauto.wxapi.WXEntryActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:exported="true" android:targetActivity="cn.sharesdk.wechat.utils.WechatHandlerActivity" tools:node="merge"/>
+    <activity android:windowSoftInputMode="stateHidden|adjustResize" android:launchMode="singleTop" android:name="cn.sharesdk.framework.loopshare.RestoreTempActivity" android:configChanges="keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+    <activity xmlns:tools="http://schemas.android.com/tools" android:launchMode="singleTask" android:name="cn.sharesdk.loopshare.LoopShareActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT" xmlns:tools="http://schemas.android.com/tools"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <data android:scheme="ssdk2e3bf1675264e" android:host="cn.sharesdk.loop" xmlns:tools="http://schemas.android.com/tools"/>
+      </intent-filter>
+    </activity>
+  </application>
+  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+</manifest>

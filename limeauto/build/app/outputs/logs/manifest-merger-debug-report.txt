@@ -1,0 +1,378 @@
+-- Merging decision tree log ---
+manifest
+ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:1:1-38:12
+INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:1:1-38:12
+INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:1:1-38:12
+INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:1:1-38:12
+MERGED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:1:1-38:12
+MERGED from [:device_info] G:\ran.start\ran_flutter\limeauto\build\device_info\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:package_info] G:\ran.start\ran_flutter\limeauto\build\package_info\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:sqflite] G:\ran.start\ran_flutter\limeauto\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:path_provider] G:\ran.start\ran_flutter\limeauto\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:path_provider_macos] G:\ran.start\ran_flutter\limeauto\build\path_provider_macos\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-24:12
+MERGED from [:url_launcher] G:\ran.start\ran_flutter\limeauto\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-14:12
+MERGED from [:shared_preferences] G:\ran.start\ran_flutter\limeauto\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:shared_preferences_web] G:\ran.start\ran_flutter\limeauto\build\shared_preferences_web\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:shared_preferences_macos] G:\ran.start\ran_flutter\limeauto\build\shared_preferences_macos\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:url_launcher_macos] G:\ran.start\ran_flutter\limeauto\build\url_launcher_macos\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:share] G:\ran.start\ran_flutter\limeauto\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:sharesdk_plugin] G:\ran.start\ran_flutter\limeauto\build\sharesdk_plugin\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-14:12
+MERGED from [:url_launcher_web] G:\ran.start\ran_flutter\limeauto\build\url_launcher_web\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:launch_review] G:\ran.start\ran_flutter\limeauto\build\launch_review\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:1:39-35:12
+MERGED from [cn.sharesdk:ShareSDK:3.8.5] C:\Users\1\.gradle\caches\transforms-2\files-2.1\da9835dd69bc58eb8dd5b59cd8e937f4\ShareSDK-3.8.5\AndroidManifest.xml:2:1-11:12
+MERGED from [cn.sharesdk:OneKeyShare:3.8.5] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8453a1bbae6b7bf50a43e1b82e56d870\OneKeyShare-3.8.5\AndroidManifest.xml:2:1-11:12
+MERGED from [com.mob:MobApm:1.3.2] C:\Users\1\.gradle\caches\transforms-2\files-2.1\ea3408dc92cbbabf6e4664184b01c6ee\MobApm-1.3.2\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\69c38b5e7478819bb1463375a0707f97\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\6d8ae1ad1d60705de5057d74efa0ecc4\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\5897f22c346329447a2437fefc7d5a47\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\d5caa7ba292dbe2cbd077501f9e81e0d\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\38fe278b683cb154a51184ef11aa3a63\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\6939aefee357a85bbf7d9525cd2fffd9\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\0ea7744e18b48105679413b6632a1bf9\activity-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media:media:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\28a6a9fd79ed822726d93dfbc329f7a4\media-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\e40b7b61d03b4516a0d091a2b436568b\coordinatorlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\f820774f30123f662ea2b78467b814bf\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\09a9d4951c4fce06da157f033d50282c\slidingpanelayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\a448ace94480d5d4cbbb5aef4908eb9f\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\73166ba85f50b7c4b6eacd7050afec59\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\c6408e61e6b76f4567cff6fab7df9925\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\1012a5713daf18bd4824faef9e10985b\core-1.1.0\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\7e6cf1cef5c9fb728642c8cea924d7e4\lifecycle-runtime-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\08e3a354a41213c7bafcbc5c98aab0ce\savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\bb388769554507ce7ebade0c499ec76f\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\ae0cd18b1fcd7025510fffd9e7f4328b\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\7eaa5a29b14fd9bb38f951fb744e1ab9\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\d1103f8aa42fd4753dfca32eb8e09e80\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\cf4955eb53821183644a7ce1aee8a65d\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\4bbd57b6b7517d328ec12bfac7f939f1\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\9cb5853094cea476b4b82c3ffc3589f1\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\9b7e1e1baa5bb4c66a7c32de3ae94661\print-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\2ff8d33b9779de17b81b24e7b89180bf\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\4d6cafe4c62b877822d343344ce6d9b4\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\1\.gradle\caches\transforms-2\files-2.1\83982c25d744a5c263b59c11fd772ebe\constraintlayout-1.1.3\AndroidManifest.xml:2:1-11:12
+INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+	package
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:3:5-35
+		INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml
+		INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\debug\AndroidManifest.xml
+	android:versionName
+		INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:1:1-38:12
+		INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\debug\AndroidManifest.xml
+	xmlns:tools
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:2:5-51
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:2:5-51
+	android:versionCode
+		INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:1:1-38:12
+		INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\debug\AndroidManifest.xml
+	xmlns:android
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:1:11-69
+application
+ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:9:5-37:19
+MERGED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-22:19
+MERGED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-22:19
+MERGED from [:url_launcher] G:\ran.start\ran_flutter\limeauto\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-12:19
+MERGED from [:url_launcher] G:\ran.start\ran_flutter\limeauto\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-12:19
+MERGED from [:sharesdk_plugin] G:\ran.start\ran_flutter\limeauto\build\sharesdk_plugin\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-12:19
+MERGED from [:sharesdk_plugin] G:\ran.start\ran_flutter\limeauto\build\sharesdk_plugin\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-12:19
+MERGED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:10:3-34:17
+MERGED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:10:3-34:17
+MERGED from [androidx.core:core:1.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\1012a5713daf18bd4824faef9e10985b\core-1.1.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\1012a5713daf18bd4824faef9e10985b\core-1.1.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\d1103f8aa42fd4753dfca32eb8e09e80\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\d1103f8aa42fd4753dfca32eb8e09e80\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\1\.gradle\caches\transforms-2\files-2.1\83982c25d744a5c263b59c11fd772ebe\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\1\.gradle\caches\transforms-2\files-2.1\83982c25d744a5c263b59c11fd772ebe\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\1012a5713daf18bd4824faef9e10985b\core-1.1.0\AndroidManifest.xml:24:18-86
+	android:label
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:11:9-29
+	android:icon
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:13:9-43
+	android:usesCleartextTraffic
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:12:9-44
+	android:name
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:10:9-57
+activity#com.example.limeauto.MainActivity
+ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:14:9-31:20
+	android:launchMode
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:16:13-43
+	android:hardwareAccelerated
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:19:13-47
+	android:windowSoftInputMode
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:20:13-55
+	android:configChanges
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:18:13-163
+	android:theme
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:17:13-47
+	tools:replace
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:21:13-41
+	android:name
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:15:13-41
+meta-data#io.flutter.app.android.SplashScreenUntilFirstFrame
+ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:22:13-24:40
+	android:value
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:24:17-37
+	android:name
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:23:17-82
+meta-data#Mob-AppKey
+ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:25:13-81
+	android:value
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:25:50-79
+	android:name
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:25:24-49
+meta-data#Mob-AppSecret
+ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:26:13-103
+	android:value
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:26:53-101
+	android:name
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:26:24-52
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:27:13-30:29
+action#android.intent.action.MAIN
+ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:28:17-68
+	android:name
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:28:25-66
+category#android.intent.category.LAUNCHER
+ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:29:17-76
+	android:name
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:29:27-74
+meta-data#flutterEmbedding
+ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:34:9-36:33
+	android:value
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:36:13-30
+	android:name
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml:35:13-44
+uses-sdk
+INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml
+INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml
+MERGED from [:device_info] G:\ran.start\ran_flutter\limeauto\build\device_info\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:device_info] G:\ran.start\ran_flutter\limeauto\build\device_info\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:package_info] G:\ran.start\ran_flutter\limeauto\build\package_info\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:package_info] G:\ran.start\ran_flutter\limeauto\build\package_info\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] G:\ran.start\ran_flutter\limeauto\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] G:\ran.start\ran_flutter\limeauto\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] G:\ran.start\ran_flutter\limeauto\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] G:\ran.start\ran_flutter\limeauto\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_macos] G:\ran.start\ran_flutter\limeauto\build\path_provider_macos\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_macos] G:\ran.start\ran_flutter\limeauto\build\path_provider_macos\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:6:5-44
+MERGED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:6:5-44
+MERGED from [:url_launcher] G:\ran.start\ran_flutter\limeauto\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher] G:\ran.start\ran_flutter\limeauto\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] G:\ran.start\ran_flutter\limeauto\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] G:\ran.start\ran_flutter\limeauto\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_web] G:\ran.start\ran_flutter\limeauto\build\shared_preferences_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_web] G:\ran.start\ran_flutter\limeauto\build\shared_preferences_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_macos] G:\ran.start\ran_flutter\limeauto\build\shared_preferences_macos\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_macos] G:\ran.start\ran_flutter\limeauto\build\shared_preferences_macos\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_macos] G:\ran.start\ran_flutter\limeauto\build\url_launcher_macos\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_macos] G:\ran.start\ran_flutter\limeauto\build\url_launcher_macos\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:share] G:\ran.start\ran_flutter\limeauto\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:share] G:\ran.start\ran_flutter\limeauto\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:sharesdk_plugin] G:\ran.start\ran_flutter\limeauto\build\sharesdk_plugin\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:sharesdk_plugin] G:\ran.start\ran_flutter\limeauto\build\sharesdk_plugin\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:url_launcher_web] G:\ran.start\ran_flutter\limeauto\build\url_launcher_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_web] G:\ran.start\ran_flutter\limeauto\build\url_launcher_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:launch_review] G:\ran.start\ran_flutter\limeauto\build\launch_review\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:launch_review] G:\ran.start\ran_flutter\limeauto\build\launch_review\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:2:3-40
+MERGED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:2:3-40
+MERGED from [cn.sharesdk:ShareSDK:3.8.5] C:\Users\1\.gradle\caches\transforms-2\files-2.1\da9835dd69bc58eb8dd5b59cd8e937f4\ShareSDK-3.8.5\AndroidManifest.xml:7:5-9:41
+MERGED from [cn.sharesdk:ShareSDK:3.8.5] C:\Users\1\.gradle\caches\transforms-2\files-2.1\da9835dd69bc58eb8dd5b59cd8e937f4\ShareSDK-3.8.5\AndroidManifest.xml:7:5-9:41
+MERGED from [cn.sharesdk:OneKeyShare:3.8.5] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8453a1bbae6b7bf50a43e1b82e56d870\OneKeyShare-3.8.5\AndroidManifest.xml:7:5-9:41
+MERGED from [cn.sharesdk:OneKeyShare:3.8.5] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8453a1bbae6b7bf50a43e1b82e56d870\OneKeyShare-3.8.5\AndroidManifest.xml:7:5-9:41
+MERGED from [com.mob:MobApm:1.3.2] C:\Users\1\.gradle\caches\transforms-2\files-2.1\ea3408dc92cbbabf6e4664184b01c6ee\MobApm-1.3.2\AndroidManifest.xml:7:5-9:41
+MERGED from [com.mob:MobApm:1.3.2] C:\Users\1\.gradle\caches\transforms-2\files-2.1\ea3408dc92cbbabf6e4664184b01c6ee\MobApm-1.3.2\AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\69c38b5e7478819bb1463375a0707f97\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\69c38b5e7478819bb1463375a0707f97\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\6d8ae1ad1d60705de5057d74efa0ecc4\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\6d8ae1ad1d60705de5057d74efa0ecc4\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\5897f22c346329447a2437fefc7d5a47\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\5897f22c346329447a2437fefc7d5a47\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\d5caa7ba292dbe2cbd077501f9e81e0d\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\d5caa7ba292dbe2cbd077501f9e81e0d\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\38fe278b683cb154a51184ef11aa3a63\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\38fe278b683cb154a51184ef11aa3a63\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\6939aefee357a85bbf7d9525cd2fffd9\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\6939aefee357a85bbf7d9525cd2fffd9\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\0ea7744e18b48105679413b6632a1bf9\activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\0ea7744e18b48105679413b6632a1bf9\activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\28a6a9fd79ed822726d93dfbc329f7a4\media-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\28a6a9fd79ed822726d93dfbc329f7a4\media-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\e40b7b61d03b4516a0d091a2b436568b\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\e40b7b61d03b4516a0d091a2b436568b\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\f820774f30123f662ea2b78467b814bf\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\f820774f30123f662ea2b78467b814bf\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\09a9d4951c4fce06da157f033d50282c\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\09a9d4951c4fce06da157f033d50282c\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\a448ace94480d5d4cbbb5aef4908eb9f\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\a448ace94480d5d4cbbb5aef4908eb9f\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\73166ba85f50b7c4b6eacd7050afec59\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\73166ba85f50b7c4b6eacd7050afec59\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\c6408e61e6b76f4567cff6fab7df9925\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\c6408e61e6b76f4567cff6fab7df9925\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\1012a5713daf18bd4824faef9e10985b\core-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\1012a5713daf18bd4824faef9e10985b\core-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\7e6cf1cef5c9fb728642c8cea924d7e4\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\7e6cf1cef5c9fb728642c8cea924d7e4\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\08e3a354a41213c7bafcbc5c98aab0ce\savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\08e3a354a41213c7bafcbc5c98aab0ce\savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\bb388769554507ce7ebade0c499ec76f\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\bb388769554507ce7ebade0c499ec76f\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\ae0cd18b1fcd7025510fffd9e7f4328b\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\ae0cd18b1fcd7025510fffd9e7f4328b\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\7eaa5a29b14fd9bb38f951fb744e1ab9\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\7eaa5a29b14fd9bb38f951fb744e1ab9\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\d1103f8aa42fd4753dfca32eb8e09e80\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\d1103f8aa42fd4753dfca32eb8e09e80\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\cf4955eb53821183644a7ce1aee8a65d\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\cf4955eb53821183644a7ce1aee8a65d\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\4bbd57b6b7517d328ec12bfac7f939f1\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\4bbd57b6b7517d328ec12bfac7f939f1\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\9cb5853094cea476b4b82c3ffc3589f1\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\9cb5853094cea476b4b82c3ffc3589f1\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\9b7e1e1baa5bb4c66a7c32de3ae94661\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\9b7e1e1baa5bb4c66a7c32de3ae94661\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\2ff8d33b9779de17b81b24e7b89180bf\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\2ff8d33b9779de17b81b24e7b89180bf\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\4d6cafe4c62b877822d343344ce6d9b4\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\1\.gradle\caches\transforms-2\files-2.1\4d6cafe4c62b877822d343344ce6d9b4\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\1\.gradle\caches\transforms-2\files-2.1\83982c25d744a5c263b59c11fd772ebe\constraintlayout-1.1.3\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\1\.gradle\caches\transforms-2\files-2.1\83982c25d744a5c263b59c11fd772ebe\constraintlayout-1.1.3\AndroidManifest.xml:5:5-7:41
+INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\debug\AndroidManifest.xml
+INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\debug\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml
+		INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\debug\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\main\AndroidManifest.xml
+		INJECTED from G:\ran.start\ran_flutter\limeauto\android\app\src\debug\AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\debug\AndroidManifest.xml:6:5-66
+MERGED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:3:3-64
+MERGED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:3:3-64
+	android:name
+		ADDED from G:\ran.start\ran_flutter\limeauto\android\app\src\debug\AndroidManifest.xml:6:22-64
+uses-permission#android.permission.REQUEST_INSTALL_PACKAGES
+ADDED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-83
+	android:name
+		ADDED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-80
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:9:5-80
+MERGED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:6:3-77
+MERGED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:6:3-77
+	android:name
+		ADDED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:9:22-77
+provider#androidx.core.content.FileProvider
+ADDED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-21:20
+	android:grantUriPermissions
+		ADDED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-47
+	android:authorities
+		ADDED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-64
+	android:exported
+		ADDED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-37
+	tools:replace
+		ADDED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:17:13-48
+	android:name
+		ADDED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-62
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:18:13-20:53
+	android:resource
+		ADDED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:20:17-50
+	android:name
+		ADDED from [:open_file] G:\ran.start\ran_flutter\limeauto\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:19:17-67
+activity#io.flutter.plugins.urllauncher.WebViewActivity
+ADDED from [:url_launcher] G:\ran.start\ran_flutter\limeauto\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-11:74
+	android:exported
+		ADDED from [:url_launcher] G:\ran.start\ran_flutter\limeauto\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-37
+	android:theme
+		ADDED from [:url_launcher] G:\ran.start\ran_flutter\limeauto\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-71
+	android:name
+		ADDED from [:url_launcher] G:\ran.start\ran_flutter\limeauto\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-74
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:4:3-76
+	android:name
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:4:20-74
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:5:3-73
+	android:name
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:5:20-71
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:7:3-78
+	android:name
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:7:20-76
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:8:3-72
+	android:name
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:8:20-70
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:9:3-76
+	android:name
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:9:20-74
+activity#com.mob.guard.MobTranPullUpActivity
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:11:5-16:16
+	android:theme
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:11:66-136
+	android:name
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:11:15-65
+intent-filter#action:name:com.mob.open.app_20000+category:name:android.intent.category.DEFAULT
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:12:7-15:23
+action#com.mob.open.app_20000
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:13:9-56
+	android:name
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:13:17-54
+category#android.intent.category.DEFAULT
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:14:9-67
+	android:name
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:14:19-65
+activity#com.mob.guard.MobTranPullLockActivity
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:17:5-22:16
+	android:theme
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:17:68-138
+	android:name
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:17:15-67
+intent-filter#action:name:com.mob.open.app_lk+category:name:android.intent.category.DEFAULT
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:18:7-21:23
+action#com.mob.open.app_lk
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:19:9-53
+	android:name
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:19:17-51
+service#com.mob.guard.MobGuardPullUpService
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:23:5-27:15
+	android:exported
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:23:65-88
+	android:name
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:23:14-64
+intent-filter#action:name:com.mob.intent.MOB_GUARD_SERVICE
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:24:7-26:23
+action#com.mob.intent.MOB_GUARD_SERVICE
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:25:9-66
+	android:name
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:25:17-64
+meta-data#mob_guard_version
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:28:5-72
+	android:value
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:28:49-70
+	android:name
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:28:16-48
+service#com.mob.MobACService
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:29:5-33:15
+	android:enabled
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:29:14-36
+	android:exported
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:29:73-96
+	android:name
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:29:37-72
+intent-filter#action:name:com.mob.service.action.MOB_AC_SERVICE
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:30:7-32:23
+action#com.mob.service.action.MOB_AC_SERVICE
+ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:31:9-71
+	android:name
+		ADDED from [com.mob:MobGuardMC:2021.0305.1139] C:\Users\1\.gradle\caches\transforms-2\files-2.1\8d2682717e8a8b4c08b48db67737a386\MobGuardMC-2021.0305.1139\AndroidManifest.xml:31:17-69

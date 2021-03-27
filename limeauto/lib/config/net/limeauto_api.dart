@@ -54,7 +54,7 @@ class ApiInterceptor extends InterceptorsWrapper {
     if (accessToken != null) {
       options.headers["Authorization"] = "Bearer $accessToken";
     }
-    options.headers["__tenant"] = "limeauto";
+    options.headers["__tenant"] = "litecaijing";
     return options;
   }
 
