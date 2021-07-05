@@ -23,13 +23,11 @@ abstract class BaseHttp extends DioForNative {
     (transformer as DefaultTransformer).jsonDecodeCallback = parseJson;
 
     /// 忽略https证书效验
-    (httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (client) {
-      client.badCertificateCallback =
-          (X509Certificate cert, String host, int port) {
-//          if(cert.pem==PEM){ // Verify the certificate
-//            return true;
-//          }
+    (httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate  = (client) {
+      client.badCertificateCallback=(X509Certificate cert, String host, int port){
+//        if(cert.pem==PEM){ // Verify the certificate
+//          return true;
+//        }
         return true;
       };
     };
@@ -43,10 +41,10 @@ abstract class BaseHttp extends DioForNative {
 /// 添加常用Header
 class HeaderInterceptor extends InterceptorsWrapper {
   @override
-  onRequest(RequestOptions options) async {
+  onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     options.connectTimeout = 1000 * 45;
     options.receiveTimeout = 1000 * 45;
-    return options;
+    return super.onRequest(options,handler);
   }
 }
 

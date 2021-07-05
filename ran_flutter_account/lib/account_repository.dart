@@ -14,10 +14,12 @@ class AccountRepository {
       "username": username,
       "password": password,
       "client_id": Environment.oAuthConfig['clientId'],
-      "client_secret": Environment.oAuthConfig['dummyClientSecret']
+      "client_secret": Environment.oAuthConfig['clientSecret']
     });
     var response =
-        await accountHttp.post<Map>('/connect/token', data: formData);
+        await accountHttp.post<Map>('/connect/token', data:
+          'grant_type=password&scope=${Environment.oAuthConfig['scope']}&username=${username}&password=${password}&client_id=${Environment.oAuthConfig['clientId']}&client_secret=${Environment.oAuthConfig['clientSecret']}',
+          options: Options(contentType: Headers.formUrlEncodedContentType));
     return LoginRes.fromJson(response.data);
   }
 

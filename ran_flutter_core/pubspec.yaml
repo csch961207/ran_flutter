@@ -11,14 +11,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   # 网络请求 🦊
-  dio: ^3.0.1
+  dio: ^4.0.0
   # State 🦄
   provider: 4.0.3
   # 数据存储 🦌
   shared_preferences: ^0.5.3+5
   # 本地json对象存储
-  localstorage: ^2.0.0
+  localstorage: ^3.0.6+9
   # 路由框架
   fluro: ^1.7.0
   # Dart常用工具类库
@@ -37,7 +39,7 @@ dependencies:
   # UI 全局提示
   oktoast: ^2.3.1
   # 处理键盘事件 🏡
-  keyboard_actions: ^2.1.2
+  keyboard_actions: ^3.4.0
   # 包信息 🌋
   package_info: ^0.4.0+6
   # Html Encoder/Decoder
@@ -67,7 +69,7 @@ dependencies:
   # 闪烁效果
   shimmer: ^1.1.2
   file_picker: ^1.3.8
-  image_picker: ^0.6.7+15
+  image_picker: ^0.7.0
   flutter_html: ^1.2.0
 dev_dependencies:
   flutter_test:

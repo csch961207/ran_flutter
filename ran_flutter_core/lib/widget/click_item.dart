@@ -4,26 +4,35 @@ import 'package:ran_flutter_core/ran_flutter_core.dart';
 class ClickItem extends StatelessWidget {
   const ClickItem(
       {Key key,
+      this.onLongPress,
       this.onTap,
       this.icon,
+      this.widgetIcon,
       @required this.title,
+      this.titleTextStyle,
       this.content: "",
       this.widgetContent,
       this.textAlign: TextAlign.start,
-      this.maxLines: 1})
+      this.maxLines: 1,
+      this.isRequired: false})
       : super(key: key);
 
+  final GestureTapCallback onLongPress;
   final GestureTapCallback onTap;
   final String icon;
+  final Widget widgetIcon;
   final String title;
+  final TextStyle titleTextStyle;
   final String content;
   final Widget widgetContent;
   final TextAlign textAlign;
   final int maxLines;
+  final bool isRequired;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onLongPress: onLongPress,
       onTap: onTap,
       child: Container(
         margin: const EdgeInsets.only(left: 15.0),
@@ -53,9 +62,17 @@ class ClickItem extends StatelessWidget {
                     ),
                   )
                 : SizedBox(),
+            widgetIcon != null
+                ? Padding(
+              padding: EdgeInsets.only(right: 5),
+              child: widgetIcon,
+            )
+                : SizedBox(),
             Text(
               title,
+              style: titleTextStyle != null ? titleTextStyle : TextStyle(),
             ),
+            isRequired?Text(" *",style: TextStyle(color: Colors.red),):Gaps.empty,
             const Spacer(),
             Expanded(
               flex: 4,
@@ -76,15 +93,11 @@ class ClickItem extends StatelessWidget {
                             .copyWith(fontSize: 14.0)),
               ),
             ),
-            Opacity(
-              // 无点击事件时，隐藏箭头图标
-              opacity: onTap == null ? 0 : 1,
-              child: Padding(
-                padding: EdgeInsets.only(top: maxLines == 1 ? 0.0 : 2.0),
-                child: Icon(
-                  Icons.chevron_right,
-                  color: Colors.grey,
-                ),
+            onTap == null ? SizedBox() : Padding(
+              padding: EdgeInsets.only(top: maxLines == 1 ? 0.0 : 2.0),
+              child: Icon(
+                Icons.chevron_right,
+                color: Colors.grey,
               ),
             )
           ],

@@ -155,8 +155,7 @@ class _RanUploadSingleFileState extends State<RanUploadSingleFile> {
           return;
         }
         var fileRes = await FilePicker.getFile(
-            type: FileType.custom,
-            allowedExtensions: ['xls', 'xlsx', 'csv', 'pdf']);
+            type: FileType.ANY);
         if (fileRes != null) {
           EasyLoading.show();
           try {

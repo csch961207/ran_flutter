@@ -5,9 +5,9 @@ import 'package:ran_flutter_account/account_api.dart';
 /// api拦截器
 class AccountResponseInterceptors extends InterceptorsWrapper {
   @override
-  onResponse(Response response) {
+  onResponse(Response response, ResponseInterceptorHandler handler) {
     debugPrint('---api-response--->resp----->${response.statusCode}');
     debugPrint('---api-response--->resp----->${response.data}');
-    return accountHttp.resolve(response);
+    return super.onResponse(response, handler);
   }
 }

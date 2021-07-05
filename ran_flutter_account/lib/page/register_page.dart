@@ -120,13 +120,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   color: Colors.white,
                 ),
                 child: LoginTextField(
-                  label: '邮箱账号',
-                  icon: Icons.alternate_email,
-                  controller: _emailAddressController,
-                  textInputAction: TextInputAction.next,
-                  onFieldSubmitted: (text) {
-                    FocusScope.of(context).requestFocus(_pwdFocus);
-                  },
+                  controller: _passwordController,
+                  label: '密码',
+                  icon: Icons.lock_outline,
+                  obscureText: true,
+                  focusNode: _pwdFocus,
+                  textInputAction: TextInputAction.done,
                 ),
               ),
               Container(
@@ -137,12 +136,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   color: Colors.white,
                 ),
                 child: LoginTextField(
-                  controller: _passwordController,
-                  label: '密码',
-                  icon: Icons.lock_outline,
-                  obscureText: true,
-                  focusNode: _pwdFocus,
-                  textInputAction: TextInputAction.done,
+                  label: '邮箱账号',
+                  icon: Icons.alternate_email,
+                  controller: _emailAddressController,
+                  textInputAction: TextInputAction.next,
+                  onFieldSubmitted: (text) {
+                    FocusScope.of(context).requestFocus(_pwdFocus);
+                  },
                 ),
               ),
               SizedBox(

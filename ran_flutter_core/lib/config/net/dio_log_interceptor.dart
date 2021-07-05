@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 ///日志拦截器
 class DioLogInterceptor extends Interceptor {
   @override
-  Future onRequest(RequestOptions options) async {
+  Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     String requestStr = "\n==================== REQUEST ====================\n"
         "- URL:\n${options.baseUrl + options.path}\n"
         "- METHOD: ${options.method}\n";
@@ -24,14 +24,14 @@ class DioLogInterceptor extends Interceptor {
         requestStr += "- BODY:\n${data.toString()}\n";
     }
     print(requestStr);
-    return options;
+    return super.onRequest(options, handler);
   }
 
   @override
-  Future onError(DioError err) async {
+  Future onError(DioError err, ErrorInterceptorHandler handler) async {
     String errorStr = "\n==================== RESPONSE ====================\n"
-        "- URL:\n${err.request.baseUrl + err.request.path}\n"
-        "- METHOD: ${err.request.method}\n";
+        "- URL:\n${err.requestOptions.baseUrl + err.requestOptions.path}\n"
+        "- METHOD: ${err.requestOptions.method}\n";
 
     errorStr +=
     "- HEADER:\n${err.response.headers.map.mapToStructureString()}\n";
@@ -43,14 +43,14 @@ class DioLogInterceptor extends Interceptor {
       errorStr += "- MSG: ${err.message}\n";
     }
     print(errorStr);
-    return err;
+    return super.onError(err,handler);
   }
 
   @override
-  Future onResponse(Response response) async {
+  Future onResponse(Response response, ResponseInterceptorHandler handler) async {
     String responseStr =
         "\n==================== RESPONSE ====================\n"
-        "- URL:\n${response.request.uri}\n";
+        "- URL:\n${response.requestOptions.uri}\n";
     responseStr += "- HEADER:\n{";
     response.headers.forEach(
             (key, list) => responseStr += "\n  " + "\"$key\" : \"$list\",");
@@ -61,7 +61,7 @@ class DioLogInterceptor extends Interceptor {
       responseStr += "- BODY:\n ${_parseResponse(response)}";
     }
     printWrapped(responseStr);
-    return response;
+    return super.onResponse(response, handler);
   }
 
   void printWrapped(String text) {

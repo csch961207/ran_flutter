@@ -11,13 +11,13 @@ import 'package:ran_flutter_core/widget/base_dialog.dart';
 void getErrorTips(e, stackTrace, {String message, BuildContext context}) {
   /// 见https://github.com/flutterchina/dio/blob/master/README-ZH.md#dioerrortype
   if (e is DioError) {
-    if (e.type == DioErrorType.CONNECT_TIMEOUT ||
-        e.type == DioErrorType.SEND_TIMEOUT ||
-        e.type == DioErrorType.RECEIVE_TIMEOUT) {
+    if (e.type == DioErrorType.connectTimeout ||
+        e.type == DioErrorType.sendTimeout ||
+        e.type == DioErrorType.receiveTimeout) {
       // timeout
       ToastUtil.show("请求超时");
       print(e.toString());
-    } else if (e.type == DioErrorType.RESPONSE) {
+    } else if (e.type == DioErrorType.response) {
       // incorrect status, such as 404, 503...
       print(e.toString());
       print("错误");
@@ -110,6 +110,8 @@ void getErrorTips(e, stackTrace, {String message, BuildContext context}) {
         if (e.response.data['error'] == "invalid_grant" ||
             e.response.data['error'] == "invalid_client") {
           ToastUtil.show("用户名或密码无效");
+        } else if(e.response.data['error'] == "invalid_request"){
+          ToastUtil.show("无效的网络请求");
         } else {
           showElasticDialog(
               context: context,
@@ -134,7 +136,7 @@ void getErrorTips(e, stackTrace, {String message, BuildContext context}) {
               });
         }
       }
-    } else if (e.type == DioErrorType.CANCEL) {
+    } else if (e.type == DioErrorType.cancel) {
       // to be continue...
       ToastUtil.show("请求被取消");
       print(e.toString());

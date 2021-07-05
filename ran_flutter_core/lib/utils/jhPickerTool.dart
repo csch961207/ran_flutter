@@ -134,7 +134,7 @@ class JhPickerTool {
             var str = formatDate(time, [am])=="AM" ? "上午":"下午";
             timeStr =time.year.toString()+"年"+time.month.toString()+"月"+time.day.toString()+"日"+str+time.hour.toString()+"时"+time.minute.toString()+"分";
           }else{
-            timeStr =time.year.toString()+"-"+time.month.toString()+"-"+time.day.toString();
+            timeStr =time.year.toString()+"-"+(time.month>9?time.month.toString():"0"+time.month.toString())+"-"+(time.day>9?time.day.toString():"0"+time.day.toString());
           }
 //          print(formatDate(DateTime(1989, 02, 21), [yyyy, '-', mm, '-', dd]));
           clickCallback(timeStr,picker.adapter.text,time.year,time.month,time);

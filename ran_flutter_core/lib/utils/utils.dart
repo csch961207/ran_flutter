@@ -66,23 +66,23 @@ class Utils {
     return size + unitArr[index];
   }
 
-  static KeyboardActionsConfig getKeyboardActionsConfig(
-      BuildContext context, List<FocusNode> list) {
-    return KeyboardActionsConfig(
-      keyboardActionsPlatform: KeyboardActionsPlatform.IOS,
-      keyboardBarColor: ThemeUtils.getKeyboardActionsColor(context),
-      nextFocus: true,
-      actions: List.generate(
-          list.length,
-          (i) => KeyboardAction(
-                focusNode: list[i],
-                closeWidget: const Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: const Text("关闭"),
-                ),
-              )),
-    );
-  }
+//  static KeyboardActionsConfig getKeyboardActionsConfig(
+//      BuildContext context, List<FocusNode> list) {
+//    return KeyboardActionsConfig(
+//      keyboardActionsPlatform: KeyboardActionsPlatform.IOS,
+//      keyboardBarColor: ThemeUtils.getKeyboardActionsColor(context),
+//      nextFocus: true,
+//      actions: List.generate(
+//          list.length,
+//          (i) => KeyboardAction(
+//                focusNode: list[i],
+//                closeWidget: const Padding(
+//                  padding: const EdgeInsets.all(5.0),
+//                  child: const Text("关闭"),
+//                ),
+//              )),
+//    );
+//  }
 }
 
 /// 默认dialog背景色为半透明黑色，这里修改源码改为透明
@@ -91,7 +91,7 @@ Future<T> showTransparentDialog<T>({
   bool barrierDismissible = true,
   WidgetBuilder builder,
 }) {
-  final ThemeData theme = Theme.of(context, shadowThemeOnly: true);
+  final ThemeData theme = Theme.of(context);
   return showGeneralDialog(
     context: context,
     pageBuilder: (BuildContext buildContext, Animation<double> animation,
@@ -132,7 +132,7 @@ Future<T> showElasticDialog<T>({
   bool barrierDismissible = true,
   WidgetBuilder builder,
 }) {
-  final ThemeData theme = Theme.of(context, shadowThemeOnly: true);
+  final ThemeData theme = Theme.of(context);
   return showGeneralDialog(
     context: context,
     pageBuilder: (BuildContext buildContext, Animation<double> animation,

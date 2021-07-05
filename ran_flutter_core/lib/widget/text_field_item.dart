@@ -11,12 +11,13 @@ class TextFieldItem extends StatelessWidget {
   const TextFieldItem({
     Key key,
     this.controller,
-    @required this.title,
+    this.title,
     this.keyboardType: TextInputType.text,
     this.hintText: "",
     this.focusNode,
     this.config,
-    this.obscureText: false
+    this.obscureText: false,
+    this.isRequired: false
   }): super(key: key);
 
   final TextEditingController controller;
@@ -26,12 +27,13 @@ class TextFieldItem extends StatelessWidget {
   final FocusNode focusNode;
   final KeyboardActionsConfig config;
   final bool obscureText;
+  final bool isRequired;
 
   @override
   Widget build(BuildContext context) {
     if (config != null && defaultTargetPlatform == TargetPlatform.iOS){
       // 因Android平台输入法兼容问题，所以只配置IOS平台
-      FormKeyboardActions.setKeyboardActions(context, config);
+//      KeyboardActions.setKeyboardActions(context, config);
     }
     return Container(
       height: 50.0,
@@ -44,10 +46,15 @@ class TextFieldItem extends StatelessWidget {
       ),
       child: Row(
         children: <Widget>[
-          Padding(
+          title != null ? Padding(
             padding: const EdgeInsets.only(right: 16.0),
-            child: Text(title),
-          ),
+            child: Row(
+              children: [
+                Text(title),
+                isRequired?Text(" *",style: TextStyle(color: Colors.red),):Gaps.empty
+              ],
+            ),
+          ) : Gaps.empty,
           Expanded(
             flex: 1,
             child: TextField(
@@ -59,9 +66,10 @@ class TextFieldItem extends StatelessWidget {
                 //style: TextStyles.textDark14,
                 decoration: InputDecoration(
                   hintText: hintText,
+//                  helperStyle: TextStyle((fontSize: 14),
                   border: InputBorder.none, //去掉下划线
                   //hintStyle: TextStyles.textGrayC14
-                )
+                ),
             ),
           ),
           Gaps.hGap16
@@ -74,8 +82,11 @@ class TextFieldItem extends StatelessWidget {
 //    if (keyboardType == TextInputType.numberWithOptions(decimal: true)){
 //      return [UsNumberTextInputFormatter()];
 //    }
-    if (keyboardType == TextInputType.number || keyboardType == TextInputType.phone){
-      return [WhitelistingTextInputFormatter.digitsOnly];
+//    if (keyboardType == TextInputType.number || keyboardType == TextInputType.phone){
+//      return [WhitelistingTextInputFormatter.digitsOnly];
+//    }
+    if (keyboardType == TextInputType.phone){
+      return [LengthLimitingTextInputFormatter(20)];
     }
     return null;
   }
